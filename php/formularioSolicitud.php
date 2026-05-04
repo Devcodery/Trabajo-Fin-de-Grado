@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud</title>
+</head>
+<body>
+    <form action="guardarSolicitud.php" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+        <br><br>
+        <label for="tipoDeServicio">Tipo de servicio:</label>
+        <select id="tipoDeServicio" name="tipoDeServicio" required>
+            <option value="">Seleccione un tipo de servicio</option>
+            <option value="implementacion_de_ia">Implementación de IA</option>
+            <option value="analisis_de_datos">Análisis de Datos</option>
+            <option value="automatizaciones">Automatizaciones</option>
+        </select>
+        <br><br>
+        <input type="checkbox" id="aceptar" name="aceptar" required>
+        <label for="aceptar">Acepto los términos y condiciones</label>
+        <br><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
