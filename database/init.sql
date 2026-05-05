@@ -8,7 +8,7 @@ create table servicios (
     tecnologias_aplicadas text not null,
     alcance text not null,
     objetivo text not null,
-    fecha_creacion timestamp, 
+    fecha_creacion date default current_date,
     estado boolean not null 
 );
 
@@ -17,7 +17,7 @@ create table solicitudes(
     titulo varchar(100) not null,
     estado varchar(20) check(estado in ('pendiente', 'en proceso', 'completada')) not null,
     descripcion text not null,
-    fecha_creacion timestamp,
+    fecha_creacion date default current_date,
     fecha_fim date,
     idServicio int references servicios(id)
 );
@@ -26,7 +26,7 @@ create table usuarios(
     id int primary key,
     nombre varchar(100) not null,
     email varchar(150) not null unique,
-    password varchar(255) not null,
+    passwd varchar(255) not null,
     rol varchar(20) check(rol in ('cliente', 'consultor')) not null
 );
 
@@ -42,9 +42,10 @@ create table consultores(
 create table Mensajes(
     id serial primary key,
     idSolicitud int references solicitudes(id),
-    idUsuario int references usuarios(id),
+    idCliente int references clientes(idCliente),
+    idConsultor int references consultores(idConsultor),
     descripcion text not null,
     asunto varchar(100) not null,
-    fecha_creacion timestamp
+    fecha_creacion date default current_date
 );
 
