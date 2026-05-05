@@ -2,7 +2,7 @@ package modelo;
 
 import java.sql.Date;
 
-public class Servicios {
+public class Servicio {
     private int idServicio;
     private static int contadorId = 0;
     private String nombre;
@@ -13,7 +13,7 @@ public class Servicios {
     private Date fechaFin;
     private boolean estado;
 
-    public Servicios(int idServicio, String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+    public Servicio(int idServicio, String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -24,7 +24,7 @@ public class Servicios {
         this.estado = estado;
     }
 
-    public Servicios(String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+    public Servicio(String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
         this.idServicio = ++contadorId;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -48,7 +48,7 @@ public class Servicios {
     }
 
     public static void setContadorId(int contadorId) {
-        Servicios.contadorId = contadorId;
+        Servicio.contadorId = contadorId;
     }
 
     public String getNombre() {
