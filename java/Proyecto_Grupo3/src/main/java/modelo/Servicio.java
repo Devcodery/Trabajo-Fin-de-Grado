@@ -9,29 +9,40 @@ public class Servicio {
     private String descripcion;
     private String categoria;
     private String sede;
+    private String tecnologiasImplicadas;
+    private String objetivos;
+    private String alcance;
+    private String beneficios;
     private Date fechaInicio;
-    private Date fechaFin;
     private boolean estado;
 
-    public Servicio(int idServicio, String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+    public Servicio(int idServicio, String nombre, String descripcion, String tecnoImpli, String objetivos,
+                    String alcance, String beneficios, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.sede = sede;
+        this.tecnologiasImplicadas = tecnoImpli;
+        this.objetivos = objetivos;
+        this.alcance = alcance;
+        this.beneficios = beneficios;
         this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
         this.estado = estado;
     }
 
-    public Servicio(String nombre, String descripcion, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+    public Servicio(String nombre, String descripcion, String categoria, String tecnoImpli, String objetivos,
+                    String alcance, String beneficios, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
         this.idServicio = ++contadorId;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.sede = sede;
+        this.tecnologiasImplicadas = tecnoImpli;
+        this.objetivos = objetivos;
+        this.alcance = alcance;
+        this.beneficios = beneficios;
         this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
         this.estado = estado;
     }
 
@@ -91,19 +102,43 @@ public class Servicio {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
     public boolean isEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public String getTecnologiasImplicadas() {
+        return tecnologiasImplicadas;
+    }
+
+    public void setTecnologiasImplicadas(String tecnologiasImplicadas) {
+        this.tecnologiasImplicadas = tecnologiasImplicadas;
+    }
+
+    public String getObjetivos() {
+        return objetivos;
+    }
+
+    public void setObjetivos(String objetivos) {
+        this.objetivos = objetivos;
+    }
+
+    public String getAlcance() {
+        return alcance;
+    }
+
+    public void setAlcance(String alcance) {
+        this.alcance = alcance;
+    }
+
+    public String getBeneficios() {
+        return beneficios;
+    }
+
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
     }
 }
