@@ -14,6 +14,7 @@ public class Consulta {
     private ArrayList<String> estados = new ArrayList<String>(List.of("Pendiente", "En Proceso", "Finalizada"));
     
     
+    
     public Consulta(String titulo, String descripcion) {
         this.idConsulta = ++contador;
         this.titulo = titulo;
