@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio</title>
+</head>
+<body>
+    <header>
+        <h1>Formulario de Servicio</h1>
+    </header>  
+    <form>
+        <label for="nombre">Nombre del servicio:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br><br>
+       <label for="categoria">Categoría:</label>
+       <input type="text" id="categoria" name="categoria" required>
+         <br><br>
+        <la for="sede">Sede:</label>
+        <input type="text" id="sede" name="sede" required>
+        <br><br>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea>
+        <br><br>
+        <label for="beneficios">Beneficios:</label>
+        <textarea id="beneficios" name="beneficios" required></textarea>
+        <br><br>
+        <label for="tecnologias_aplicadas">Tecnologías aplicadas:</label>
+        <textarea id="tecnologias_aplicadas" name="tecnologias_aplicadas" required></textarea>
+        <br><br>
+        <label for="alcance">Alcance:</label>
+        <textarea id="alcance" name="alcance" required></textarea>
+        <br><br>
+        <label for="objetivo">Objetivo:</label>
+        <textarea id="objetivo" name="objetivo" required></textarea>
+        <br><br>
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            <option value="">Seleccione un estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
