@@ -19,7 +19,7 @@ pg_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Solicitud</title>
+    <title>Añadir Nueva Solicitud</title>
 </head>
 <body>
     <div id="mensajeAlerta"></div> 

@@ -79,3 +79,18 @@ li:last-child {
     border-radius: 10px;
     border: 2px solid #f0f0f0;
 }
+
+.layout {
+    display: flex;
+    margin: auto auto 30px;
+}
+
+.btn-consulta {
+    background-color: #d1d1d1;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: auto;
+}
