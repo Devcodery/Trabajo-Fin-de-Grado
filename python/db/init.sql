@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE TABLE IF NOT EXISTS usuarios (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS usuario (
+    id_usuario SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(150) NOT NULL,
     correo VARCHAR(150) NOT NULL UNIQUE,
@@ -25,7 +25,7 @@ CREATE OR REPLACE FUNCTION registrar_usuario(
 RETURNS BOOLEAN
 AS $$
 BEGIN
-    INSERT INTO usuarios(nombre, apellidos, correo, passwd, rol, direccion, departamento, sede)
+    INSERT INTO usuario(nombre, apellidos, correo, passwd, rol, direccion, departamento, sede)
     VALUES (_nombre, _apellidos, _correo, crypt(_passwd, gen_salt('bf')), _rol, _direccion, _departamento, _sede);
     RETURN TRUE;
 EXCEPTION
@@ -46,7 +46,7 @@ DECLARE
     v_passwd_almacenada VARCHAR(255);
 BEGIN
     SELECT passwd INTO v_passwd_almacenada
-    FROM usuarios
+    FROM usuario
     WHERE correo = _login OR nombre = _login;
 
     IF NOT FOUND THEN
