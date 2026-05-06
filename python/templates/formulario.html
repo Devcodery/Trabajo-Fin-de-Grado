@@ -13,13 +13,55 @@
         <input type="text" name="nombre" id="nombre" required>
         <br><br>
 
+        <label>Apellidos:</label>
+        <input type="text" name="apellidos" id="apellidos" required>
+        <br><br>
+
         <label>Email:</label>
         <input type="email" name="email" id="email" required>
         <br><br>
 
+        <label>Direccion:</label>
+        <input type="direccion" name="direccion" id="email" required>
+        <br><br>
+
+        {% if rol != 'cliente' %}
+
+        <select name="id_dpto" id="id_dpto">
+
+            {% for dpto in departamentos %}
+
+                <option value="{{ dpto.id }}">
+                    {{ dpto.nombre }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <select name="id_sede" id="id_sede">
+
+            {% for sede in sedes %}
+
+                <option value="{{ sede.id }}">
+                    {{ sede.nombre }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        {% endif %}
+
         <label>Contraseña:</label>
         <input type="password" name="passwd" id="passwd" required>
         <br><br>
+
+        <input type="hidden" name="rol" id="rol" value="{{ rol }}">
 
         <button type="submit">Registrar</button>
     </form>
