@@ -16,7 +16,7 @@ public class Servicio {
     private boolean estado;
 
     public Servicio(int idServicio, String nombre, String descripcion, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String categoria, String sede, Date fechaCreacion, Date fechaFin, boolean estado) {
+                    String alcance, String beneficios, String categoria, String sede, Date fechaCreacion, boolean estado) {
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -31,7 +31,7 @@ public class Servicio {
     }
 
     public Servicio(String nombre, String descripcion, String categoria, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String sede, Date fechaCreacion, Date fechaFin, boolean estado) {
+                    String alcance, String beneficios, String sede, Date fechaCreacion, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;

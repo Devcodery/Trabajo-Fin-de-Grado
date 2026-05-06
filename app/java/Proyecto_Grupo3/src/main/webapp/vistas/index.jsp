@@ -11,7 +11,9 @@
 
     <div class="nav">
         <button class="btn">Regresar</button>
-        <button class="btn">Login</button>
+        <a href="http://172.19.0.2:8888/login" class="btn">
+		    Login
+		</a>
     </div>
 
     <h1 class="titulo">Departamento de Consultoría Tecnológica</h1>
