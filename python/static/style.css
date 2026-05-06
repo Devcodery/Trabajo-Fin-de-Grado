@@ -1,0 +1,124 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Títulos */
+.titulo {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 40px;
+    font-weight: normal;
+}
+
+/* Etiquetas y controles de formulario */
+.label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho */
+    display: block;
+}
+
+/* Botones */
+.btn {
+    background-color: #d1d1d1;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #b0b0b0;
+}
+
+/* Enlaces */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedores de navegación y utilidades */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.error-msg {
+    color: #d93025;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+/* Cajas de scroll (usadas en otras partes de tu app) */
+.scroll-box {
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 15px;
+    overflow-y: scroll;
+    background: #fff;
+}
+
+.height-consultas { height: 160px; }
+.height-servicios { height: 380px; }
+
+/* Listas dentro de scroll-boxes */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+/* Personalización del scrollbar */
+.scroll-box::-webkit-scrollbar {
+    width: 14px;
+}
+.scroll-box::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 0 10px 10px 0;
+}
+.scroll-box::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+}
