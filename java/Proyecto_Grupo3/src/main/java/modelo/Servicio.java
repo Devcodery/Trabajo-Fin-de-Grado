@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Servicio {
     private int idServicio;
-    private static int contadorId = 0;
     private String nombre;
     private String descripcion;
     private String categoria;
@@ -33,7 +32,6 @@ public class Servicio {
 
     public Servicio(String nombre, String descripcion, String categoria, String tecnoImpli, String objetivos,
                     String alcance, String beneficios, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
-        this.idServicio = ++contadorId;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -52,14 +50,6 @@ public class Servicio {
 
     public void setIdServicio(int idServicio) {
         this.idServicio = idServicio;
-    }
-
-    public static int getContadorId() {
-        return contadorId;
-    }
-
-    public static void setContadorId(int contadorId) {
-        Servicio.contadorId = contadorId;
     }
 
     public String getNombre() {

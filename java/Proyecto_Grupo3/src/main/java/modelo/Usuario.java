@@ -2,7 +2,6 @@ package modelo;
 
 public abstract class Usuario {
     protected int idUsuario;
-    private static int contador = 0;
     protected String nombre;
     protected String apellidos;
     protected String direccion;
@@ -21,7 +20,6 @@ public abstract class Usuario {
     }
 
     public Usuario(String nombre, String apellidos, String rol, String direccion, String email, String passwd) {
-        this.idUsuario = ++contador;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.rol = rol;
@@ -60,14 +58,6 @@ public abstract class Usuario {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
-    }
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Usuario.contador = contador;
     }
 
     public String getApellidos() {
