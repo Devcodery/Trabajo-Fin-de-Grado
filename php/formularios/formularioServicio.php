@@ -2,9 +2,9 @@
 $url = 'http://info.empresa.dam.es:8055/items/sedes';
 $_GET = file_get_contents($url);
 $data = json_decode($_GET, true);
-$sedeOptions = [];
+$sedes = [];
 foreach ($data['data'] as $sede) {
-    $sedeOptions[] = ['nombre' => $sede['nombre']];
+    $sedes[] = ['nombre' => $sede['nombre']];
 }
 
 ?>
@@ -13,7 +13,7 @@ foreach ($data['data'] as $sede) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Nuevo Servicio | Consultoría Tech</title>
+    <title>Añadir Nuevo Servicio</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -30,7 +30,7 @@ foreach ($data['data'] as $sede) {
             
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej: Auditoría Cloud" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Automatización con IA" required>
             </div>
 
             <div class="form-group">
@@ -42,7 +42,7 @@ foreach ($data['data'] as $sede) {
                 <label for="sede">Sede:</label>
                 <select id="sede" name="sede" required>
                     <option value="" disabled selected>Seleccione una sede</option>
-                    <?php foreach ($sedeOptions as $sede): ?>
+                    <?php foreach ($sedes as $sede): ?>
                         <option value="<?php echo htmlspecialchars($sede['nombre']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -64,12 +64,12 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group full-width">
                 <label for="beneficios">Beneficios:</label>
-                <textarea id="beneficios" name="beneficios" placeholder="¿Qué valor aporta al cliente?" required></textarea>
+                <textarea id="beneficios" name="beneficios" placeholder="¿Cualés van a ser los beneficios de los clientes?" required></textarea>
             </div>
 
             <div class="form-group full-width">
                 <label for="tecnologias_aplicadas">Tecnologías aplicadas:</label>
-                <textarea id="tecnologias_aplicadas" name="tecnologias_aplicadas" placeholder="AWS, Python, React..." required></textarea>
+                <textarea id="tecnologias_aplicadas" name="tecnologias_aplicadas" placeholder="Java, Python, PHP..." required></textarea>
             </div>
 
             <div class="form-group">
