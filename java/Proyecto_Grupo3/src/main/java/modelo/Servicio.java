@@ -12,11 +12,11 @@ public class Servicio {
     private String objetivos;
     private String alcance;
     private String beneficios;
-    private Date fechaInicio;
+    private Date fechaCreacion;
     private boolean estado;
 
     public Servicio(int idServicio, String nombre, String descripcion, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String categoria, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+                    String alcance, String beneficios, String categoria, String sede, Date fechaCreacion, Date fechaFin, boolean estado) {
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -26,12 +26,12 @@ public class Servicio {
         this.objetivos = objetivos;
         this.alcance = alcance;
         this.beneficios = beneficios;
-        this.fechaInicio = fechaInicio;
+        this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
 
     public Servicio(String nombre, String descripcion, String categoria, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String sede, Date fechaInicio, Date fechaFin, boolean estado) {
+                    String alcance, String beneficios, String sede, Date fechaCreacion, Date fechaFin, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -40,7 +40,7 @@ public class Servicio {
         this.objetivos = objetivos;
         this.alcance = alcance;
         this.beneficios = beneficios;
-        this.fechaInicio = fechaInicio;
+        this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
 
@@ -84,12 +84,12 @@ public class Servicio {
         this.sede = sede;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public boolean isEstado() {
