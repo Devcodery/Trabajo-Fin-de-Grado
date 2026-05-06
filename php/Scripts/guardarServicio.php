@@ -17,15 +17,19 @@ if($estado == 'Activo') {
     $estado = 'false';
 }
 
-$query = "INSERT INTO servicios (nombre, descripcion, categoria, sede, beneficios, tecnologias_aplicadas, alcance, objetivo, estado)
+$query = "INSERT INTO servicio (nombre, descripcion, categoria, sede, beneficios, tecnologias_aplicadas, alcance, objetivo, estado)
  VALUES ('$nombre', '$descripcion', '$categoria', '$sede', '$beneficios', '$tecnologias_aplicadas', '$alcance', '$objetivo', $estado);";
 
 if(pg_query($conn, $query)) {
-    echo "Servicio guardado correctamente.";
+     pg_close($conn);
+    header("Location: ../formularios/formularioServicio.php?mensaje=exito");
+    exit();
 } else {
     echo "Error al guardar el servicio: " . pg_last_error($conn);
+    header("Location: ../formularios/formularioServicio.php?mensaje=error");
+    exit();
 }
 
-pg_close($conn);
+
 
 ?>
