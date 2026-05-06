@@ -1,3 +1,4 @@
+-- Active: 1777996942756@@localhost@9334@consultoriatecnologia
 create table servicio (
     id serial primary key,
     nombre varchar(50) not null,
@@ -20,14 +21,14 @@ create table consulta(
     fecha_creacion date default current_date,
     fecha_fin date,
     id_servicio int references servicio(id),
-    id_cliente int not null references usuario(id_usuario),
-    id_consultor int references usuario(id_usuario)
+    id_cliente int not null,
+    id_consultor int
 );
 
 create table mensajes(
     id serial primary key,
     id_consulta int references consulta(id),
-    id_usuario int not null references usuario(id_usuario),
+    id_usuario int not null,
     descripcion text not null,
     asunto varchar(100) not null,
     fecha_creacion timestamp default current_timestamp
