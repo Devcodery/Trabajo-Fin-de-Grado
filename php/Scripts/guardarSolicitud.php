@@ -5,7 +5,7 @@ $titulo = $_POST['titulo'] ?? '';
 $tipoDeServicio = $_POST['tipoDeServicio'] ?? '';
 $descripcion = $_POST['descripcion'] ?? '';
 
-$queryidServicio = "SELECT id FROM servicios WHERE nombre = '$tipoDeServicio'";
+$queryidServicio = "SELECT id FROM servicio WHERE nombre = '$tipoDeServicio'";
 $idServicio = (int)pg_query($conn, $queryidServicio);
 
 
@@ -15,13 +15,15 @@ if (!$idServicio) {
 }
 
 
-$query = "INSERT INTO solicitudes (titulo, idServicio, descripcion, estado) VALUES ('$titulo', $idServicio, '$descripcion', 'pendiente')";
+$query = "INSERT INTO consulta (titulo, id_servicio, descripcion, estado) VALUES ('$titulo', $idServicio, '$descripcion', 'pendiente')";
 
 if(pg_query($conn, $query)) {
-    echo "Solicitud guardada correctamente.";
+     pg_close($conn);
+    header("Location: ../formularios/formularioServicio.php?mensaje=exito");
+    exit();
 } else {
-    echo "Error al guardar la solicitud: " . pg_last_error($conn);
+    echo "Error al guardar el servicio: " . pg_last_error($conn);
+    header("Location: ../formularios/formularioServicio.php?mensaje=error");
+    exit();
 }
-
-pg_close($conn);
 ?>
