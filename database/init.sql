@@ -6,9 +6,9 @@ create table servicio (
     categoria varchar(50) not null,
     sede varchar(50) not null,
     beneficios text not null,
-    tecnologias_aplicadas text not null,
+    tecnologias_implicadas text not null,
     alcance text not null,
-    objetivo text not null,
+    objetivos text not null,
     fecha_creacion date default current_date,
     estado boolean not null 
 );

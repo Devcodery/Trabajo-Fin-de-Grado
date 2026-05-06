@@ -2,7 +2,6 @@ package modelo;
 
 public class Mensaje {
     private int idMensaje;
-    private static int contador = 0;
     private Cliente cliente;
     private Consultor consultor;
     private String asunto;
@@ -17,7 +16,6 @@ public class Mensaje {
     }
 
     public Mensaje(Cliente cliente, Consultor consultor, String asunto, String contenido) {
-        this.idMensaje = ++contador;
         this.cliente = cliente;
         this.consultor = consultor;
         this.asunto = asunto;
@@ -30,14 +28,6 @@ public class Mensaje {
 
     public void setIdMensaje(int idMensaje) {
         this.idMensaje = idMensaje;
-    }
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Mensaje.contador = contador;
     }
 
     public Cliente getCliente() {

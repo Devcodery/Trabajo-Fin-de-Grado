@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Consulta {
     private int idConsulta;
-    private static int contador = 0;
     private String estadoActual;
     private String titulo;
     private String descripcion;
@@ -16,7 +15,6 @@ public class Consulta {
     
     
     public Consulta(String titulo, String descripcion) {
-        this.idConsulta = ++contador;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = new Date();
@@ -37,14 +35,6 @@ public class Consulta {
 
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
-    }
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Consulta.contador = contador;
     }
 
     public String getEstadoActual() {
