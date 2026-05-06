@@ -1,42 +1,35 @@
-create table servicios (
+create table servicio (
     id serial primary key,
     nombre varchar(50) not null,
     descripcion text not null,
     categoria varchar(50) not null,
     sede varchar(50) not null,
-    fecha_creacion timestamp, 
-    fecha_fim date,
+    beneficios text not null,
+    tecnologias_implicadas text not null,
+    alcance text not null,
+    objetivos text not null,
+    fecha_creacion date default current_date,
     estado boolean not null 
 );
 
-create table solicitudes(
+create table consulta(
     id serial primary key,
     titulo varchar(100) not null,
-    estado varchar(20) check(estado in ('pendiente', 'en_proceso', 'completada')) not null,
+    estado varchar(20) check(estado in ('pendiente', 'en proceso', 'finalizada')),
     descripcion text not null,
-    fecha_creacion timestamp,
-    idServicio int references servicios(id)
+    fecha_creacion date default current_date,
+    fecha_fin date,
+    id_servicio int references servicio(id),
+    id_cliente int not null references usuario(id_usuario),
+    id_consultor int references usuario(id_usuario)
 );
 
-create table usuarios(
-    id int primary key,
-    nombre varchar(100) not null,
-    email varchar(150) not null unique,
-    password varchar(255) not null
-);
-
-create table clientes(
-    id references usuarios(id) primary key
-);
-create table consultores(
-    id references usuarios(id) primary key
-);
-
-create table Mensajes(
+create table mensajes(
     id serial primary key,
-    idSolicitud int references solicitudes(id),
-    idUsuario int references usuarios(id),
+    id_consulta int references consulta(id),
+    id_usuario int not null references usuario(id_usuario),
     descripcion text not null,
     asunto varchar(100) not null,
-    fecha_creacion timestamp
+    fecha_creacion timestamp default current_timestamp
 );
+

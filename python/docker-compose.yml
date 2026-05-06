@@ -1,0 +1,38 @@
+services:
+  flaskapp:
+    image: python:3.12-slim-bookworm
+    working_dir: /app
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "8787:8888"
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && python app.py"
+    restart: unless-stopped
+    networks:
+      - proxy
+      - proyectoweb_default
+
+  db-users:
+    image: postgres:16
+    env_file:
+      - .env
+    ports:
+      - "9335:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    restart: unless-stopped
+    networks:
+      - proyectoweb_default
+
+volumes:
+  postgres_data:
+
+networks:
+  proxy:
+    external: true
+
+  proyectoweb_default:
+    external: true
