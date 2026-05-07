@@ -78,8 +78,8 @@ foreach ($data['data'] as $sede) {
             </div>
 
             <div class="form-group">
-                <label for="objetivo">Objetivo:</label>
-                <textarea id="objetivo" name="objetivo" placeholder="Meta principal..." required></textarea>
+                <label for="objetivos">Objetivos:</label>
+                <textarea id="objetivos" name="objetivos" placeholder="Metas principales..." required></textarea>
             </div>
             
             <div class="form-actions">
