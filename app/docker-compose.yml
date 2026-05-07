@@ -20,5 +20,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
+  tomcat:
+    image: tomcat:9.0
+    ports:
+      - "7788:8080"
+    volumes:
+      - ./java/Proyecto_Grupo3/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Proyecto_Grupo3-0.0.1-SNAPSHOT.war
+
 volumes:
   postgres_data:

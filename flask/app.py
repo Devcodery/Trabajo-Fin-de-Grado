@@ -102,19 +102,19 @@ def form(rol):
     print("Has entrado en el formulario")
 
     # Obtener sedes
-    # url = "http://info.empresa.dam.es:8055/items/sedes"
-    # respuesta = requests.get(url)
-    # datosSedes = respuesta.json()
+    url = "http://info.empresa.dam.es:8055/items/sedes"
+    respuesta = requests.get(url)
+    datosSedes = respuesta.json()
 
     # Obtener departamentos
-    # url = "http://info.empresa.dam.es:8055/items/departamentos"
-    # respuesta = requests.get(url)
-    # datosDepartamentos = respuesta.json()
+    url = "http://info.empresa.dam.es:8055/items/departamentos"
+    respuesta = requests.get(url)
+    datosDepartamentos = respuesta.json()
 
     return render_template(
         "formulario.html",
-        # departamentos=datosDepartamentos['data'],
-        # sedes=datosSedes['data'],
+        departamentos=datosDepartamentos['data'],
+        sedes=datosSedes['data'],
         rol=rol
     )
 
