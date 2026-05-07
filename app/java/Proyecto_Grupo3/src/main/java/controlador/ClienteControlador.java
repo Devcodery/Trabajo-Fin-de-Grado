@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cliente;
 
 /**
  * Servlet implementation class ClienteControlador
@@ -30,15 +29,9 @@ public class ClienteControlador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		Cliente cliente = new Cliente(Integer.valueOf(request.getParameter("id")),
-										request.getParameter("nombre"),
-										request.getParameter("apellidos"),
-										request.getParameter("correo"),
-										request.getParameter("direccion"));
+		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
 		
-		System.out.println(cliente);
-		
-		request.setAttribute("id", cliente.getIdUsuario());
+		request.setAttribute("id", idUsuario);
 
 		request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 		
