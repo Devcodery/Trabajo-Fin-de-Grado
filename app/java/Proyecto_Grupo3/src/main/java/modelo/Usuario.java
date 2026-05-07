@@ -5,27 +5,22 @@ public abstract class Usuario {
     protected String nombre;
     protected String apellidos;
     protected String direccion;
-    protected String rol;
     protected String email;
     protected String passwd;
 
-    public Usuario(int idUsuario, String nombre, String apellidos, String rol, String direccion, String email, String passwd) {
+    public Usuario(int idUsuario, String nombre, String apellidos, String direccion, String email) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.rol = rol;
         this.direccion = direccion;
         this.email = email;
-        this.passwd = passwd;
     }
 
-    public Usuario(String nombre, String apellidos, String rol, String direccion, String email, String passwd) {
+    public Usuario(String nombre, String apellidos, String direccion, String email) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.rol = rol;
         this.direccion = direccion;
         this.email = email;
-        this.passwd = passwd;
     }
 
     public int getIdUsuario() {
@@ -74,13 +69,5 @@ public abstract class Usuario {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 }

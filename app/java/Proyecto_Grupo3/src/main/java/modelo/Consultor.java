@@ -4,16 +4,16 @@ public class Consultor extends Usuario {
     private String sede;
     private String departamento;
 
-    public Consultor(int idUsuario, String nombre, String apellidos, String rol, String direccion, 
-                    String email, String sede, String departamento, String passwd) {
-        super(idUsuario, nombre, apellidos, rol, direccion, email, passwd);
+    public Consultor(int idUsuario, String nombre, String apellidos, String direccion, 
+                    String email, String sede, String departamento) {
+        super(idUsuario, nombre, apellidos, direccion, email);
         this.sede = sede;
         this.departamento = departamento;
     }
 
-    public Consultor(String nombre, String apellidos, String rol, String direccion, 
-                    String email, String sede, String departamento, String passwd) {
-        super(nombre, apellidos, rol, direccion, email, passwd);
+    public Consultor(String nombre, String apellidos, String direccion, 
+                    String email, String sede, String departamento) {
+        super(nombre, apellidos, direccion, email);
         this.sede = sede;
         this.departamento = departamento;
     }
