@@ -90,14 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function enviarFormulario(evento) {
         // Evitar que el formulario se envíe automáticamente
         evento.preventDefault();
-        
+        const tipoServicio = formulario.getElementById('modificarServicio').value.trim();
         // Validar el formulario
         if (validarFormulario() === false) {
             return;  // Si hay errores, no enviamos
         }
         
         // Si llegamos aquí, todo está correcto
-        if (formulario.getAttribute('id') === 'modificarServicio') {
+        if (tipoServicio == 'modificarServicio') {
             mostrarAlerta('Modificando Servicio...', 'exito');
         } else {
             mostrarAlerta('Insertando Servicio...', 'exito');
