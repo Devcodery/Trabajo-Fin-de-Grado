@@ -1,0 +1,19 @@
+package modelo;
+
+public class Fibonacci {
+	 /**
+     * Método que calcula el n-ésimo por Fibonacci f(x)=(n-1)+(n-2)
+     * @param n n-ésimo elemento para calcular su valor en la serie Fibonacci
+     * @return el valor de fibonacci para el n-ésimo 
+     */
+    public static long fibonacci(int n) {
+        if (n == 0) {
+            return 0; 
+        }
+        if (n == 1) {
+            return 1;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+}
