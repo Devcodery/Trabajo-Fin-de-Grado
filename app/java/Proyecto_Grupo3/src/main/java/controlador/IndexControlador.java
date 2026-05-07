@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import conexionBBDD.ConexionBBDD;
+import dao.ServicioDAO;
 import modelo.Servicio;
 
 /**
@@ -37,6 +38,13 @@ public class IndexControlador extends HttpServlet {
 		ConexionBBDD conexion = new ConexionBBDD();
 		conexion.conectarBDDotenv();
 
+		ServicioDAO servicioDAO = new ServicioDAO(conexion);
+
+		servicios = servicioDAO.readAll();
+
+		request.setAttribute("servicios", servicios);
+
+		request.getRequestDispatcher("/vistas/index.jsp").forward(request, response);
 		
 	}
 
