@@ -124,23 +124,23 @@ def obtener_usuario(empleado_id):
         with conn.cursor() as cur:
             cur.execute(
                 "SELECT * "
-                + " FROM empleados WHERE id = %s;",
+                + " FROM usuario WHERE id_usuario = %s;",
                 (empleado_id,),
             )
             fila = cur.fetchone()
 
     if not fila:
-        return jsonify({"error": "No existe el empleado"}), 404
+        return jsonify({"error": "No existe el usuario"}), 404
 
     return jsonify({
         "id_usuario": fila[0],
         "nombre": fila[1],
         "apellidos": fila[2],
         "correo": fila[3],
-        "rol": fila[4],
-        "direccion": fila[5],
-        "id_dpto": fila[6],
-        "id_sede": fila[7],
+        "rol": fila[5],
+        "direccion": fila[6],
+        "id_dpto": fila[7],
+        "id_sede": fila[8],
     })
 
 @app.route("/registro/<string:rol>", methods=["GET", "POST"])
@@ -183,7 +183,7 @@ def usuarios():
     with get_conn() as conn:
         with conn.cursor() as cur:
 
-            cur.execute("SELECT * FROM usuario order by id;")
+            cur.execute("SELECT * FROM usuario order by id_usuario;")
 
             filas = cur.fetchall()
 
@@ -192,8 +192,8 @@ def usuarios():
 @app.route("/usuario/<int:id_usuario>", methods=["GET"])
 @login_requerido
 def usuario(id_usuario):
-    if "admin" not in session.get("roles", []):
-        return "Sin permisos", 403
+    # if "admin" not in session.get("roles", []):
+    #     return "Sin permisos", 403
     return obtener_usuario(id_usuario)
     
 @app.route("/login", methods=["GET", "POST"])
@@ -233,9 +233,9 @@ def login():
             
             
             if session["roles"] == 'cliente':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}")
+                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}&opcion=python")
             elif session["roles"] == 'consultor':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}")
+                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}&opcion=python")
 
         error = "Usuario o contraseña incorrectos"
 
