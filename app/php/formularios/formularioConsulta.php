@@ -58,7 +58,7 @@ pg_close($conn);
             <input type="hidden" id="id" name="id" value="<?= $idUsuario ?>">
 
             <div class="form-actions">
-                <a href="" class="btn-exit">Volver al inicio</a>
+                <a href="http://consultoriatech.java.es/Proyecto_Grupo3/vistas/portalCliente.jsp" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Solicitud">
             </div>
      

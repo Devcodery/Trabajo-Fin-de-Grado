@@ -90,16 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function enviarFormulario(evento) {
         // Evitar que el formulario se envíe automáticamente
         evento.preventDefault();
-        const tipoServicio = evento.target.id;
+        const tipoServicio = formulario.getAttribute('id');
+        console.log(tipoServicio);
         // Validar el formulario
         if (validarFormulario() === false) {
             return;  // Si hay errores, no enviamos
         }
         
         // Si llegamos aquí, todo está correcto
-        if (tipoServicio == 'formModificarServicio') {
+        if (tipoServicio === 'formModificarServicio') {
             mostrarAlerta('Modificando Servicio...', 'exito');
-        } else {
+        } else if (tipoServicio === 'formInsertarServicio') {
             mostrarAlerta('Insertando Servicio...', 'exito');
         }
         // Enviar el formulario
