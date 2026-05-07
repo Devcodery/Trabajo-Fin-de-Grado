@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Consultoría Tecnológica</title>
     <!-- Asegúrate de que la ruta al archivo css sea la correcta -->
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
 
@@ -35,10 +36,17 @@
             <span class="label">Servicios</span>
             <div class="scroll-box height-servicios">
                 <ul>
+                    <c:forEach var="servicio" items="${servicios}">
+                        <li>
+                            <c:out value="${servicio.nombre}"></c:out><br> 
+                        </li>
+                    </c:forEach>
                     
+                    <c:if test="${empty servicios}">
+                        <li>No hay servicios disponibles actualmente.</li>
+                    </c:if>
                 </ul>
             </div>
-
     </div>
 
 </body>
