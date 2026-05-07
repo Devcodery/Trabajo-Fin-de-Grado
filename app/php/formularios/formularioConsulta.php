@@ -1,5 +1,12 @@
 <?php
-include '../Scripts/db.php';
+include '../scripts/db.php';
+
+$idUsuario = "";
+
+if(isset($_GET['idUsuario'])){
+    $idUsuario = intval($_GET['idUsuario']);
+}
+echo($idUsuario);
 
 $queryServicios = "SELECT nombre FROM servicio where estado = true";
 $resultServicios = pg_query($conn, $queryServicios);
@@ -28,7 +35,7 @@ pg_close($conn);
             <h1>Registrar Nueva Solicitud</h1>
             <p class="subtitle">Completa los detalles técnicos de la solicitud.</p>
         </header>
-        <form action="../Scripts/guardarSolicitud.php" method="post">
+        <form action="../scripts/guardarConsulta.php" method="post">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo" required>
@@ -48,13 +55,16 @@ pg_close($conn);
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion" required></textarea>
             </div>
+            
+            <input type="hidden" id="id" name="id" value="<?= $idUsuario ?>">
 
             <div class="form-actions">
-                <a href="index" class="btn-exit">Volver al inicio</a>
+                <a href="" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Solicitud">
             </div>
+     
         </form>
     </div>
-    <script src="../js/alertSolicitud.js"></script>
+    <script src="../js/alertConsulta.js"></script>
 </body>
 </html>
