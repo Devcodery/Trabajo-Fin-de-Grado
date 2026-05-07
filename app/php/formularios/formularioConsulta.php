@@ -34,7 +34,7 @@ pg_close($conn);
             <p class="subtitle">Completa los detalles técnicos de la solicitud.</p>
         </header>
         <div id="mensajeAlerta"></div> 
-        <form action="../scripts/guardarConsulta.php" method="post">
+        <form id="formConsulta" action="../scripts/guardarConsulta.php" method="post">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo">

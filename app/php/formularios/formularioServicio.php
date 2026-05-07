@@ -18,7 +18,7 @@ foreach ($data['data'] as $sede) {
 </head>
 <body>
 
-    <div class="form-container" id="insertarServicio" name="insertarServicio">
+    <div class="form-container">
             <div id="mensajeAlerta"></div>  
 
         <header>
@@ -26,7 +26,7 @@ foreach ($data['data'] as $sede) {
             <p class="subtitle">Completa los detalles técnicos del servicio para el catálogo.</p>
         </header>
 
-        <form action="../scripts/guardarServicio.php" method="post" class="form-grid">
+        <form id="formInsertarServicio" action="../scripts/guardarServicio.php" method="post" class="form-grid">
             
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
