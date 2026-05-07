@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Portal Cliente</title>
+<title>WEB PRIVADA CLIENTE</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
@@ -24,7 +24,9 @@
 	</div>
 	
 	<div class="layout">
-		<button class="btn-consulta" href="/">Mis Consultas</button>
+		<button class="btn-consulta" href="/">
+			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=versolicitudes"></a>
+		</button>
 	</div>
 </body>
 </html>
