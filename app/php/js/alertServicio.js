@@ -50,15 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const estado = document.getElementById('estado').value;
         const descripcion = document.getElementById('descripcion').value.trim();
         const beneficios = document.getElementById('beneficios').value.trim();
-        const tecnologias_aplicadas = document.getElementById('tecnologias_aplicadas').value.trim();
+        const tecnologias_implicadas = document.getElementById('tecnologias_implicadas').value.trim();
         const alcance = document.getElementById('alcance').value.trim();
-        const objetivo = document.getElementById('objetivo').value.trim();
+        const objetivos = document.getElementById('objetivos').value.trim();
         
         if (nombre === '') {
             mostrarAlerta('Error: El nombre es obligatorio', 'error');
             return false;
         } else if (categoria === '') {
-            mostrarAlerta('Error: El email es obligatorio', 'error');
+            mostrarAlerta('Error: la categoria es obligatoria', 'error');
             return false;
         } else if (sede === '') {
             mostrarAlerta('Error: Debes seleccionar una sede', 'error');
@@ -72,14 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (beneficios === '') {
             mostrarAlerta('Error: Los beneficios son obligatorios', 'error');
             return false;
-        } else if (tecnologias_aplicadas === '') {
-            mostrarAlerta('Error: Las tecnologías aplicadas son obligatorias', 'error');
+        } else if (tecnologias_implicadas === '') {
+            mostrarAlerta('Error: Las tecnologías implicadas son obligatorias', 'error');
             return false;
         } else if (alcance === '') {
             mostrarAlerta('Error: El alcance es obligatorio', 'error');
             return false;
-        } else if (objetivo === '') {
-            mostrarAlerta('Error: El objetivo es obligatorio', 'error');
+        } else if (objetivos === '') {
+            mostrarAlerta('Error: Los objetivos son obligatorios', 'error');
             return false;
         }
         
@@ -97,15 +97,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Si llegamos aquí, todo está correcto
-        mostrarAlerta('Insertando Servicio...', 'exito');
+        if (formulario.getAttribute('id') === 'modificarServicio') {
+            mostrarAlerta('Modificando Servicio...', 'exito');
+        } else {
+            mostrarAlerta('Insertando Servicio...', 'exito');
+        }
         // Enviar el formulario
-        formulario.submit();
+        setTimeout(function() {
+            formulario.submit();
+        }, 2000);
     }
     
     // ============================================
     // ACTIVAR EL FORMULARIO
     // ============================================
     // Escuchar cuando el usuario haga clic en "Enviar"
-    formulario.addEventListener('submit', enviarFormulario());
-    
+    formulario.addEventListener('submit', enviarFormulario);
 });

@@ -40,23 +40,25 @@ foreach ($data['data'] as $sede) {
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Formulario de Servicio</h1>
-    </header>  
-    <div class="form-container">
-        <form>
+    <div class="form-container" id="modificarServicio" name="modificarServicio">
+        <header>
+            <h1>Formulario de Servicio</h1>
+        </header>  
+        <div id="mensajeAlerta"></div>  
+        <form action="../Scripts/actualizarServicio.php" method="post">
+            <input type="hidden" name="id" value="<?php echo isset($servicios[0]['id_servicio']) ? $servicios[0]['id_servicio'] : ''; ?>">
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
-                <input type="text" id="nombre" name="nombre" value="<?php echo isset($servicios[0]['nombre']) ? $servicios[0]['nombre'] : ''; ?>" required>
+                <input type="text" id="nombre" name="nombre" value="<?php echo isset($servicios[0]['nombre']) ? $servicios[0]['nombre'] : ''; ?>">
             </div>
             <div class="form-group">
                 <label for="categoria">Categoría:</label>
-                <input type="text" id="categoria" name="categoria" value="<?= isset($servicios[0]['categoria']) ? $servicios[0]['categoria'] : ''?>" required>
+                <input type="text" id="categoria" name="categoria" value="<?= isset($servicios[0]['categoria']) ? $servicios[0]['categoria'] : ''?>">
             </div>
 
             <div class="form-group">
                 <label for="sede">Sede:</label>
-                <select type="text" id="sede" name="sede" value="<?= isset($servicios[0]['sede']) ? $servicios[0]['sede'] : ''?>" required>
+                <select type="text" id="sede" name="sede" value="<?= isset($servicios[0]['sede']) ? $servicios[0]['sede'] : ''?>">
                     <option value="">Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
                         <?php if (isset($servicios[0]['sede']) && $servicios[0]['sede'] === $sede['nombre']): ?>
@@ -70,35 +72,39 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group">
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" required><?= isset($servicios[0]['descripcion']) ? $servicios[0]['descripcion'] : ''?></textarea>
+                <textarea id="descripcion" name="descripcion"><?= isset($servicios[0]['descripcion']) ? $servicios[0]['descripcion'] : ''?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="beneficios">Beneficios:</label>
-                <textarea id="beneficios" name="beneficios" required><?= isset($servicios[0]['beneficios']) ? $servicios[0]['beneficios'] : ''?></textarea>
+                <textarea id="beneficios" name="beneficios"><?= isset($servicios[0]['beneficios']) ? $servicios[0]['beneficios'] : ''?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="tecnologias_implicadas">Tecnologías implicadas:</label>
-                <textarea id="tecnologias_implicadas" name="tecnologias_implicadas" required><?= isset($servicios[0]['tecnologias_implicadas']) ? $servicios[0]['tecnologias_implicadas'] : ''?></textarea>
+                <textarea id="tecnologias_implicadas" name="tecnologias_implicadas"><?= isset($servicios[0]['tecnologias_implicadas']) ? $servicios[0]['tecnologias_implicadas'] : ''?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="alcance">Alcance:</label>
-                <textarea id="alcance" name="alcance" required><?= isset($servicios[0]['alcance']) ? $servicios[0]['alcance'] : ''?></textarea>
+                <textarea id="alcance" name="alcance"><?= isset($servicios[0]['alcance']) ? $servicios[0]['alcance'] : ''?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="objetivos">Objetivos:</label>
-                <textarea id="objetivos" name="objetivos" required><?= isset($servicios[0]['objetivos']) ? $servicios[0]['objetivos'] : ''?></textarea>
+                <textarea id="objetivos" name="objetivos"><?= isset($servicios[0]['objetivos']) ? $servicios[0]['objetivos'] : ''?></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
-                    <option value="">Seleccione un estado</option>
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
+                <select id="estado" name="estado"s>
+                    <?php if (isset($servicios[0]['estado']) && $servicios[0]['estado'] === 't'): ?>
+                        <option value="Activo" selected>Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    <?php else: ?>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo" selected>Inactivo</option>
+                    <?php endif; ?>
                 </select>
             </div>
             

@@ -18,29 +18,26 @@ foreach ($data['data'] as $sede) {
 </head>
 <body>
 
-    <div class="form-container">
-            <div id="mensajeAlerta"></div>  
-
+    <div class="form-container" id="insertarServicio" name="insertarServicio">
         <header>
             <h1>Registrar Nuevo Servicio</h1>
             <p class="subtitle">Completa los detalles técnicos del servicio para el catálogo.</p>
         </header>
-
-        <form action="../Scripts/guardarServicio.php" method="post" class="form-grid">
-            
+        <div id="mensajeAlerta"></div>  
+        <form action="../Scripts/guardarServicio.php" method="post" class="form-grid">            
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej: Automatización con IA" required>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej: Automatización con IA">
             </div>
 
             <div class="form-group">
                 <label for="categoria">Categoría:</label>
-                <input type="text" id="categoria" name="categoria" placeholder="Ej: Ciberseguridad" required>
+                <input type="text" id="categoria" name="categoria" placeholder="Ej: Ciberseguridad">
             </div>
 
             <div class="form-group">
                 <label for="sede">Sede:</label>
-                <select id="sede" name="sede" required>
+                <select id="sede" name="sede">
                     <option value="" disabled selected>Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
                         <option value="<?php echo htmlspecialchars($sede['nombre']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
@@ -50,7 +47,7 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group">
                 <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
+                <select id="estado" name="estado">
                     <option value="" disabled selected>Seleccione un estado</option>
                     <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
@@ -59,37 +56,35 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group full-width">
                 <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" placeholder="Describe brevemente el servicio..." required></textarea>
+                <textarea id="descripcion" name="descripcion" placeholder="Describe brevemente el servicio..."></textarea>
             </div>
 
             <div class="form-group full-width">
                 <label for="beneficios">Beneficios:</label>
-                <textarea id="beneficios" name="beneficios" placeholder="¿Cualés van a ser los beneficios de los clientes?" required></textarea>
+                <textarea id="beneficios" name="beneficios" placeholder="¿Cualés van a ser los beneficios de los clientes?"></textarea>
             </div>
 
             <div class="form-group full-width">
-                <label for="tecnologias_aplicadas">Tecnologías aplicadas:</label>
-                <textarea id="tecnologias_aplicadas" name="tecnologias_aplicadas" placeholder="Java, Python, PHP..." required></textarea>
+                <label for="tecnologias_implicadas">Tecnologías implicadas:</label>
+                <textarea id="tecnologias_implicadas" name="tecnologias_implicadas" placeholder="Java, Python, PHP..."></textarea>
             </div>
 
             <div class="form-group">
                 <label for="alcance">Alcance:</label>
-                <textarea id="alcance" name="alcance" placeholder="Límites del proyecto..." required></textarea>
+                <textarea id="alcance" name="alcance" placeholder="Límites del proyecto..."></textarea>
             </div>
 
             <div class="form-group">
-                <label for="objetivo">Objetivo:</label>
-                <textarea id="objetivo" name="objetivo" placeholder="Meta principal..." required></textarea>
+                <label for="objetivos">Objetivos:</label>
+                <textarea id="objetivos" name="objetivos" placeholder="Metas principales..."></textarea>
             </div>
             
             <div class="form-actions">
                 <a href="index" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Servicio">
             </div>
-
+            <script src="../js/alertServicio.js"></script>
         </form>
     </div>
-
-    <script src="../js/alertServicio.js"></script>
 </body>
 </html>
