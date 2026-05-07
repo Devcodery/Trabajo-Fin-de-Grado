@@ -45,7 +45,7 @@ foreach ($data['data'] as $sede) {
             <h1>Formulario de Servicio</h1>
         </header>  
         <div id="mensajeAlerta"></div>  
-        <form action="../Scripts/actualizarServicio.php" method="post">
+        <form action="../scripts/actualizarServicio.php" method="post">
             <input type="hidden" name="id" value="<?php echo isset($servicios[0]['id_servicio']) ? $servicios[0]['id_servicio'] : ''; ?>">
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
