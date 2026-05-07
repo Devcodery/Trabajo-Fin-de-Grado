@@ -168,31 +168,39 @@ def login():
             session["user"] = user
             session["roles"] = "admin"
 
-            if next_url_segura(next_url):
-                return redirect(next_url)
-            return redirect(url_for("index"))
+            # if next_url_segura(next_url):
+            #     return redirect(next_url)
+            return redirect("http://localhost:8080/Proyecto_Grupo3/vistas/portalCliente.jsp")
 
         # Usuarios normales registrados en PostgreSQL.
         login_correcto, userComplety  = login_usuario(user, passwd)
-        
-        if userComplety is None:
-            error = "No se extrajo los datos del usuario."
-            return render_template("login.html", error=error, next_url=next_url)
         
         if login_correcto: 
             session.permanent = True
             session["login"] = True
             session["user"] = user
+            
+            if userComplety is None:
+                error = "No se extrajo los datos del usuario."
+                return render_template("login.html", error=error, next_url=next_url)
+            
             session["roles"] = userComplety[5] 
 
-            if next_url_segura(next_url):
-                return redirect(next_url)
-            return redirect(url_for("index"))
+            
+            
+            if session["roles"] == 'cliente':
+                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}"
+                                                                                            + f"&nombre={userComplety[1]}"
+                                                                                            + f"&apellidos={userComplety[2]}"
+                                                                                            + f"&correo={userComplety[3]}"
+                                                                                            + f"&direccion={userComplety[5]}"                                                                          
+                )
+            elif session["roles"] == 'consultor':
+                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ConsultorControlador?usuario={userComplety}")
 
         error = "Usuario o contraseña incorrectos"
 
-    next_url = request.args.get("next", "/")
-    return render_template("login.html", error=error, next_url=next_url)
+    return render_template("login.html", error=error)
 
 
 @app.route("/logout")
