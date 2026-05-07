@@ -32,23 +32,21 @@ create table mensajes(
     asunto varchar(100) not null,
     fecha_creacion timestamp default current_timestamp
 );
-/*
-create or replace trigger tg_consulta_estado
-after update of estado on consulta
-for each row 
-$$
-declare 
-    estado_no_valido exception;
-begin
-    if :new.estado not in ('pendiente','en progreso', 'finalizada') then
-        raise estado_no_valido;
-    end if;
 
-exception
-    when estado_no_valido then
-        raise notice 'El estado no es válido. Debe ser pendiente, en progreso o finalizada.';
+create or replace function fn_consulta_estado()
+returns trigger as
+$$
+begin
+    if new.estado not in ('pendiente','en progreso', 'finalizada') then
+        raise exception 'El estado no es válido. Debe ser pendiente, en progreso o finalizada.';
+    end if;        
 end;
 $$ language plpgsql;
-*/
+
+create or replace trigger trg_consulta_estado
+before update of estado on consulta
+for each row
+execute function fn_consulta_estado();
+
 
 
