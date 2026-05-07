@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * Servlet implementation class ClienteControlador
+ * Servlet implementation class ConsultorControlador
  */
-@WebServlet("/ClienteControlador")
-public class ClienteControlador extends HttpServlet {
+@WebServlet("/ConsultorControlador")
+public class ConsultorControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClienteControlador() {
+    public ConsultorControlador() {
         super();
     }
 
@@ -32,9 +31,8 @@ public class ClienteControlador extends HttpServlet {
 		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
 		
 		request.setAttribute("id", idUsuario);
-
-		request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 		
+		request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 	}
 
 	/**
