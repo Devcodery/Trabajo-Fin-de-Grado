@@ -18,7 +18,7 @@ foreach ($data['data'] as $sede) {
 </head>
 <body>
 
-    <div class="form-container">
+    <div class="form-container" id="insertarServicio" name="insertarServicio">
             <div id="mensajeAlerta"></div>  
 
         <header>
@@ -68,8 +68,8 @@ foreach ($data['data'] as $sede) {
             </div>
 
             <div class="form-group full-width">
-                <label for="tecnologias_aplicadas">Tecnologías aplicadas:</label>
-                <textarea id="tecnologias_aplicadas" name="tecnologias_aplicadas" placeholder="Java, Python, PHP..." required></textarea>
+                <label for="tecnologias_implicadas">Tecnologías implicadas:</label>
+                <textarea id="tecnologias_implicadas" name="tecnologias_implicadas" placeholder="Java, Python, PHP..." required></textarea>
             </div>
 
             <div class="form-group">
