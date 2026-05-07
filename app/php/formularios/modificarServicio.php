@@ -106,6 +106,7 @@ foreach ($data['data'] as $sede) {
                 <input type="submit" value="Enviar">
                 <a href="" class="btn-exit">Volver</a>
             </div>
+            <script src="../js/alertServicio.js"></script>
         </form>
     </div>
 </body>
