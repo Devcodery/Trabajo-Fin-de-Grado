@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Portal Cliente</title>
+<link rel="stylesheet" type="text/css" href="../style/style.css">
+</head>
+<body>
+	<div class="nav">
+        <button class="btn">Regresar</button>
+    </div>
+    <h1 class="titulo"> </h1>
+	<a href="/formularioSolicitud.php">Nueva Consulta</a>
+	<a href="/">Mis Consultas</a>
+</body>
+</html>
