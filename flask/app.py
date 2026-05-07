@@ -119,7 +119,7 @@ def next_url_segura(next_url):
     parsed = urlparse(next_url)
     return parsed.netloc == ""
 
-def obtener_usuarios(empleado_id):
+def obtener_usuario(empleado_id):
     with get_conn() as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -194,7 +194,7 @@ def usuarios():
 def usuario(id_usuario):
     if "admin" not in session.get("roles", []):
         return "Sin permisos", 403
-    return obtener_usuarios(id_usuario)
+    return obtener_usuario(id_usuario)
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -210,7 +210,7 @@ def login():
             session.permanent = True
             session["login"] = True
             session["user"] = user
-            session["roles"] = "admin"
+            session["roles"] = ["admin"]
 
             # if next_url_segura(next_url):
             #     return redirect(next_url)
