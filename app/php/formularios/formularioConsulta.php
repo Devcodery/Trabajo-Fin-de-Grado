@@ -6,7 +6,6 @@ $idUsuario = "";
 if(isset($_GET['idUsuario'])){
     $idUsuario = intval($_GET['idUsuario']);
 }
-echo($idUsuario);
 
 $queryServicios = "SELECT nombre FROM servicio where estado = true";
 $resultServicios = pg_query($conn, $queryServicios);
