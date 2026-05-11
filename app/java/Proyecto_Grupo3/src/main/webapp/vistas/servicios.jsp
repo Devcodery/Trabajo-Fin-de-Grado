@@ -13,7 +13,7 @@
 	<div class="nav">
 		<button class="btn">
 			<a
-				href="${pageContext.request.contextPath}/vistas/portalAdministrador.jsp">Salir</a>
+				href="${pageContext.request.contextPath}/vistas/gestionDeServicios.jsp">Salir</a>
 		</button>
 	</div>
 	<table>

@@ -42,7 +42,10 @@ public class ServicioControlador extends HttpServlet {
 		ServicioDAO servicioDAO = new ServicioDAO(conexion);
 		ConsultaDAO consultaDAO = new ConsultaDAO(conexion);
 		
-		if(opcion.equalsIgnoreCase("listarServicios")) {
+		if(opcion.equalsIgnoreCase("gestionServicios")) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/gestionDeServicios.jsp");
+	        requestDispatcher.forward(request, response);
+		} else if(opcion.equalsIgnoreCase("listarServicios")) {
 			ArrayList<Servicio> servicios = servicioDAO.readAll();
 			request.setAttribute("servicios", servicios);
 			request.setAttribute("funcion", "verServicio");
