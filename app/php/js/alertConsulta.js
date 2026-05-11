@@ -44,13 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function validarFormulario() {
         
         // Obtener los valores que escribió el usuario
-        const Titulo = document.getElementById('titulo').value.trim();
+        const titulo = document.getElementById('titulo').value.trim();
         const tipoDeServicio = document.getElementById('tipoDeServicio').value.trim();
         const descripcion = document.getElementById('descripcion').value.trim();
         
-        
-        
-        if (Titulo === '') {
+        if (titulo === '') {
             mostrarAlerta('Error: El título es obligatorio', 'error');
             return false;
         } else if (tipoDeServicio === '') {
@@ -77,14 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si llegamos aquí, todo está correcto
         mostrarAlerta('Insertando Solicitud...', 'exito');
         // Enviar el formulario
-        formulario.submit();
+        setTimeout(function() {
+            formulario.submit();
+        }, 2000);
     }
     
     // ============================================
     // ACTIVAR EL FORMULARIO
     // ============================================
     // Escuchar cuando el usuario haga clic en "Enviar"
-    formulario.addEventListener('submit', enviarFormulario());
-    
-    
+    formulario.addEventListener('submit', enviarFormulario);
 });

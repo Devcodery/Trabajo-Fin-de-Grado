@@ -12,7 +12,7 @@
 
     <div class="nav">
         <button class="btn">Regresar</button>
-        <a href="http://172.19.0.2:8888/login" class="btn">
+        <a href="/login" class="btn">
 		    Login
 		</a>
     </div>

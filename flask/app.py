@@ -24,6 +24,30 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 # Cuando se use HTTPS real detrás del proxy, se puede activar:
 # app.config["SESSION_COOKIE_SECURE"] = True
 
+def obtener_sedes():
+    try:
+        respuesta = requests.get("http://info.empresa.dam.es:8055/items/sedes", timeout=4)
+        respuesta.raise_for_status()
+        return respuesta.json().get("data", [])
+    except requests.RequestException:
+        return [
+            {"id": 1, "nombre": "Sede Central"},
+            {"id": 2, "nombre": "Sede Norte"},
+            {"id": 3, "nombre": "Sede Sur"},
+        ]
+
+
+def obtener_departamentos():
+    try:
+        respuesta = requests.get("http://info.empresa.dam.es:8055/items/departamentos", timeout=4)
+        respuesta.raise_for_status()
+        return respuesta.json().get("data", [])
+    except requests.RequestException:
+        return [
+            {"id": 1, "nombre": "Sistemas"},
+            {"id": 2, "nombre": "Desarrollo"},
+            {"id": 3, "nombre": "Redes"},
+        ]
 
 def get_conn():
     """Crea una conexión a PostgreSQL usando variables de entorno."""
@@ -95,62 +119,82 @@ def next_url_segura(next_url):
     parsed = urlparse(next_url)
     return parsed.netloc == ""
 
+def obtener_usuario(empleado_id):
+    with get_conn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT * "
+                + " FROM usuario WHERE id_usuario = %s;",
+                (empleado_id,),
+            )
+            fila = cur.fetchone()
 
-@app.route("/form/<string:rol>", methods=['GET'])
-def form(rol):
+    if not fila:
+        return jsonify({"error": "No existe el usuario"}), 404
 
-    print("Has entrado en el formulario")
+    return jsonify({
+        "id_usuario": fila[0],
+        "nombre": fila[1],
+        "apellidos": fila[2],
+        "correo": fila[3],
+        "rol": fila[5],
+        "direccion": fila[6],
+        "id_dpto": fila[7],
+        "id_sede": fila[8],
+    })
 
-    # Obtener sedes
-    # url = "http://info.empresa.dam.es:8055/items/sedes"
-    # respuesta = requests.get(url)
-    # datosSedes = respuesta.json()
+@app.route("/registro/<string:rol>", methods=["GET", "POST"])
+def registro(rol):
+    if request.method == "POST":
+        nombre = request.form.get("nombre")
+        apellidos = request.form.get("apellidos")
+        correo = request.form.get("email")
+        passwd = request.form.get("passwd")
+        rol = request.form.get("rol")
+        direccion = request.form.get("direccion")
+        departamento = request.form.get("departamento")
+        sede = request.form.get("sede")
 
-    # Obtener departamentos
-    # url = "http://info.empresa.dam.es:8055/items/departamentos"
-    # respuesta = requests.get(url)
-    # datosDepartamentos = respuesta.json()
+        if registrar_usuario(nombre, correo, passwd, apellidos, rol, direccion, departamento, sede):
+            return redirect(url_for("login"))
+
+        return render_template(
+            "formulario.html",
+            error="No se pudo registrar el empleado. Revisa si ya existe.",
+            departamentos=obtener_departamentos(),
+            sedes=obtener_sedes(),
+        ), 400
 
     return render_template(
         "formulario.html",
-        # departamentos=datosDepartamentos['data'],
-        # sedes=datosSedes['data'],
+        departamentos=obtener_departamentos(),
+        sedes=obtener_sedes(),
+        error="",
         rol=rol
     )
-
-@app.route("/registro", methods=["POST"])
-def registro():
-    nombre = request.form.get("nombre")
-    apellidos = request.form.get("apellidos")
-    correo = request.form.get("email")
-    passwd = request.form.get("passwd")
-    rol = request.form.get("rol")
-    direccion = request.form.get("direccion")
-    departamento = request.form.get("departamento")
-    sede = request.form.get("sede")
-
-    if registrar_usuario(nombre, correo, passwd, apellidos, rol, direccion, departamento, sede):
-        return redirect(url_for("login"))
-
-    return "No se pudo registrar el usuario. Revisa si ya existe.", 400
 
 @app.route("/usuarios", methods=["GET"])
 @login_requerido
 def usuarios():
 
-    if session.get("roles") == "admin":
+    if "admin" not in session.get("roles", []):
+        return "Sin permisos", 403
 
-        with get_conn() as conn:
-            with conn.cursor() as cur:
+    with get_conn() as conn:
+        with conn.cursor() as cur:
 
-                cur.execute("SELECT * FROM usuario;")
+            cur.execute("SELECT * FROM usuario order by id_usuario;")
 
-                filas = cur.fetchall()
+            filas = cur.fetchall()
 
-        return jsonify(filas)
+    return jsonify(filas)
 
-    else:
-        return f"No tienes permisos {session.get('user')} and roles: {session.get('roles')} {session}"
+@app.route("/usuario/<int:id_usuario>", methods=["GET"])
+@login_requerido
+def usuario(id_usuario):
+    # if "admin" not in session.get("roles", []):
+    #     return "Sin permisos", 403
+    return obtener_usuario(id_usuario)
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -166,7 +210,7 @@ def login():
             session.permanent = True
             session["login"] = True
             session["user"] = user
-            session["roles"] = "admin"
+            session["roles"] = ["admin"]
 
             # if next_url_segura(next_url):
             #     return redirect(next_url)
@@ -189,14 +233,9 @@ def login():
             
             
             if session["roles"] == 'cliente':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}"
-                                                                                            + f"&nombre={userComplety[1]}"
-                                                                                            + f"&apellidos={userComplety[2]}"
-                                                                                            + f"&correo={userComplety[3]}"
-                                                                                            + f"&direccion={userComplety[5]}"                                                                          
-                )
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}&opcion=python")
             elif session["roles"] == 'consultor':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ConsultorControlador?usuario={userComplety}")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}&opcion=python")
 
         error = "Usuario o contraseña incorrectos"
 

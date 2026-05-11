@@ -5,7 +5,7 @@ $nombre = $_POST['nombre'] ?? '';
 $categoria = $_POST['categoria'] ?? '';
 $sede = $_POST['sede'] ?? '';
 $beneficios = $_POST['beneficios'] ?? '';
-$tecnologias_aplicadas = $_POST['tecnologias_aplicadas'] ?? '';
+$tecnologias_implicadas = $_POST['tecnologias_implicadas'] ?? '';
 $alcance = $_POST['alcance'] ?? '';
 $objetivo = $_POST['objetivo'] ?? '';
 $descripcion = $_POST['descripcion'] ?? '';
@@ -17,8 +17,8 @@ if($estado == 'Activo') {
     $estado = 'false';
 }
 
-$query = "INSERT INTO servicio (nombre, descripcion, categoria, sede, beneficios, tecnologias_aplicadas, alcance, objetivo, estado)
- VALUES ('$nombre', '$descripcion', '$categoria', '$sede', '$beneficios', '$tecnologias_aplicadas', '$alcance', '$objetivo', $estado);";
+$query = "INSERT INTO servicio (nombre, descripcion, categoria, sede, beneficios, tecnologias_implicadas, alcance, objetivos, estado)
+ VALUES ('$nombre', '$descripcion', '$categoria', '$sede', '$beneficios', '$tecnologias_implicadas', '$alcance', '$objetivo', $estado);";
 
 if(pg_query($conn, $query)) {
      pg_close($conn);

@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * Servlet implementation class UsuarioControlador
+ * Servlet implementation class ConsultorControlador
  */
-@WebServlet("/UsuarioControlador")
-public class UsuarioControlador extends HttpServlet {
+@WebServlet("/ConsultorControlador")
+public class ConsultorControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsuarioControlador() {
+    public ConsultorControlador() {
         super();
     }
 
@@ -27,7 +28,11 @@ public class UsuarioControlador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String opcion = request.getParameter("opcion");
+		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+		
+		request.setAttribute("id", idUsuario);
+		
+		request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 	}
 
 	/**
