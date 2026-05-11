@@ -49,7 +49,7 @@ public class ClienteControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://172.19.0.2:8888//usuario/" + idUsuario))
+									.uri(URI.create("/usuario/" + idUsuario))
 									.GET()
 									.build();
 
@@ -63,11 +63,11 @@ public class ClienteControlador extends HttpServlet {
 
 				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
 
-				usuario = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
-												jsonCompleto.get("nombre").getAsString(), 
-												jsonCompleto.get("apellidos").getAsString(),
-												jsonCompleto.get("direccion").getAsString(),
-												jsonCompleto.get("correo").getAsString());
+				// usuario = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
+				// 								jsonCompleto.get("nombre").getAsString(), 
+				// 								jsonCompleto.get("apellidos").getAsString(),
+				// 								jsonCompleto.get("direccion").getAsString(),
+				// 								jsonCompleto.get("correo").getAsString());
 
 				rol = jsonCompleto.get("rol").getAsString();
 
