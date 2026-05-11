@@ -76,6 +76,9 @@
 					</tr>
 				</c:forEach>
 			</c:when>
+			<c:otherwise>
+				<p>No hay Servicios Disponibles</p>
+			</c:otherwise>
 		</c:choose>
 	</table>
 </body>
