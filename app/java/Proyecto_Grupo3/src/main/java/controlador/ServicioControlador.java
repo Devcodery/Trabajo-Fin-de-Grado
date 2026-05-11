@@ -49,8 +49,7 @@ public class ServicioControlador extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/servicios.jsp");
 	        requestDispatcher.forward(request, response);			
 		} else if(opcion.equalsIgnoreCase("crearServicio")){
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("http://consultoriatech.php.es/formularios/formularioServicio.php");
-	        requestDispatcher.forward(request, response);			
+			response.sendRedirect("http://consultoriatech.php.es/formularios/formularioServicio.php");			
 		} else if(opcion.equalsIgnoreCase("modificarServicio")) {
 			ArrayList<Servicio> servicios = servicioDAO.readAll();
 			request.setAttribute("servicios", servicios);
@@ -89,8 +88,7 @@ public class ServicioControlador extends HttpServlet {
 	        requestDispatcher.forward(request, response);		
 		} else if(opcion.equalsIgnoreCase("modificarServicioPHP")) {
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("http://consultoriatech.php.es/formularios/modificarServicio.php?idServicio="+idServicio);
-	        requestDispatcher.forward(request, response);	
+			response.sendRedirect("http://consultoriatech.php.es/formularios/modificarServicio.php?idServicio="+idServicio);
 		} else if(opcion.equalsIgnoreCase("desactivarServicio")) {
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 			servicioDAO.desactivarServicio(idServicio);
