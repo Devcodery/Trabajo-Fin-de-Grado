@@ -233,9 +233,9 @@ def login():
             
             
             if session["roles"] == 'cliente':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}&opcion=python")
             elif session["roles"] == 'consultor':
-                return redirect(f"http://localhost:8080/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}&opcion=python")
 
         error = "Usuario o contraseña incorrectos"
 

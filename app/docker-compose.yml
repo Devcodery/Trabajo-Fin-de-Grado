@@ -22,6 +22,8 @@ services:
 
   tomcat:
     image: tomcat:9.0
+    env_file:
+      - .env
     ports:
       - "7788:8080"
     volumes:
