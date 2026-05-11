@@ -1,2 +1,4 @@
 /build/
-/target/
+/target/*
+!/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war
+

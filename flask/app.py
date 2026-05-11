@@ -212,9 +212,9 @@ def login():
             session["user"] = user
             session["roles"] = ["admin"]
 
-            # if next_url_segura(next_url):
-            #     return redirect(next_url)
-            return redirect("http://localhost:8080/Proyecto_Grupo3/vistas/portalCliente.jsp")
+            if next_url_segura(next_url):
+                return redirect(next_url)
+            return redirect("")
 
         # Usuarios normales registrados en PostgreSQL.
         login_correcto, userComplety  = login_usuario(user, passwd)
@@ -233,9 +233,9 @@ def login():
             
             
             if session["roles"] == 'cliente':
-                return redirect(f"/Proyecto_Grupo3/ClienteControlador?id={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&opcion=python")
             elif session["roles"] == 'consultor':
-                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?id={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&opcion=python")
 
         error = "Usuario o contraseña incorrectos"
 

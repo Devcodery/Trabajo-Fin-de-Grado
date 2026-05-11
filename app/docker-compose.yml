@@ -22,10 +22,12 @@ services:
 
   tomcat:
     image: tomcat:9.0
+    env_file:
+      - .env
     ports:
       - "7788:8080"
     volumes:
-      - ../java/Proyecto_Grupo3/target/Proyecto_Grupo3.war:/usr/local/tomcat/webapps/Proyecto_Grupo3.war
+      - ./java/Proyecto_Grupo3/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Proyecto_Grupo3.war
 
 networks:
   proxy:
