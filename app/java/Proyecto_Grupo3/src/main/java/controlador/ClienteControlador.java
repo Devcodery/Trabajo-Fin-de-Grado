@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import modelo.Cliente;
-
 
 /**
  * Servlet implementation class ClienteControlador
@@ -45,7 +43,7 @@ public class ClienteControlador extends HttpServlet {
 			request.setAttribute("id", idUsuario);
 
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
-		}else if(opcion.equalsIgnoreCase("versolicitudes")) {
+		}else if(opcion.equalsIgnoreCase("verconsultas")) {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
@@ -53,7 +51,6 @@ public class ClienteControlador extends HttpServlet {
 									.GET()
 									.build();
 
-			Cliente usuario = null;
 			String rol = "";
 
 			try{
@@ -62,12 +59,6 @@ public class ClienteControlador extends HttpServlet {
 				String usuarioJson = respuesta.body();
 
 				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
-
-				// usuario = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
-				// 								jsonCompleto.get("nombre").getAsString(), 
-				// 								jsonCompleto.get("apellidos").getAsString(),
-				// 								jsonCompleto.get("direccion").getAsString(),
-				// 								jsonCompleto.get("correo").getAsString());
 
 				rol = jsonCompleto.get("rol").getAsString();
 
@@ -80,7 +71,7 @@ public class ClienteControlador extends HttpServlet {
 
 			request.setAttribute("rol", rol);
 
-			request.getRequestDispatcher("/vistas/solicitudes.jsp").forward(request, response);
+			request.getRequestDispatcher("/vistas/consultas.jsp").forward(request, response);
 		}
 		
 		
