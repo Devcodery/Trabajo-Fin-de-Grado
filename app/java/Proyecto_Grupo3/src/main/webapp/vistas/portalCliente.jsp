@@ -11,7 +11,7 @@
 <body>
 	<div class="nav">
         <button class="btn">
-        	<a>Salir</a>	
+        	<a href="/logout">Salir</a>	
         </button>
     </div>
     <h1 class="titulo">Portal del Cliente</h1>
@@ -25,7 +25,7 @@
 	
 	<div class="layout">
 		<button class="btn-consulta" href="/">
-			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=versolicitudes"></a>
+			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=verconsultas">Ver Consultas</a>
 		</button>
 	</div>
 </body>
