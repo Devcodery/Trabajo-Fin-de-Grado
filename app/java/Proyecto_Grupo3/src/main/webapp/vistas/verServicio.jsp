@@ -5,7 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WEB PRIVADA ADMIN</title>
+<c:choose>
+    <c:when test="${rol == 'admin'}">
+        <title>WEB PRIVADA ADMIN</title>
+    </c:when>
+    <c:otherwise>
+        <title>WEB PUBLICA</title>
+    </c:otherwise>
+</c:choose>
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
