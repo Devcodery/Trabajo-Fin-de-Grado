@@ -19,7 +19,7 @@
 <body>
 	<div class="nav">
         <button class="btn">
-        	<a href="${pageContext.request.contextPath}/ServicioControlador?opcion=listarServicios">Salir</a>	
+        	<a href="${pageContext.request.contextPath}/ServicioControlador?opcion=listarServicios">Volver</a>	
         </button>
     </div>
 	
