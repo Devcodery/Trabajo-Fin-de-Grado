@@ -26,17 +26,17 @@
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/ConsultasControlador?opcion=gestionConsultas">Gestión de Consultas</a>	
+                	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultas">Gestión de Consultas</a>	
                 </button>
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/ConsultoresControlador?opcion=gestionConsultores">Consultores</a>	
+                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestionConsultores">Consultores</a>	
                 </button>
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/ClientesControlador?opcion=gestionClientes">Gestión de Clientes</a>	
+                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestionClientes">Gestión de Clientes</a>	
                 </button>
             </tr>
             
