@@ -16,8 +16,7 @@
 		<title>WEB PRIVADA ADMIN</title>
 	</c:otherwise>
 </c:choose>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/style/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
 	<div class="nav">
@@ -29,39 +28,51 @@
 	<div class="header">
 		<h1>Gestión de Consultas</h1>
 	</div>
+		<div class="container-carrusel">
+		<div class="lista-consultas" id="listaConsultas">
 			<c:choose>
 				<c:when test="${rol == 'Cliente' }">
 					<c:forEach var="consulta" items="${consultasClientes}">
-							<div class="consulta-item" data-id="${consulta.idConsulta}" onclick="seleccionarItem(this)">
-								<p class="nombre">${consulta.titulo}</p>
-								<span class="estado ${consulta.estadoActual}"> </span>
-							</div>
+						<c:if test="${empty consultasClientes}"></c:if>
+							<div class="consulta-item" 
+                     data-id="${consulta.idConsulta}" 
+					 data-rol="${rol}"
+                     onclick="seleccionarItem(this)">
+                    <p class="nombre">${consulta.titulo}</p>
+                    <span class="estado ${consulta.estadoActual}">${consulta.estadoActual}</span>
+                </div>
 					</c:forEach>
 				</c:when>
 				<c:when test="${rol == 'Consultor' }">
 					<c:forEach var="consulta" items="${consultasConsultor}">
-						<div class="consulta-item" data-id="${consulta.idConsulta}" onclick="seleccionarItem(this)">
-								<p class="nombre">${consulta.titulo}</p>
-								<span class="estado ${consulta.estadoActual}"> </span>
-							</div>
+					<c:if test="${empty consultasConsultor}"></c:if>
+						<div class="consulta-item" 
+                     data-id="${consulta.idConsulta}" 
+					 data-rol="${rol}"
+                     onclick="seleccionarItem(this)">
+                    <p class="nombre">${consulta.titulo}</p>
+                    <span class="estado ${consulta.estadoActual}">${consulta.estadoActual}</span>
+                </div>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="consulta" items="${consultasAdmin}">
-						<div class="consulta-item" data-id="${consulta.idConsulta}" onclick="seleccionarItem(this)">
-								<p class="nombre">${consulta.titulo}</p>
-								<span class="estado ${consulta.estadoActual}"> </span>
-							</div>
+					<c:if test="${empty consultasAdmin}"></c:if>
+						<div class="consulta-item" 
+                     data-id="${consulta.idConsulta}" 
+					 data-rol="${rol}"
+                     onclick="seleccionarItem(this)">
+                    <p class="nombre">${consulta.titulo}</p>
+                    <span class="estado ${consulta.estadoActual}">${consulta.estadoActual}</span>
+                </div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			
+			</div>
 		<div class="acciones">
-			<button class="btn-principal" onclick="consultarServicio()">VER
-				DETALLES</button>
+			<button class="btn-principal" onclick="consultarConsulta()">VER DETALLES</button>
+		</div>
 		</div>
 		<script src="${pageContext.request.contextPath}/js/consultas.js"></script>
-
-
 </body>
 </html>
