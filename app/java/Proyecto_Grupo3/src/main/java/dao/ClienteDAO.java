@@ -11,4 +11,22 @@ public class ClienteDAO {
     public ClienteDAO(ConexionBBDD conexion){
         this.conexion = conexion.getConexion();
     }
+
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    
 }
