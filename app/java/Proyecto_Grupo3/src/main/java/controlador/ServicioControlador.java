@@ -2,7 +2,6 @@ package controlador;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,8 +50,7 @@ public class ServicioControlador extends HttpServlet {
 				request.setAttribute("servicio", servicio);
 			}
 
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/verServicio.jsp");
-	        requestDispatcher.forward(request, response);		
+			request.getRequestDispatcher("/vistas/verServicio.jsp").forward(request, response);	
 		
 		}
 
