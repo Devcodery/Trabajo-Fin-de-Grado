@@ -21,7 +21,7 @@
    		<table>
 	        <tr>
 	            <button class="btn-consulta">
-	            	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios">SERVICIOS</a>
+	            	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=verServicios">SERVICIOS</a>
 	            </button>
 	        </tr>
 	        <tr>

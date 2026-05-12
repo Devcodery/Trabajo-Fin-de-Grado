@@ -86,7 +86,7 @@ public class GestionServicioControlador extends HttpServlet {
 			
 			String funcion = request.getParameter("funcion");
 
-			if(funcion.equalsIgnoreCase("servicio")){
+			if(funcion.equalsIgnoreCase("verservicios")){
 				request.setAttribute("funcion", "servicio");
 				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
 			}else if (funcion.equalsIgnoreCase("modificarservicios")) {

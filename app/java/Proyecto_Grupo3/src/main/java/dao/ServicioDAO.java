@@ -94,7 +94,7 @@ public class ServicioDAO {
 
 	public ArrayList<Servicio> filtrar(String cat, Boolean est, String sede, Date fechaInicio, Date fechaFin ) {
 		ArrayList<Servicio> servicios = new ArrayList<>();
-		query = "SELECT * FROM servicios WHERE 1=1";
+		query = "SELECT * FROM servicio WHERE 1=1";
 
 
 		if (cat != null && !cat.isEmpty()){
