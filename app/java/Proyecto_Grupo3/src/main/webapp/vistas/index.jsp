@@ -4,8 +4,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Consultoría Tecnológica</title>
-    <!-- Asegúrate de que la ruta al archivo css sea la correcta -->
+    <title>WEB PUBLICA</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
