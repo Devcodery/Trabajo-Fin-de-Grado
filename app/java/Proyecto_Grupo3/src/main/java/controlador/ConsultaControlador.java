@@ -55,6 +55,11 @@ public class ConsultaControlador extends HttpServlet {
 			System.out.println(consultas);
 			request.setAttribute("consultasAdmin", consultas);
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
+		} else if(opcion.equalsIgnoreCase("verConsulta")) {
+			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			Consulta consulta = consultaDAO.read(idConsulta);
+			request.setAttribute("consulta", consulta);
+			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
 		}
 	}
 

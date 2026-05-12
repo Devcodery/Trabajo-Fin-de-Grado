@@ -100,5 +100,24 @@ public class ConsultaDAO {
 	public void setQuery(String query) {
 		this.query = query;
 	}
+
+	public Consulta read(int idConsulta) {
+		Consulta consulta = null;
+		query = "select * "
+				+ "from consulta "
+				+ "where id_consulta = ?";
+		try(PreparedStatement sentencia = conexion.prepareStatement(query)){
+			sentencia.setInt(1, idConsulta);
+			ResultSet rs = sentencia.executeQuery();
+			if(rs.next()) {
+				consulta = new Consulta(rs.getInt("id_consulta"), rs.getString("estado"), rs.getString("titulo"), 
+						rs.getString("descripcion"), rs.getDate("fecha_creacion"), rs.getDate("fecha_fin"), rs.getInt("id_servicio"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return consulta;
+	}
 	
 }

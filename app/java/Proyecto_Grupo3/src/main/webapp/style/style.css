@@ -112,5 +112,22 @@ li:last-child {
     border-left: 5px solid #2c3e50;
 }
 
+.consulta-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.consulta-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Esta es la clase que añade el JS al hacer clic */
+.consulta-item.seleccionado {
+    background-color: #d1d1d1; /* Gris oscuro para notar la selección */
+    border-left: 5px solid #2c3e50;
+}
+
 .estado.activo { color: green; font-weight: bold; }
 .estado.inactivo { color: red; }

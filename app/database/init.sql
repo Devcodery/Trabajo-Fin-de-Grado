@@ -47,6 +47,3 @@ create or replace trigger trg_consulta_estado
 before update of estado on consulta
 for each row
 execute function fn_consulta_estado();
-
-
-

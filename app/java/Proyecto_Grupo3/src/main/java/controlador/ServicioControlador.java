@@ -15,7 +15,7 @@ import modelo.Servicio;
 /**
  * Servlet implementation class ServicioControlador
  */
-@WebServlet("/GestionServicioControlador")
+@WebServlet("/ServicioControlador")
 public class ServicioControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

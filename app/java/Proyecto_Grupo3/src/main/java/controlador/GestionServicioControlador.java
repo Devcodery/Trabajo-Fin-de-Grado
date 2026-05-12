@@ -18,7 +18,7 @@ import modelo.Servicio;
 /**
  * Servlet implementation class ServicioControlador
  */
-@WebServlet("/ServicioControlador")
+@WebServlet("/GestionServicioControlador")
 public class GestionServicioControlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -73,11 +73,25 @@ public class GestionServicioControlador extends HttpServlet {
 				int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 				response.sendRedirect("http://consultoriatech.php.es/formularios/modificarServicio.php?idServicio="+idServicio);
 			}
+			
+			
 			String categoria = request.getParameter("categoria");
-    		Boolean estado = Boolean.valueOf(request.getParameter("estado"));
+    		Boolean estado = null;
    		 	String sede = request.getParameter("sede");
-			Date fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
-			Date fechaFin = Date.valueOf(request.getParameter("fechaFin"));
+   		 	Date fechaInicio = null;
+   		 	Date fechaFin = null;
+   		 	
+   		 	if(request.getParameter("fechaInicio") != null) {
+   		 		fechaInicio = Date.valueOf(request.getParameter("fechaInicio"));
+   		 	}
+   		 	
+   		 	if(request.getParameter("fechaFin") != null) {
+   		 		fechaFin = Date.valueOf(request.getParameter("fechaFin"));
+   		 	} 
+   		 	
+   		 	if(Boolean.valueOf(request.getParameter("estado"))) {
+   		 		estado = Boolean.valueOf(request.getParameter("estado"));
+   		 	}
 			
 			ArrayList<Servicio> servicios = servicioDAO.filtrar(categoria, estado, sede, fechaInicio, fechaFin);
 			System.out.println(servicios);
@@ -86,7 +100,7 @@ public class GestionServicioControlador extends HttpServlet {
 			
 			String funcion = request.getParameter("funcion");
 
-			if(funcion.equalsIgnoreCase("verservicios")){
+			if(funcion.equalsIgnoreCase("verServicios")){
 				request.setAttribute("funcion", "servicio");
 				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
 			}else if (funcion.equalsIgnoreCase("modificarservicios")) {
@@ -108,21 +122,21 @@ public class GestionServicioControlador extends HttpServlet {
 			servicioDAO.borrarServicio(idServicio);
 			consultaDAO.borrarServicioConsulta(idServicio);
 
-			response.sendRedirect(request.getContextPath() + "/ServicioControlador?opcion=listarServicios&funcion=eliminarServicios");
+			response.sendRedirect(request.getContextPath() + "/GestionServicioControlador?opcion=listarServicios&funcion=eliminarServicios");
 		} else if(opcion.equalsIgnoreCase("desactivarServicio")) {
 			// Sirve para desactivar el servicio y volver a llamar el doGet para redirigir a la misma ubicacion
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 
 			servicioDAO.cambiarEstadoServicio(idServicio, false);
 
-			response.sendRedirect(request.getContextPath() + "/ServicioControlador?opcion=listarServicios&funcion=desactivarServicios");
+			response.sendRedirect(request.getContextPath() + "/GestionServicioControlador?opcion=listarServicios&funcion=desactivarServicios");
 		} else if(opcion.equalsIgnoreCase("activarServicio")) {
 			// Sirve para desactivar el servicio y volver a llamar el doGet para redirigir a la misma ubicacion
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 
 			servicioDAO.cambiarEstadoServicio(idServicio, true);
 
-			response.sendRedirect(request.getContextPath() + "/ServicioControlador?opcion=listarServicios&funcion=desactivarServicios");
+			response.sendRedirect(request.getContextPath() + "/GestionServicioControlador?opcion=listarServicios&funcion=desactivarServicios");
 		}
 		
 		conexion.cerrarConexion();

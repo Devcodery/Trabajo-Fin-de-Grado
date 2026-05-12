@@ -21,7 +21,7 @@
         <table>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/ServicioControlador?opcion=gestionServicios">Gestión de Servicios</a>	
+                	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=gestionServicios">Gestión de Servicios</a>	
                 </button>
             </tr>
             <tr>

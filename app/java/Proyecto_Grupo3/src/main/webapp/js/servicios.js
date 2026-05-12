@@ -25,24 +25,24 @@ function ejecutarAccion(funcion) {
 
     switch (funcion) {
         case 'servicio':
-            url = `/ServicioControlador?opcion=verServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/Proyecto_Grupo3/ServicioControlador?opcion=verServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'modificar':
-            url = `/GestionServicioControlador?opcion=listarServicios&funcion=modificarServicios&modificar=true&idServicio=${servicioSeleccionadoId}`;
+            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=listarServicios&funcion=modificarServicios&modificar=true&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'eliminar':
             if(confirm("¿Estás seguro de que deseas eliminar este servicio permanentemente?")) {
-                url = `/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
+                url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
             } else return;
             break;
         case 'desactivar':
-            url = `/ServicioControlador?opcion=desactivarServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=desactivarServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'activar':
-            url = `/ServicioControlador?opcion=activarServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=activarServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         default:
-            url = "/ServicioControlador?opcion=listarServicios";
+            url = "/Proyecto_Grupo3/GestionServicioControlador?opcion=listarServicios";
     }
 
     window.location.href = window.location.origin + url;
