@@ -37,7 +37,7 @@
 	        </tr>
 	        <tr>
 	            <button class="btn-consulta">
-                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=desactivarServicios>Desactivar Servicio</a>
+                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=desactivarServicios">Desactivar Servicio</a>
                 </button>
 	        </tr>
 	        <tr>

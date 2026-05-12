@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultas">Gestión de Consultas</a>	
+                	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultasAdmin">Gestión de Consultas</a>	
                 </button>
             </tr>
             <tr>

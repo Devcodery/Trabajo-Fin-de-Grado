@@ -80,9 +80,10 @@ public class GestionServicioControlador extends HttpServlet {
 			Date fechaFin = Date.valueOf(request.getParameter("fechaFin"));
 			
 			ArrayList<Servicio> servicios = servicioDAO.filtrar(categoria, estado, sede, fechaInicio, fechaFin);
+			System.out.println(servicios);
 
 			request.setAttribute("servicios", servicios);
-
+			
 			String funcion = request.getParameter("funcion");
 
 			if(funcion.equalsIgnoreCase("servicio")){
