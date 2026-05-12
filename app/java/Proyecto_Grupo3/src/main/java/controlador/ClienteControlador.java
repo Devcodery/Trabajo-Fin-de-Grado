@@ -43,7 +43,7 @@ public class ClienteControlador extends HttpServlet {
 			request.setAttribute("id", idUsuario);
 
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
-		}else if(opcion.equalsIgnoreCase("verconsultas")) {
+		}else if(opcion.equalsIgnoreCase("verConsultas")) {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
@@ -67,11 +67,7 @@ public class ClienteControlador extends HttpServlet {
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
-
-
-			request.setAttribute("rol", rol);
-
-			request.getRequestDispatcher("/vistas/consultas.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasCliente&idUsuario=" + idUsuario + "&rol=" + rol);
 		}
 		
 		
