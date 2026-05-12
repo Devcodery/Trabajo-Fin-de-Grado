@@ -145,6 +145,9 @@ def obtener_usuario(empleado_id):
 
 @app.route("/registro/<string:rol>", methods=["GET", "POST"])
 def registro(rol):
+    
+    back_url = request.args.get('next') or "/"
+    
     if request.method == "POST":
         nombre = request.form.get("nombre")
         apellidos = request.form.get("apellidos")
@@ -163,6 +166,7 @@ def registro(rol):
             error="No se pudo registrar el empleado. Revisa si ya existe.",
             departamentos=obtener_departamentos(),
             sedes=obtener_sedes(),
+            back_url=back_url
         ), 400
 
     return render_template(
@@ -170,7 +174,8 @@ def registro(rol):
         departamentos=obtener_departamentos(),
         sedes=obtener_sedes(),
         error="",
-        rol=rol
+        rol=rol,
+        back_url=back_url
     )
 
 @app.route("/usuarios", methods=["GET"])
