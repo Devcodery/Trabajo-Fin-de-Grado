@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Portal Cliente</title>
+<title>WEB PRIVADA CONSULTOR</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/style/style.css">
 </head>
@@ -12,14 +12,14 @@
 
 	<div class="nav">
 		<button class="btn">
-			<a>Salir</a>
+			<a href="/logout">Salir</a>
 		</button>
 	</div>
 	<h1 class="titulo">Portal del Consultor</h1>
 
 	<div class="layout">
-		<button class="btn-consulta" href="">
-		<a>Mis Consultas</a>
+		<button class="btn-consulta">
+			<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=versolicitudes">Mis Consultas</a>
 		</button>
 	</div>
 </body>
