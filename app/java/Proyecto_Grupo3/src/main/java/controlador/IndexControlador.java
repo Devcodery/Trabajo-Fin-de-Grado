@@ -45,6 +45,8 @@ public class IndexControlador extends HttpServlet {
 		request.setAttribute("servicios", servicios);
 
 		request.getRequestDispatcher("/vistas/index.jsp").forward(request, response);
+
+		conexion.cerrarConexion();
 		
 	}
 
