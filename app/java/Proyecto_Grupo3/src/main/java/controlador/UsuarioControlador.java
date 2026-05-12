@@ -18,6 +18,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import modelo.Cliente;
+import modelo.Consultor;
 import modelo.Usuario;
 
 /**
@@ -45,7 +47,7 @@ public class UsuarioControlador extends HttpServlet {
 		if(opcion.equalsIgnoreCase("gestion")){
 			request.setAttribute("rol", request.getParameter("rol"));
 			
-			request.getRequestDispatcher("/vistas/gestionUsuarios.jsp").forward(request, response);	
+			request.getRequestDispatcher("/vistas/gestionUsuarios.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verusuarios")){
 
 			String rol = request.getParameter("rol");
@@ -71,9 +73,22 @@ public class UsuarioControlador extends HttpServlet {
 				for(JsonElement jsonE : jsonCompleto){
 					JsonObject jsonObject = jsonE.getAsJsonObject();
 
-					// if (rol.equalsIgnoreCase(jsonObject.get(5).getAsString())) {
-						
-					// }
+					if (rol.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rol.equalsIgnoreCase("cliente")) {
+						usuarios.add(new Cliente(jsonObject.get("0").getAsInt(), 
+												jsonObject.get("1").getAsString(), 
+												jsonObject.get("2").getAsString(), 
+												jsonObject.get("6").getAsString(), 
+												jsonObject.get("3").getAsString()));
+
+					}else if(rol.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rol.equalsIgnoreCase("consultor")) {
+						usuarios.add(new Consultor(jsonObject.get("0").getAsInt(), 
+												jsonObject.get("1").getAsString(), 
+												jsonObject.get("2").getAsString(), 
+												jsonObject.get("6").getAsString(), 
+												jsonObject.get("3").getAsString(),
+												jsonObject.get("7").getAsString(),
+												jsonObject.get("8").getAsString()));
+					}
 				}
 				
 
@@ -83,6 +98,8 @@ public class UsuarioControlador extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			request.setAttribute("usuarios", usuarios);
+			request.getRequestDispatcher("/vistas/verUsuarios.jsp").forward(request, response);
 		}
 		
 	}
