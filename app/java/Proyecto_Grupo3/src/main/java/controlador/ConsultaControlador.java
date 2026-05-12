@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import conexionBBDD.ConexionBBDD;
 import dao.ConsultaDAO;
+import modelo.Consulta;
 
 /**
  * Servlet implementation class ConsultaControlador
@@ -30,13 +33,28 @@ public class ConsultaControlador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String opcion = request.getParameter("opcion");
-		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+		String rol = request.getParameter("rol");
 		ConexionBBDD conexion = new ConexionBBDD();
 		conexion.conectarBDDotenv();
 		ConsultaDAO consultaDAO = new ConsultaDAO(conexion);
 		
-		if(opcion.equalsIgnoreCase("gestionConsultas")) {
-			
+		if(opcion.equalsIgnoreCase("gestionConsultasCliente")) {
+			int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+			ArrayList<Consulta> consultas = consultaDAO.readCliente(idUsuario);
+			request.setAttribute("consultasClientes", consultas);
+			request.setAttribute("rol", rol);
+			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
+		} else if(opcion.equalsIgnoreCase("gestionConsultasConsultor")) {
+			int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
+			ArrayList<Consulta> consultas = consultaDAO.readConsultor(idUsuario);
+			request.setAttribute("consultasConsultas", consultas);
+			request.setAttribute("rol", rol);
+			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
+		} else if(opcion.equalsIgnoreCase("gestionConsultasAdmin")) {
+			ArrayList<Consulta> consultas = consultaDAO.readAll();
+			System.out.println(consultas);
+			request.setAttribute("consultasAdmin", consultas);
+			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 		}
 	}
 

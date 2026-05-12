@@ -10,26 +10,25 @@ public class Consulta {
     private String titulo;
     private String descripcion;
     private Date fechaCreacion;
-    private ArrayList<String> estados = new ArrayList<String>(List.of("Pendiente", "En Proceso", "Finalizada"));
+    private Date fechaFin;
+    private int idServicio;
+
+    public Consulta(int idConsulta, String estadoActual, String titulo, String descripcion, Date fechaCreacion,
+			Date fechaFin, int idServicio) {
+		this.idConsulta = idConsulta;
+		this.estadoActual = estadoActual;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaFin = fechaFin;
+		this.idServicio = idServicio;
+	}
     
-    
-    
-    public Consulta(String titulo, String descripcion) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = new Date();
-        this.estadoActual = estados.get(0);
+    public String toString() {
+    	return "TITULO: " + this.titulo;
     }
 
-    public Consulta(int idConsulta, String titulo, String descripcion, Date fechaCreacion) {
-        this.idConsulta = idConsulta;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.estadoActual = estados.get(0);
-    }
-
-    public int getIdConsulta() {
+	public int getIdConsulta() {
         return idConsulta;
     }
 
@@ -69,11 +68,21 @@ public class Consulta {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public ArrayList<String> getEstados() {
-        return estados;
-    }
+	public Date getFechaFin() {
+		return fechaFin;
+	}
 
-    public void setEstados(ArrayList<String> estados) {
-        this.estados = estados;
-    }
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public int getIdServicio() {
+		return idServicio;
+	}
+
+	public void setIdServicio(int idServicio) {
+		this.idServicio = idServicio;
+	}
+
+   
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import conexionBBDD.ConexionBBDD;
@@ -39,7 +40,44 @@ public class ConsultaDAO {
 			sentencia.setInt(1, id);
 			ResultSet rs = sentencia.executeQuery();
 			while(rs.next()) {
-				
+				consultas.add(new Consulta(rs.getInt("id_consulta"), rs.getString("estado"), rs.getString("titulo"), 
+						rs.getString("descripcion"), rs.getDate("fecha_creacion"), rs.getDate("fecha_fin"), rs.getInt("id_servicio")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return consultas;
+	}
+	
+	public ArrayList<Consulta> readConsultor(int id){
+		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
+		String query = "select * "
+				+ "from consulta "
+				+ "where id_consultor = ?";
+		
+		try(PreparedStatement sentencia = conexion.prepareStatement(query)){
+			sentencia.setInt(1, id);
+			ResultSet rs = sentencia.executeQuery();
+			while(rs.next()) {
+				consultas.add(new Consulta(rs.getInt("id_consulta"), rs.getString("estado"), rs.getString("titulo"), 
+						rs.getString("descripcion"), rs.getDate("fecha_creacion"), rs.getDate("fecha_fin"), rs.getInt("id_servicio")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return consultas;
+	}
+	
+	public ArrayList<Consulta> readAll(){
+		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
+		String query = "select * "
+				+ "from consulta;";
+		
+		try(Statement sentencia = conexion.createStatement()){
+			ResultSet rs = sentencia.executeQuery(query);
+			while(rs.next()) {
+				consultas.add(new Consulta(rs.getInt("id_consulta"), rs.getString("estado"), rs.getString("titulo"), 
+						rs.getString("descripcion"), rs.getDate("fecha_creacion"), rs.getDate("fecha_fin"), rs.getInt("id_servicio")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
