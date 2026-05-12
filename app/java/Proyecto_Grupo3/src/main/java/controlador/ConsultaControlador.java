@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import conexionBBDD.ConexionBBDD;
 import dao.ConsultaDAO;
-import modelo.Consulta;
 
 /**
  * Servlet implementation class ConsultaControlador
@@ -23,14 +22,12 @@ public class ConsultaControlador extends HttpServlet {
      */
     public ConsultaControlador() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String opcion = request.getParameter("opcion");
 		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
@@ -47,7 +44,6 @@ public class ConsultaControlador extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
