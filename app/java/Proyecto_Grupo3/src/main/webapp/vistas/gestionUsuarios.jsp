@@ -12,38 +12,45 @@
 <body>
     <div class="nav">
         <button class="btn">
-        	<a>Volver</a>	
+        	<a href="${pageContext.request.contextPath}/AdministradorControlador?opcion=logueado">Volver</a>	
         </button>
     </div>
     <div class="header">
-		<h1>Portal del Administrador</h1>
+		<c:choose>
+            <c:when test="${rolPagina == 'cliente' }">
+                <h1>Gestión de Clientes</h1>
+            </c:when>
+            <c:otherwise>
+                <h1>Gestión de Consultores</h1>
+            </c:otherwise>
+        </c:choose>
 	</div>
     <div class="layout">
         <table>
             <tr>
                 <c:choose>
-                    <c:when test="${rol = 'cliente'}">
+                    <c:when test="${rolPagina == 'cliente'}">
                         <button class="btn">
-                            <a href="/registro/<c:out value="${ rol }"></c:out>">Crear Clientes</a>	
+                            <a href="/registro/<c:out value="${ rolPagina }"></c:out>">Crear Clientes</a>	
                         </button>
                     </c:when>
                     <c:otherwise>
                          <button class="btn">
-                            <a href="/registro/<c:out value="${ rol }"></c:out>">Crear Consultor</a>	
+                            <a href="/registro/<c:out value="${ rolPagina }"></c:out>">Crear Consultor</a>	
                         </button>
                     </c:otherwise>
                 </c:choose>
             </tr>
             <tr>
             <c:choose>
-                <c:when test="${rol = 'cliente'}">
+                <c:when test="${rolPagina == 'cliente'}">
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Clientes</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=<c:out value="${ rolPagina }"></c:out>">Ver Clientes</a>	
                     </button>
                 </c:when>
                 <c:otherwise>
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Consultor</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=<c:out value="${ rolPagina }"></c:out>">Ver Consultor</a>	
                     </button>
                 </c:otherwise>
             </c:choose>
