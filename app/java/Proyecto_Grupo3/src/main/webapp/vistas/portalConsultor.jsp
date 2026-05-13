@@ -19,7 +19,7 @@
 
 	<div class="layout">
 		<button class="btn-consulta">
-			<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=versolicitudes">Mis Consultas</a>
+			<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=verconsultas">Mis Consultas</a>
 		</button>
 	</div>
 </body>

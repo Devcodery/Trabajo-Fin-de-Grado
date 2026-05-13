@@ -23,7 +23,7 @@
 	<c:choose>
 	<c:when test="${rol == 'cliente' }">
 		<button class="btn">
-			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=python&idUsuario<c:out value="${id}"></c:out>">Salir</a>
+			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=python">Salir</a>
 		</button>
 	</c:when>
 	<c:when test="${rol == 'consultor' }">
@@ -44,7 +44,7 @@
 		<div class="container-carrusel">
 		<div class="lista-consultas" id="listaConsultas">
 			<c:choose>
-				<c:when test="${rol == 'Cliente' }">
+				<c:when test="${rol == 'cliente' }">
 					<c:forEach var="consulta" items="${consultasClientes}">
 						<c:if test="${empty consultasClientes}"></c:if>
 							<div class="consulta-item" 
@@ -56,7 +56,7 @@
                 </div>
 					</c:forEach>
 				</c:when>
-				<c:when test="${rol == 'Consultor' }">
+				<c:when test="${rol == 'consultor' }">
 					<c:forEach var="consulta" items="${consultasConsultor}">
 					<c:if test="${empty consultasConsultor}"></c:if>
 						<div class="consulta-item" 

@@ -25,7 +25,7 @@
 	
 	<div class="layout">
 		<button class="btn-consulta" href="/">
-			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=verConsultas&idUsuario=<c:out value="${id}"></c:out>&rol=<c:out value="${rol}"></c:out>">Ver Consultas</a>
+			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=verConsultas">Ver Consultas</a>
 		</button>
 	</div>
 </body>
