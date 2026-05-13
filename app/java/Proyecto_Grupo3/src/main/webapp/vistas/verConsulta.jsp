@@ -9,9 +9,12 @@
     <c:when test="${rol == 'admin'}">
         <title>WEB PRIVADA ADMIN</title>
     </c:when>
-    <c:otherwise>
-        <title>WEB PUBLICA</title>
-    </c:otherwise>
+    <c:when test="${rol == 'consultor'}">
+        <title>WEB PRIVADA CONSULTOR</title>
+    </c:when>
+    <c:when test="${rol == 'cliente'}">
+        <title>WEB PRIVADA CLIENTE</title>
+    </c:when>
 </c:choose>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
@@ -55,7 +58,7 @@
         </tr>
         </tbody>
     </table>
-    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verMensajes&idConsulta=${consulta.idConsulta}">Ver Mensajes</a>
+    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verMensajes">Ver Mensajes</a>
     <button id="btn-abrir-detalle">Ver Consultor</button>
     <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/js/verUsuario.js"></script>
