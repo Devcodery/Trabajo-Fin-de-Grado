@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <c:choose>
-	<c:when test="${rol == 'Cliente' }">
+	<c:when test="${rol == 'cliente' }">
 		<title>WEB PRIVADA CLIENTE</title>
 	</c:when>
-	<c:when test="${rol == 'Consultor' }">
+	<c:when test="${rol == 'consultor' }">
 		<title>WEB PRIVADA CONSULTOR</title>
 	</c:when>
 	<c:otherwise>
@@ -20,10 +20,23 @@
 </head>
 <body>
 	<div class="nav">
+	<c:choose>
+	<c:when test="${rol == 'cliente' }">
 		<button class="btn">
-			<a
-				href="${pageContext.request.contextPath}/vistas/portalAdministrador.jsp">Salir</a>
+			<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=python&idUsuario<c:out value="${id}"></c:out>">Salir</a>
 		</button>
+	</c:when>
+	<c:when test="${rol == 'consultor' }">
+		<button class="btn">
+			<a href="${pageContext.request.contextPath}/vistas/portalConsultor.jsp">Salir</a>
+		</button>
+	</c:when>
+	<c:otherwise>
+		<button class="btn">
+			<a href="${pageContext.request.contextPath}/vistas/portalAdministrador.jsp">Salir</a>
+		</button>
+	</c:otherwise>
+</c:choose>
 	</div>
 	<div class="header">
 		<h1>Gestión de Consultas</h1>
