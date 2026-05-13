@@ -55,5 +55,9 @@
         </tr>
         </tbody>
     </table>
+    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verMensajes&idConsulta=${consulta.idConsulta}">Ver Mensajes</a>
+    <button id="btn-abrir-detalle">Ver Consultor</button>
+    <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
+    <script src="${pageContext.request.contextPath}/js/verUsuario.js"></script>
 </body>
 </html>
