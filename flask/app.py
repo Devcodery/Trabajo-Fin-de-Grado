@@ -217,9 +217,7 @@ def login():
             session["user"] = user
             session["roles"] = ["admin"]
 
-            if next_url_segura(next_url):
-                return redirect(next_url)
-            return redirect("")
+            return redirect("/Proyecto_Grupo3/AdministradorControlador?opcion=logueado&rol=admin")
 
         # Usuarios normales registrados en PostgreSQL.
         login_correcto, userComplety  = login_usuario(user, passwd)
@@ -234,13 +232,11 @@ def login():
                 return render_template("login.html", error=error, next_url=next_url)
             
             session["roles"] = userComplety[5] 
-
-            
             
             if session["roles"] == 'cliente':
-                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
             elif session["roles"] == 'consultor':
-                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
 
         error = "Usuario o contraseña incorrectos"
 
