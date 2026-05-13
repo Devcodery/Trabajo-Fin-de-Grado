@@ -38,12 +38,12 @@
             <c:choose>
                 <c:when test="${rol = 'cliente'}">
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Clientes</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Clientes</a>	
                     </button>
                 </c:when>
                 <c:otherwise>
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Consultor</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rol=<c:out value="${ rol }"></c:out>">Ver Consultor</a>	
                     </button>
                 </c:otherwise>
             </c:choose>

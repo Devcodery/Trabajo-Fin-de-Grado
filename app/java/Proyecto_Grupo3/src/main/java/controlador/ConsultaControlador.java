@@ -63,8 +63,8 @@ public class ConsultaControlador extends HttpServlet {
 
 		} else if(opcion.equalsIgnoreCase("gestionConsultasAdmin")) {
 			ArrayList<Consulta> consultas = consultaDAO.readAll();
-
 			request.setAttribute("consultasAdmin", consultas);
+			request.setAttribute("rol", rol);
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
 		} else if(opcion.equalsIgnoreCase("verConsulta")) {

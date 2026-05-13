@@ -50,7 +50,7 @@ public class ConsultorControlador extends HttpServlet {
 		if(opcion.equalsIgnoreCase("python")) {
 			request.setAttribute("idUsuario", idUsuario);
 
-			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
+			request.getRequestDispatcher("/vistas/portalConsultor.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verconsultas")) {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
@@ -78,7 +78,7 @@ public class ConsultorControlador extends HttpServlet {
 
 			session.setAttribute("rol", rol);
 
-			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasCliente");
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasConsultor");
 		}
 		
 		

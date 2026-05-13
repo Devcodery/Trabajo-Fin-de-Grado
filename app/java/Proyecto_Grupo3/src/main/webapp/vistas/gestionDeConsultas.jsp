@@ -12,9 +12,9 @@
 	<c:when test="${rol == 'consultor' }">
 		<title>WEB PRIVADA CONSULTOR</title>
 	</c:when>
-	<c:otherwise>
+	<c:when test="${rol == 'admin'}">
 		<title>WEB PRIVADA ADMIN</title>
-	</c:otherwise>
+	</c:when>
 </c:choose>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
@@ -31,11 +31,11 @@
 			<a href="${pageContext.request.contextPath}/vistas/portalConsultor.jsp">Salir</a>
 		</button>
 	</c:when>
-	<c:otherwise>
+	<c:when test="${rol == 'admin'}">
 		<button class="btn">
 			<a href="${pageContext.request.contextPath}/vistas/portalAdministrador.jsp">Salir</a>
 		</button>
-	</c:otherwise>
+	</c:when>
 </c:choose>
 	</div>
 	<div class="header">
@@ -68,7 +68,7 @@
                 </div>
 					</c:forEach>
 				</c:when>
-				<c:otherwise>
+				<c:when test="${rol == 'admin'}">
 					<c:forEach var="consulta" items="${consultasAdmin}">
 					<c:if test="${empty consultasAdmin}"></c:if>
 						<div class="consulta-item" 
@@ -79,7 +79,7 @@
                     <span class="estado ${consulta.estadoActual}">${consulta.estadoActual}</span>
                 </div>
 					</c:forEach>
-				</c:otherwise>
+				</c:when>
 			</c:choose>
 			</div>
 		<div class="acciones">

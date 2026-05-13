@@ -11,7 +11,7 @@
 <body>
     <div class="nav">
         <button class="btn">
-        	<a>Salir</a>	
+        	<a href="/logout">Salir</a>	
         </button>
     </div>
     <div class="header">
