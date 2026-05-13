@@ -18,16 +18,30 @@
 </head>
 <body>
 	<div class="nav">
-        <button class="btn">
-        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultas${rol}">Volver</a>	
-        </button>
+		<c:choose>
+		    <c:when test="${rol == 'cliente'}">
+		        <button class="btn">
+		        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultasCliente">Volver</a>	
+		        </button>
+		    </c:when>
+		    <c:when test="${rol == 'consultor'}">
+		        <button class="btn">
+		        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultasConsultor">Volver</a>	
+		        </button>
+		    </c:when>
+		    <c:otherwise>
+		        <button class="btn">
+		        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=gestionConsultasAdmin">Volver</a>	
+		        </button>
+		    </c:otherwise>
+	    </c:choose>
     </div>
 	
     <table>
         <thead>
             <tr>
                 <th>Nombre</th>            
-               <th>Descripción</th>
+               	<th>Descripción</th>
                 <th>Fecha de Creación</th>
                 <th>Estado Actual</th>
             </tr>
