@@ -16,6 +16,49 @@
 
     <div class="container-carrusel">
         <h2>Selecciona un Servicio</h2>
+
+        <div class="barra-herramientas">
+            <button id="btn-abrir-filtros" class="btn-filtrar">Filtrar</button>
+        </div>
+
+        <div id="modal-filtros" class="modal-filtros oculto">
+            <form action="${pageContext.request.contextPath}/GestionServicioControlador" method="GET">
+                <input type="hidden" name="opcion" value="listarServicios">
+                <input type="hidden" name="funcion" value="${funcion}">
+
+                <div class="fila-filtro">
+                    <input type="checkbox" id="chkEstado" onchange="toggleFiltro('estado', this.checked)">
+                    <label for="chkEstado">Estado</label>
+                    <select name="estado" id="estado" disabled>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="fila-filtro">
+                    <input type="checkbox" id="chkSede" onchange="toggleFiltro('sede', this.checked)">
+                    <label for="chkSede">Sede</label>
+                    <select name="sede" id="sede">
+                        <c:forEach var="sede" items="${sedes}">
+                            <option value="${sede.idSede}">
+                                ${sede.nombre}
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="fila-filtro">
+                    <input type="checkbox" id="chkFechas" onchange="toggleFechas(this.checked)">
+                    <label for="chkFechas">Rango de fechas</label>
+                    <input type="date" name="fechaInicio" id="fechaInicio" disabled>
+                    <input type="date" name="fechaFin" id="fechaFin" disabled>
+                </div>
+
+                <div class="acciones-filtro">
+                    <button type="submit" class="btn-aplicar">Aplicar Filtros</button>
+                </div>
+            </form>
+        </div>
         
         <div class="lista-servicios" id="listaServicios">
             <c:forEach var="s" items="${servicios}">
