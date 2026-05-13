@@ -64,7 +64,7 @@ public class ConsultaControlador extends HttpServlet {
 		} else if(opcion.equalsIgnoreCase("gestionConsultasAdmin")) {
 			ArrayList<Consulta> consultas = consultaDAO.readAll();
 			request.setAttribute("listaConsultas", consultas);
-			request.setAttribute("rol", "cliente");
+			request.setAttribute("rol", rol);
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
 		} else if(opcion.equalsIgnoreCase("verConsulta")) {
@@ -72,7 +72,7 @@ public class ConsultaControlador extends HttpServlet {
 
 			Consulta consulta = consultaDAO.read(idConsulta);
 			request.setAttribute("consulta", consulta);
-			request.setAttribute("rol", "cliente");
+			request.setAttribute("rol", rol);
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
 		}
 	}
