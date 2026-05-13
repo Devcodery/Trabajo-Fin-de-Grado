@@ -51,10 +51,12 @@ public class ClienteControlador extends HttpServlet {
 
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verConsultas")) {
+			String cookies = request.getHeader("Cookie");
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create(request.getContextPath() + "/usuario/" + idUsuario))
+									.uri(URI.create("http://10.0.0.103:8383/usuario/" + idUsuario))
+									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
 
@@ -64,11 +66,13 @@ public class ClienteControlador extends HttpServlet {
 				HttpResponse<String> respuesta = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
 
 				String usuarioJson = respuesta.body();
+				
+				System.out.println(usuarioJson);
 
 				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
 
 				rol = jsonCompleto.get("rol").getAsString();
-
+				System.out.println("ROL: " + rol);
 			}catch (IOException e) {
 				e.printStackTrace();
 			}catch(InterruptedException e) {

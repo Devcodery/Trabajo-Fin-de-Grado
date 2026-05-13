@@ -26,8 +26,13 @@ services:
       - .env
     ports:
       - "7788:8080"
+      - "8001:8000"
+    environment:
+      JPDA_ADDRESS: "*:8000"
+      JPDA_TRANSPORT: "dt_socket"
     volumes:
       - ./java/Proyecto_Grupo3/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Proyecto_Grupo3.war
+    command: ["catalina.sh", "jpda", "run"]
 
 networks:
   proxy:
