@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rol=consultor">Consultores</a>	
+                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rol=consultor">Gestion de Consultores</a>	
                 </button>
             </tr>
             <tr>

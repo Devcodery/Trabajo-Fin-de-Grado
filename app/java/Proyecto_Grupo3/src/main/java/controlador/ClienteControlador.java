@@ -38,10 +38,14 @@ public class ClienteControlador extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String opcion = request.getParameter("opcion");
-		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
 
 		HttpSession session = request.getSession();
-		session.setAttribute("idUsuario", idUsuario);
+		
+		if(request.getParameter("idUsuario") != null) {
+			session.setAttribute("idUsuario", Integer.valueOf(request.getParameter("idUsuario")));
+
+		}
+		int idUsuario = (int) session.getAttribute("idUsuario");
 		
 		if(opcion.equalsIgnoreCase("python")) {
 
@@ -70,6 +74,8 @@ public class ClienteControlador extends HttpServlet {
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			session.setAttribute("rol", rol);
 
 			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasCliente");
 		}
