@@ -54,7 +54,7 @@ public class ClienteControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("/usuario/" + idUsuario))
+									.uri(URI.create(request.getContextPath() + "/usuario/" + idUsuario))
 									.GET()
 									.build();
 
