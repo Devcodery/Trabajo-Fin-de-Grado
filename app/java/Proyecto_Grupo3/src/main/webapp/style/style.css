@@ -131,3 +131,23 @@ li:last-child {
 
 .estado.activo { color: green; font-weight: bold; }
 .estado.inactivo { color: red; }
+
+.fondo-modal {
+    display: none; /* Importante: empieza oculto */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjeta {
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    min-width: 300px;
+}
