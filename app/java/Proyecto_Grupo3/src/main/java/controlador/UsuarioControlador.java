@@ -45,20 +45,22 @@ public class UsuarioControlador extends HttpServlet {
 		String opcion = request.getParameter("opcion");
 
 		if(opcion.equalsIgnoreCase("gestion")){
-			request.setAttribute("rol", request.getParameter("rol"));
+			request.setAttribute("rolPagina", request.getParameter("rolPagina"));
 			
 			request.getRequestDispatcher("/vistas/gestionUsuarios.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verusuarios")){
 
-			String rol = request.getParameter("rol");
-			request.setAttribute("rol", rol);
+			String rolPagina = request.getParameter("rolPagina");
+			request.setAttribute("rolPagina", rolPagina);
 
 			ArrayList<Usuario> usuarios = new ArrayList<>();
 
+			String cookies = request.getHeader("Cookie");
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("/usuarios"))
+									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
 
@@ -73,14 +75,14 @@ public class UsuarioControlador extends HttpServlet {
 				for(JsonElement jsonE : jsonCompleto){
 					JsonObject jsonObject = jsonE.getAsJsonObject();
 
-					if (rol.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rol.equalsIgnoreCase("cliente")) {
+					if (rolPagina.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rolPagina.equalsIgnoreCase("cliente")) {
 						usuarios.add(new Cliente(jsonObject.get("0").getAsInt(), 
 												jsonObject.get("1").getAsString(), 
 												jsonObject.get("2").getAsString(), 
 												jsonObject.get("6").getAsString(), 
 												jsonObject.get("3").getAsString()));
 
-					}else if(rol.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rol.equalsIgnoreCase("consultor")) {
+					}else if(rolPagina.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rolPagina.equalsIgnoreCase("consultor")) {
 						usuarios.add(new Consultor(jsonObject.get("0").getAsInt(), 
 												jsonObject.get("1").getAsString(), 
 												jsonObject.get("2").getAsString(), 
