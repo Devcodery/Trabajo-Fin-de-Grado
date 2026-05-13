@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
+	<c:set var="idUsuario" value="${sessionScope.idUsuario}" />
 	<div class="nav">
         <button class="btn">
         	<a href="/logout">Salir</a>	
@@ -18,7 +19,7 @@
     
     <div class="layout">
 		<button class="btn-consulta">
-			<a class="btn-consulta" href="http://consultoriatech.php.es/formularios/formularioConsulta.php?idUsuario=<c:out value="${id}"></c:out>"> Nueva Consulta</a>
+			<a class="btn-consulta" href="http://consultoriatech.php.es/formularios/formularioConsulta.php?idUsuario=<c:out value="${idUsuario}"></c:out>"> Nueva Consulta</a>
 		</button>
 		
 	</div>
