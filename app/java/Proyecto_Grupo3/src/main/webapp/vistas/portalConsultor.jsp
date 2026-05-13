@@ -12,7 +12,7 @@
 
 	<div class="nav">
 		<button class="btn">
-			<a href="/logout">Salir</a>
+			<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=logout">Salir</a>
 		</button>
 	</div>
 	<h1 class="titulo">Portal del Consultor</h1>

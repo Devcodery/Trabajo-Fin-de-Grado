@@ -11,7 +11,7 @@
 <body>
 	<div class="nav">
         <button class="btn">
-        	<a href="${pageContext.request.contextPath}/vistas/portalAdministrador.jsp">Salir</a>	
+        	<a href="${pageContext.request.contextPath}/AdministradorControlador?opcion=logueado">Salir</a>	
         </button>
     </div>
 	<div class="header">

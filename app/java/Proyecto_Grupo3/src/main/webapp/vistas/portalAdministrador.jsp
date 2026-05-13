@@ -11,7 +11,7 @@
 <body>
     <div class="nav">
         <button class="btn">
-        	<a href="/logout">Salir</a>	
+        	<a href="${pageContext.request.contextPath}/AdministradorControlador?opcion=logout">Salir</a>	
         </button>
     </div>
     <div class="header">
@@ -31,12 +31,12 @@
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rol=consultor">Gestion de Consultores</a>	
+                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina=consultor">Gestion de Consultores</a>	
                 </button>
             </tr>
             <tr>
                 <button class="btn">
-                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rol=cliente">Gestión de Clientes</a>	
+                	<a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina=cliente">Gestión de Clientes</a>	
                 </button>
             </tr>
             
