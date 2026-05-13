@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -38,9 +39,12 @@ public class ConsultorControlador extends HttpServlet {
 
 		String opcion = request.getParameter("opcion");
 		int idUsuario = Integer.valueOf(request.getParameter("idUsuario"));
-		
+
+		HttpSession session = request.getSession();
+		session.setAttribute("idUsuario", idUsuario);
+
 		if(opcion.equalsIgnoreCase("python")) {
-			request.setAttribute("id", idUsuario);
+			request.setAttribute("idUsuario", idUsuario);
 
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verconsultas")) {
@@ -68,10 +72,7 @@ public class ConsultorControlador extends HttpServlet {
 				e.printStackTrace();
 			}
 
-
-			request.setAttribute("rol", rol);
-
-			request.getRequestDispatcher("/vistas/consultas.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasCliente");
 		}
 		
 		
