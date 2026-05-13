@@ -48,7 +48,6 @@ public class ConsultaControlador extends HttpServlet {
 			ArrayList<Consulta> consultas = consultaDAO.readCliente(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);
-			request.setAttribute("rol", rol);
 
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
@@ -57,23 +56,25 @@ public class ConsultaControlador extends HttpServlet {
 			ArrayList<Consulta> consultas = consultaDAO.readConsultor(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);
-			request.setAttribute("rol", rol);
 
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
 		} else if(opcion.equalsIgnoreCase("gestionConsultasAdmin")) {
 			ArrayList<Consulta> consultas = consultaDAO.readAll();
 			request.setAttribute("listaConsultas", consultas);
-			request.setAttribute("rol", rol);
+
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
 		} else if(opcion.equalsIgnoreCase("verConsulta")) {
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			session.setAttribute("idConsulta", idConsulta);
 
 			Consulta consulta = consultaDAO.read(idConsulta);
 			request.setAttribute("consulta", consulta);
-			request.setAttribute("rol", rol);
+
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
+		}else if(opcion.equalsIgnoreCase("verMensajes")){
+			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=verMensajes");
 		}
 	}
 
