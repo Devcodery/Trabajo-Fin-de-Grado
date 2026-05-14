@@ -38,11 +38,7 @@ public class ConsultorControlador extends HttpServlet {
 		if(request.getParameter("idUsuario") != null || request.getParameter("rol") != null) {
 			session.setAttribute("idUsuario", Integer.valueOf(request.getParameter("idUsuario")));
 			session.setAttribute("rol", request.getParameter("rol"));
-		}else{
-			response.sendRedirect("/logout");
 		}
-		int idUsuario = (int) session.getAttribute("idUsuario");
-		String rol = (String) session.getAttribute("rol");
 
 		if(opcion.equalsIgnoreCase("logueado")) {
 			request.getRequestDispatcher("/vistas/portalConsultor.jsp").forward(request, response);
