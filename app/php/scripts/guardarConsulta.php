@@ -32,9 +32,9 @@ if(curl_errno($ch)){
     $datos = json_decode($respuesta, true);
     if(isset($datos['correo'])) {
         $correo = $datos['correo'];
+        curl_close($ch)
     } else {
         echo "Error: No se encontró el correo en la respuesta.";
-        curl_close($ch);
     }
 }
 
