@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS usuario (
     passwd VARCHAR(255) NOT NULL,
     rol VARCHAR(50),
     direccion VARCHAR(255),
-    departamento VARCHAR(100),
-    sede VARCHAR(100)
+    departamento INT,
+    sede INT
 );
 
 CREATE OR REPLACE FUNCTION registrar_usuario(
