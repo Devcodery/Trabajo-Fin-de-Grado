@@ -34,10 +34,25 @@ services:
       - ./java/Proyecto_Grupo3/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Proyecto_Grupo3.war
     command: ["catalina.sh", "jpda", "run"]
 
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n-app
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - N8N_SECURE_COOKIE=false
+      - GENERIC_TIMEZONE=Europe/Madrid
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  postgres_data:
+  n8n_data:
+
 networks:
   proxy:
     external: true
     name: proxy
-
-volumes:
-  postgres_data:
