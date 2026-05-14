@@ -159,7 +159,7 @@ def registro(rol):
         sede = request.form.get("id_sede", type=int, default=None)
 
         if registrar_usuario(nombre, correo, passwd, apellidos, rol, direccion, departamento, sede):
-            return redirect(url_for("login"))
+            return redirect(url_for("registro", rol=rol, next=back_url))
 
         return render_template(
             "formulario.html",
