@@ -10,7 +10,7 @@
 <body>
     <div class="nav">
         <button class="btn">
-            <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rol<c:out value="${ rol }"></c:out>">Volver</a>
+            <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina<c:out value="${ rolPagina }"></c:out>">Volver</a>
         </button>
     </div>
 
