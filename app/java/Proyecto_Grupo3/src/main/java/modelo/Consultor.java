@@ -1,36 +1,29 @@
 package modelo;
 
 public class Consultor extends Usuario {
-    private String sede;
-    private String departamento;
+    private int sede;
+    private int departamento;
 
     public Consultor(int idUsuario, String nombre, String apellidos, String direccion, 
-                    String email, String sede, String departamento) {
+                    String email, int sede, int departamento) {
         super(idUsuario, nombre, apellidos, direccion, email);
         this.sede = sede;
         this.departamento = departamento;
     }
 
-    public Consultor(String nombre, String apellidos, String direccion, 
-                    String email, String sede, String departamento) {
-        super(nombre, apellidos, direccion, email);
-        this.sede = sede;
-        this.departamento = departamento;
-    }
-
-    public String getSede() {
+    public int getSede() {
         return sede;
     }
 
-    public void setSede(String sede) {
+    public void setSede(int sede) {
         this.sede = sede;
     }
 
-    public String getDepartamento() {
+    public int getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(int departamento) {
         this.departamento = departamento;
     }
 

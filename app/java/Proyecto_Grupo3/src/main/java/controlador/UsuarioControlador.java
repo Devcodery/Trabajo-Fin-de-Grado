@@ -88,8 +88,8 @@ public class UsuarioControlador extends HttpServlet {
 												jsonObject.get("apellidos").getAsString(), 
 												jsonObject.get("direccion").getAsString(), 
 												jsonObject.get("correo").getAsString(),
-												jsonObject.get("id_dpto").getAsString(),
-												jsonObject.get("id_sede").getAsString()));
+												jsonObject.get("id_dpto").getAsInt(),
+												jsonObject.get("id_sede").getAsInt()));
 					}
 				}
 				
