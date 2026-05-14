@@ -109,7 +109,7 @@ public class GestionServicioControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			ArrayList<Sede> sedes = new ArrayList<>();
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://info.empresa.dam.es:8055/items/departamentos"))
+									.uri(URI.create("http://info.empresa.dam.es:8055/items/sedes"))
 									.GET()
 									.build();
 			
