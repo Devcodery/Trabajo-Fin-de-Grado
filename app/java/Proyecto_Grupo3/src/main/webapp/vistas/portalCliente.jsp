@@ -12,7 +12,7 @@
 	<c:set var="idUsuario" value="${sessionScope.idUsuario}" />
 	<div class="nav">
         <button class="btn">
-        	<a href="${pageContext.request.contextPath}?opcion=logout">Salir</a>	
+        	<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=logout">Salir</a>	
         </button>
     </div>
     <h1 class="titulo">Portal del Cliente</h1>
