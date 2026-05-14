@@ -2,22 +2,15 @@ package modelo;
 
 public class Mensaje {
     private int idMensaje;
-    private Cliente cliente;
-    private Consultor consultor;
+    private Usuario usuario;
+    private Consulta consulta;
     private String asunto;
     private String contenido;
 
-    public Mensaje(int idMensaje, Cliente cliente, Consultor consultor, String asunto, String contenido) {
+    public Mensaje(int idMensaje, Usuario usuario, Consulta consulta, String asunto, String contenido) {
         this.idMensaje = idMensaje;
-        this.cliente = cliente;
-        this.consultor = consultor;
-        this.asunto = asunto;
-        this.contenido = contenido;
-    }
-
-    public Mensaje(Cliente cliente, Consultor consultor, String asunto, String contenido) {
-        this.cliente = cliente;
-        this.consultor = consultor;
+        this.usuario = usuario;
+        this.consulta = consulta;
         this.asunto = asunto;
         this.contenido = contenido;
     }
@@ -30,20 +23,20 @@ public class Mensaje {
         this.idMensaje = idMensaje;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Consultor getConsultor() {
-        return consultor;
+    public Consulta getConsulta() {
+        return consulta;
     }
 
-    public void setConsultor(Consultor consultor) {
-        this.consultor = consultor;
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
     }
 
     public String getAsunto() {

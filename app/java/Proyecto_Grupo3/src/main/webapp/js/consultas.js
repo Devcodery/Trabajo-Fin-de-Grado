@@ -22,7 +22,7 @@ function consultarConsulta() {
         return;
     }
 
-   	let url = `/Proyecto_Grupo3/ConsultaControlador?opcion=verConsulta&idConsulta=${consultaSeleccionadoId}&rol=${rol}`;
+   	let url = `/Proyecto_Grupo3/ConsultaControlador?opcion=verConsulta&idConsulta=${consultaSeleccionadoId}`;
 	window.location.href = window.location.origin + url;
     }
 

@@ -47,3 +47,22 @@ function ejecutarAccion(funcion) {
 
     window.location.href = window.location.origin + url;
 }
+
+
+document.getElementById('btn-abrir-filtros').addEventListener('click', function() {
+    const modal = document.getElementById('modal-filtros');
+    modal.classList.toggle('oculto');
+});
+
+
+function toggleFiltro(idElemento, isChecked) {
+    const elemento = document.getElementById(idElemento);
+    if (elemento) {
+        elemento.disabled = !isChecked;
+    }
+}
+
+function toggleFechas(isChecked) {
+    document.getElementById('fechaInicio').disabled = !isChecked;
+    document.getElementById('fechaFin').disabled = !isChecked;
+}

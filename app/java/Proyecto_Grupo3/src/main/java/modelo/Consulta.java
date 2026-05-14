@@ -10,9 +10,11 @@ public class Consulta {
     private Date fechaCreacion;
     private Date fechaFin;
     private int idServicio;
+    private int idCliente;
+    private int idConsultor;
 
     public Consulta(int idConsulta, String estadoActual, String titulo, String descripcion, Date fechaCreacion,
-			Date fechaFin, int idServicio) {
+			Date fechaFin, int idServicio, int idCliente, int idConsultor) {
 		this.idConsulta = idConsulta;
 		this.estadoActual = estadoActual;
 		this.titulo = titulo;
@@ -20,6 +22,8 @@ public class Consulta {
 		this.fechaCreacion = fechaCreacion;
 		this.fechaFin = fechaFin;
 		this.idServicio = idServicio;
+		this.idCliente = idCliente;
+		this.idConsultor = idConsultor;
 	}
     
     public String toString() {
@@ -82,5 +86,20 @@ public class Consulta {
 		this.idServicio = idServicio;
 	}
 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public int getIdConsultor() {
+        return idConsultor;
+    }
+
+    public void setIdConsultor(int idConsultor) {
+        this.idConsultor = idConsultor;
+    }
    
 }

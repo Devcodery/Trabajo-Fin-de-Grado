@@ -9,6 +9,8 @@
 <body>
     <h1 class="titulo">Formulario de registro</h1>
 
+    {{ error }}
+
     <form action="/registro/{{ rol }}" method="post">
         <label class="label">Nombre:</label>
         <input type="text" name="nombre" id="nombre" required>
@@ -23,7 +25,7 @@
         <br><br>
 
         <label class="label">Direccion:</label>
-        <input type="direccion" name="direccion" id="email" required>
+        <input type="text" name="direccion" id="direccion" required>
         <br><br>
 
         {% if rol != 'cliente' %}

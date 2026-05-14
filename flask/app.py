@@ -155,11 +155,11 @@ def registro(rol):
         passwd = request.form.get("passwd")
         rol = request.form.get("rol")
         direccion = request.form.get("direccion")
-        departamento = request.form.get("departamento")
-        sede = request.form.get("sede")
+        departamento = request.form.get("id_dpto", type=int, default=None)
+        sede = request.form.get("id_sede", type=int, default=None)
 
         if registrar_usuario(nombre, correo, passwd, apellidos, rol, direccion, departamento, sede):
-            return redirect(url_for("login"))
+            return redirect(url_for("registro", rol=rol, next=back_url))
 
         return render_template(
             "formulario.html",
@@ -191,8 +191,20 @@ def usuarios():
             cur.execute("SELECT * FROM usuario order by id_usuario;")
 
             filas = cur.fetchall()
-
-    return jsonify(filas)
+    
+    usuarios = []
+    for fila in filas:
+        usuarios.append({
+            "id_usuario": fila[0],
+            "nombre": fila[1],
+            "apellidos": fila[2],
+            "correo": fila[3],
+            "rol": fila[5],
+            "direccion": fila[6],
+            "id_dpto": fila[7],
+            "id_sede": fila[8],
+        })
+    return jsonify(usuarios)
 
 @app.route("/usuario/<int:id_usuario>", methods=["GET"])
 @login_requerido
@@ -217,9 +229,7 @@ def login():
             session["user"] = user
             session["roles"] = ["admin"]
 
-            if next_url_segura(next_url):
-                return redirect(next_url)
-            return redirect("")
+            return redirect("/Proyecto_Grupo3/AdministradorControlador?opcion=logueado&rol=admin")
 
         # Usuarios normales registrados en PostgreSQL.
         login_correcto, userComplety  = login_usuario(user, passwd)
@@ -234,13 +244,11 @@ def login():
                 return render_template("login.html", error=error, next_url=next_url)
             
             session["roles"] = userComplety[5] 
-
-            
             
             if session["roles"] == 'cliente':
-                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
             elif session["roles"] == 'consultor':
-                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&opcion=python")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
 
         error = "Usuario o contraseña incorrectos"
 
