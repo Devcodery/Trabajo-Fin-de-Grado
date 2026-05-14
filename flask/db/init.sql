@@ -19,8 +19,8 @@ CREATE OR REPLACE FUNCTION registrar_usuario(
     _passwd VARCHAR,
     _rol VARCHAR,
     _direccion VARCHAR,
-    _departamento VARCHAR,
-    _sede VARCHAR
+    _departamento INT,
+    _sede INT
 )
 RETURNS BOOLEAN
 AS $$
