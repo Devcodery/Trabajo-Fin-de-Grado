@@ -191,8 +191,20 @@ def usuarios():
             cur.execute("SELECT * FROM usuario order by id_usuario;")
 
             filas = cur.fetchall()
-
-    return jsonify(filas)
+    
+    usuarios = []
+    for fila in filas:
+        usuarios.append({
+            "id_usuario": fila[0],
+            "nombre": fila[1],
+            "apellidos": fila[2],
+            "correo": fila[3],
+            "rol": fila[5],
+            "direccion": fila[6],
+            "id_dpto": fila[7],
+            "id_sede": fila[8],
+        })
+    return jsonify(usuarios)
 
 @app.route("/usuario/<int:id_usuario>", methods=["GET"])
 @login_requerido

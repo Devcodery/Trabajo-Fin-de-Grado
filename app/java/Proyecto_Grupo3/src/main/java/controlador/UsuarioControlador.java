@@ -75,21 +75,21 @@ public class UsuarioControlador extends HttpServlet {
 				for(JsonElement jsonE : jsonCompleto){
 					JsonObject jsonObject = jsonE.getAsJsonObject();
 
-					if (rolPagina.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rolPagina.equalsIgnoreCase("cliente")) {
-						usuarios.add(new Cliente(jsonObject.get("0").getAsInt(), 
-												jsonObject.get("1").getAsString(), 
-												jsonObject.get("2").getAsString(), 
-												jsonObject.get("6").getAsString(), 
-												jsonObject.get("3").getAsString()));
+					if (rolPagina.equalsIgnoreCase(jsonObject.get("rol").getAsString()) && rolPagina.equalsIgnoreCase("cliente")) {
+						usuarios.add(new Cliente(jsonObject.get("id_usuario").getAsInt(), 
+												jsonObject.get("nombre").getAsString(), 
+												jsonObject.get("apellidos").getAsString(), 
+												jsonObject.get("direccion").getAsString(), 
+												jsonObject.get("correo").getAsString()));
 
-					}else if(rolPagina.equalsIgnoreCase(jsonObject.get("5").getAsString()) && rolPagina.equalsIgnoreCase("consultor")) {
-						usuarios.add(new Consultor(jsonObject.get("0").getAsInt(), 
-												jsonObject.get("1").getAsString(), 
-												jsonObject.get("2").getAsString(), 
-												jsonObject.get("6").getAsString(), 
-												jsonObject.get("3").getAsString(),
-												jsonObject.get("7").getAsString(),
-												jsonObject.get("8").getAsString()));
+					}else if(rolPagina.equalsIgnoreCase(jsonObject.get("rol").getAsString()) && rolPagina.equalsIgnoreCase("consultor")) {
+						usuarios.add(new Consultor(jsonObject.get("id_usuario").getAsInt(), 
+												jsonObject.get("nombre").getAsString(), 
+												jsonObject.get("apellidos").getAsString(), 
+												jsonObject.get("direccion").getAsString(), 
+												jsonObject.get("correo").getAsString(),
+												jsonObject.get("id_dpto").getAsString(),
+												jsonObject.get("id_sede").getAsString()));
 					}
 				}
 				

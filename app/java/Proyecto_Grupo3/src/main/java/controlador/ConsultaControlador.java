@@ -117,21 +117,21 @@ public class ConsultaControlador extends HttpServlet {
 				for(JsonElement jsonE : jsonCompleto){
 					JsonObject jsonObject = jsonE.getAsJsonObject();
 
-					if (jsonObject.get("5").getAsString().equalsIgnoreCase("cliente")) {
-						listaClientes.add(new Cliente(jsonObject.get("0").getAsInt(), 
-												jsonObject.get("1").getAsString(), 
-												jsonObject.get("2").getAsString(), 
-												jsonObject.get("6").getAsString(), 
-												jsonObject.get("3").getAsString()));
+					if (jsonObject.get("rol").getAsString().equalsIgnoreCase("cliente")) {
+						listaClientes.add(new Cliente(jsonObject.get("id_usuario").getAsInt(), 
+												jsonObject.get("nombre").getAsString(), 
+												jsonObject.get("apellidos").getAsString(), 
+												jsonObject.get("direccion").getAsString(), 
+												jsonObject.get("correo").getAsString()));
 
-					}else if(jsonObject.get("5").getAsString().equalsIgnoreCase("consultor")) {
-						listaConsultores.add(new Consultor(jsonObject.get("0").getAsInt(), 
-												jsonObject.get("1").getAsString(), 
-												jsonObject.get("2").getAsString(), 
-												jsonObject.get("6").getAsString(), 
-												jsonObject.get("3").getAsString(),
-												jsonObject.get("7").getAsString(),
-												jsonObject.get("8").getAsString()));
+					}else if(jsonObject.get("rol").getAsString().equalsIgnoreCase("consultor")) {
+						listaConsultores.add(new Consultor(jsonObject.get("id_usuario").getAsInt(), 
+												jsonObject.get("nombre").getAsString(), 
+												jsonObject.get("apellidos").getAsString(), 
+												jsonObject.get("direccion").getAsString(), 
+												jsonObject.get("correo").getAsString(),
+												jsonObject.get("id_dpto").getAsString(),
+												jsonObject.get("id_sede").getAsString()));
 					}
 				}
 				
