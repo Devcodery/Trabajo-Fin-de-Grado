@@ -2,10 +2,7 @@
 include 'db.php';
 include 'cookies.php';
 
-$idUsuario = $_SESSION['X-User-Id'] ?? null;
-if(!$idUsuario){
-    echo "Error: Usuario no autenticado.";
-}
+$idUsuario = $_POST['idUsuario'] ?? 0;
 $titulo = $_POST['titulo'] ?? '';
 $tipoDeServicio = $_POST['tipoDeServicio'] ?? '';
 $descripcion = $_POST['descripcion'] ?? '';

@@ -3,8 +3,11 @@ include '../scripts/db.php';
 
 $idUsuario = "";
 
-if(isset($_GET['idUsuario'])){
-    $idUsuario = intval($_GET['idUsuario']);
+if($_SESSION['X-User-Id']) {
+    $idUsuario = $_SESSION['X-User-Id'];
+} else {
+    echo "Error: Usuario no autenticado.";
+    exit();
 }
 
 $queryServicios = "SELECT nombre FROM servicio where estado = true";
@@ -35,6 +38,7 @@ pg_close($conn);
         </header>
         <div id="mensajeAlerta"></div> 
         <form id="formConsulta" action="/scripts/guardarConsulta.php" method="post">
+             <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuario ?>">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo">
@@ -54,8 +58,6 @@ pg_close($conn);
                 <label for="descripcion">Descripción:</label>
                 <textarea id="descripcion" name="descripcion"></textarea>
             </div>
-            
-            <input type="hidden" id="id" name="id" value="<?= $idUsuario ?>">
 
             <div class="form-actions">
                 <a href="/Proyecto_Grupo3/vistas/portalCliente.jsp" class="btn-exit">Volver al inicio</a>
