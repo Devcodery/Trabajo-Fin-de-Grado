@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '/scripts/db.php';
 
 $nombre = $_POST['nombre'] ?? '';
 $categoria = $_POST['categoria'] ?? '';
@@ -22,11 +22,11 @@ $query = "INSERT INTO servicio (nombre, descripcion, categoria, sede, beneficios
 
 if(pg_query($conn, $query)) {
      pg_close($conn);
-    header("Location: ../formularios/formularioServicio.php?mensaje=exito");
+    header("Location: /formularios/formularioServicio.php?mensaje=exito");
     exit();
 } else {
     echo "Error al guardar el servicio: " . pg_last_error($conn);
-    header("Location: ../formularios/formularioServicio.php?mensaje=error");
+    header("Location: /formularios/formularioServicio.php?mensaje=error");
     exit();
 }
 

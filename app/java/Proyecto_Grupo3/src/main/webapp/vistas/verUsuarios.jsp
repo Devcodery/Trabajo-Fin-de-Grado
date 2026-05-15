@@ -10,13 +10,13 @@
 <body>
     <div class="nav">
         <button class="btn">
-            <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina<c:out value="${ rolPagina }"></c:out>">Volver</a>
+            <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina=<c:out value="${ rolPagina }"></c:out>">Volver</a>
         </button>
     </div>
 
     <div class="container-carrusel">
         <c:choose>
-            <c:when test="${rol = 'cliente'}">
+            <c:when test="${rol == 'cliente'}">
                 <h2>Ver Clientes</h2>
             </c:when>
             <c:otherwise>

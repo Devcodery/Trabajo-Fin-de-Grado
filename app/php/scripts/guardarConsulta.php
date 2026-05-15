@@ -69,6 +69,6 @@ if(curl_errno($ch)){
 } else {
     echo "Consulta enviada al webhook correctamente.";
 }
-header("Location: ../formularios/formularioConsulta.php?mensaje=exito&idUsuario=$idUsuario");
+header("Location: /formularios/formularioConsulta.php?mensaje=exito&idUsuario=$idUsuario");
 exit();
 ?>

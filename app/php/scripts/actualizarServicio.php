@@ -24,13 +24,9 @@ $sql = "UPDATE servicio
         WHERE id_servicio=$id";
 
     if (pg_query($conn, $sql)) {
-        header("Location: ../formularios/modificarServicio.php?idServicio=$id&mensaje=exito");
+        header("Location: /formularios/modificarServicio.php?idServicio=$id&mensaje=exito");
     } else {
-        header("Location: ../formularios/modificarServicio.php?idServicio=$id&mensaje=error");
+        header("Location: /formularios/modificarServicio.php?idServicio=$id&mensaje=error");
     }
     pg_close($conn);
 ?>
-
-
-
-

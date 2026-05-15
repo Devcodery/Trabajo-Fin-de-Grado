@@ -173,13 +173,21 @@ public class ConsultaControlador extends HttpServlet {
 
 		ConsultaDAO consultaDAO = new ConsultaDAO(conexion);
 
+		HttpSession session = request.getSession();
+
+		String rol = (String) session.getAttribute("rol");
+
 		if(opcion.equalsIgnoreCase("actualizarEstado")) {
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
 			String nuevoEstado = request.getParameter("estado");
 
 			consultaDAO.updateEstado(idConsulta, nuevoEstado);
 
-			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+			if(rol.equalsIgnoreCase("consultor")) {
+				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasConsultor");
+			}else if(rol.equalsIgnoreCase("admin")) {
+				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+			}
 		}else if(opcion.equalsIgnoreCase("elegirConsultor")){
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
 			int idConsultor = Integer.valueOf(request.getParameter("idConsultor"));
