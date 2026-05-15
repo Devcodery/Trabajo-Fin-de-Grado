@@ -1,11 +1,18 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import conexionBBDD.ConexionBBDD;
+import dao.MensajeDAO;
+import modelo.Mensaje;
 
 /**
  * Servlet implementation class MensajeControlador
@@ -26,6 +33,19 @@ public class MensajeControlador extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		String opcion = request.getParameter("opcion");
+		ConexionBBDD conexion = new ConexionBBDD();
+		conexion.conectarBDDotenv();
+		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
+		
+		if(opcion.equalsIgnoreCase("listarMensajes")) {
+			ArrayList <Mensaje>	mensajes = mensajeDAO.readMensajesUsuario((int)session.getAttribute("idUsuario"), (int)session.getAttribute("idConsulta"));
+			request.setAttribute("mensajes", mensajes);
+			request.getRequestDispatcher("/vistas/gestorMensajes.jsp").forward(request, response);
+		}
+		conexion.cerrarConexion();
 	}
 
 	/**
@@ -33,6 +53,20 @@ public class MensajeControlador extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		HttpSession session = request.getSession();
+		
+		String opcion = request.getParameter("opcion");
+		ConexionBBDD conexion = new ConexionBBDD();
+		conexion.conectarBDDotenv();
+		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
+		
+		if(opcion.equalsIgnoreCase("enviarMensaje")) {
+			String descripcion = String.valueOf(request.getAttribute("cuerpoMensaje"));
+			String asunto = String.valueOf(request.getAttribute("asunto"));
+			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			mensajeDAO.create(idConsulta, (int)session.getAttribute("idUsuario"), descripcion, asunto);			
+		}
+		conexion.cerrarConexion();
 	}
 
 }
