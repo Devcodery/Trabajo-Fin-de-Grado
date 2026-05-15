@@ -2,7 +2,7 @@
 include 'db.php';
 include 'cookies.php';
 
-$idUsuario = $_SESSION['X-User-Id  '] ?? null;
+$idUsuario = $_SESSION['X-User-Id'] ?? null;
 if(!$idUsuario){
     echo "Error: Usuario no autenticado.";
 }
@@ -34,9 +34,9 @@ if(pg_query($conn, $query)) {
 $url = '/usuario/' . $idUsuario;
 $_GET = file_get_contents($url);
 $data = json_decode($_GET, true);
-$sedes = [];
-foreach ($data['data'] as $sede) {
-    $sedes[] = ['nombre' => $sede['nombre']];
+$usuarioInfo = [];
+foreach ($data as $usuario) {
+    $usuarioInfo[] = ['correo' => $usuario['correo']];
 }
 
 $jsonDataConsulta = json_encode([
@@ -45,7 +45,7 @@ $jsonDataConsulta = json_encode([
     'nombre' => $nombreUsuario,
     'descripcion' => $descripcion,
     'estado' => 'pendiente',
-    'correo' => $correo
+    'correo' => $usuarioInfo[0]['correo']
 ]);
 
 $webhook = 'http://n8n-app:5678/webhook-test/correo';
