@@ -2,9 +2,11 @@
 include '../scripts/db.php';
 
 $idUsuario = "";
+$usuarioNombre = "";
 
-if($_SESSION['X-User-Id']) {
-    $idUsuario = $_SESSION['X-User-Id'];
+if($_SERVER['HTTP_X_USER_ID'] && $_SERVER['HTTP_X_USERNAME'] !== "") {
+    $idUsuario = intval($_SERVER['HTTP_X_USER_ID']);
+    $usuarioNombre = $_SERVER['HTTP_X_USERNAME'];
 } else {
     echo "Error: Usuario no autenticado.";
     exit();
@@ -38,7 +40,8 @@ pg_close($conn);
         </header>
         <div id="mensajeAlerta"></div> 
         <form id="formConsulta" action="/scripts/guardarConsulta.php" method="post">
-             <input type="hidden" id="idUsuario" name="idUsuario" value="<?= $idUsuario ?>">
+             <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo htmlspecialchars($idUsuario); ?>">
+             <input type="hidden" id="usuarioNombre" name="usuarioNombre" value="<?php echo htmlspecialchars($usuarioNombre); ?>">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo">

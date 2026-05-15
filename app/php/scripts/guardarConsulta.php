@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
-include 'cookies.php';
 
+$usuarioNombre = $_POST['usuarioNombre'] ?? '';
 $idUsuario = $_POST['idUsuario'] ?? 0;
 $titulo = $_POST['titulo'] ?? '';
 $tipoDeServicio = $_POST['tipoDeServicio'] ?? '';
@@ -28,21 +28,23 @@ if(pg_query($conn, $query)) {
     exit();
 }
 
-$url = '/usuario/' . $idUsuario;
-$_GET = file_get_contents($url);
-$data = json_decode($_GET, true);
-$usuarioInfo = [];
-foreach ($data as $usuario) {
-    $usuarioInfo[] = ['correo' => $usuario['correo']];
-}
+// $_GET = file_get_contents($url);
+// $opciones = [
+//     'http' => [
+//         'method' => 'GET',
+//         'header' => "Cookie: " . ($_SERVER['HTTP_COOKIE'])
+//     ]
+// ];
+// $respuestaUsuario = file_get_contents($url, false, stream_context_create($opciones));
+// $data = json_decode($respuestaUsuario, true);
 
 $jsonDataConsulta = json_encode([
     'titulo' => $titulo,
     'tipo_de_Servicio' => $tipoDeServicio,
-    'nombre' => $nombreUsuario,
+    'nombre' => $usuarioNombre,
     'descripcion' => $descripcion,
     'estado' => 'pendiente',
-    'correo' => $usuarioInfo[0]['correo']
+    'correo' => $data['correo']
 ]);
 
 $webhook = 'http://n8n-app:5678/webhook-test/correo';
