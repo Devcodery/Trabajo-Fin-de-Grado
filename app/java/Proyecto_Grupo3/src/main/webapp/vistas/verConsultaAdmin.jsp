@@ -27,6 +27,7 @@
     </section>
     
     <form action="${pageContext.request.contextPath}/ConsultaControlador" method="post" class="form-admin">
+        <input type="hidden" name="opcion" value="elegirConsultor">
         <input type="hidden" name="idConsulta" value="${consulta.idConsulta}">
         
         <div class="field-group">
@@ -40,20 +41,26 @@
                 </c:forEach>
             </select>
         </div>
+    </form>
 
+    
         <div class="actions-row">
             <button type="button" id="btn-abrir-detalle" class="btn-secondary">Ver cliente</button>
             
-            <div class="status-group">
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado" onchange="this.form.submit()">
-                    <option value="pendiente" ${consulta.estadoActual == 'pendiente' ? 'selected' : ''}>Pendiente</option>
-                    <option value="en_progreso" ${consulta.estadoActual == 'en_progreso' ? 'selected' : ''}>En proceso</option>
-                    <option value="resuelta" ${consulta.estadoActual == 'resuelta' ? 'selected' : ''}>Resuelta</option>
-                </select>
-            </div>
+            <form action="${pageContext.request.contextPath}/ConsultaControlador" method="post" class="form-admin">
+                <input type="hidden" name="opcion" value="actualizarEstado">
+                <input type="hidden" name="idConsulta" value="${consulta.idConsulta}">
+                
+                <div class="status-group">
+                    <label for="estado">Estado:</label>
+                    <select name="estado" id="estado" onchange="this.form.submit()">
+                        <option value="pendiente" ${consulta.estadoActual == 'pendiente' ? 'selected' : ''}>Pendiente</option>
+                        <option value="en_progreso" ${consulta.estadoActual == 'en_progreso' ? 'selected' : ''}>En proceso</option>
+                        <option value="resuelta" ${consulta.estadoActual == 'resuelta' ? 'selected' : ''}>Resuelta</option>
+                    </select>
+                </div>
+            </form>
         </div>
-    </form>
     <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/js/verUsuario.js"></script>
 </body>

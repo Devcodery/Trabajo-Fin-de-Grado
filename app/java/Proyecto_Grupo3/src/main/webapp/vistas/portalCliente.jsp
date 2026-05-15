@@ -9,7 +9,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
-	<c:set var="idUsuario" value="${sessionScope.idUsuario}" />
 	<div class="nav">
         <button class="btn">
         	<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=logout">Salir</a>	

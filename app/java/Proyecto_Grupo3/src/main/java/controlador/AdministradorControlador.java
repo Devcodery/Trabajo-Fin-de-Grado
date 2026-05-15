@@ -32,11 +32,16 @@ public class AdministradorControlador extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		if(request.getAttribute("rol") != null){
-			session.setAttribute("rol", request.getAttribute("rol"));
+		String userNameHeader = request.getHeader("X-Username");
+		String roleHeader = request.getHeader("X-Role");
+
+		if (roleHeader == null || roleHeader.isBlank()) {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Admin no autenticado");
+			return;
 		}
 
-		String rol = (String) session.getAttribute("rol");
+		session.setAttribute("nombreUsuario", userNameHeader);
+		session.setAttribute("rol", roleHeader);
 
 		if(opcion.equalsIgnoreCase("logueado")) {
 			request.getRequestDispatcher("/vistas/portalAdministrador.jsp").forward(request, response);

@@ -194,6 +194,32 @@ public class ConsultaDAO {
 		return consultas;
 	}
 
+	public boolean updateEstado(int idConsulta, String nuevoEstado) {
+		String sql = "update consulta set estadoActual = ? where id_consulta = ?";
+		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+			ps.setString(1, nuevoEstado);
+			ps.setInt(2, idConsulta);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean updateConsultor(int idConsulta, int idConsultor) {
+		String sql = "update consulta set id_consultor = ? where id_consulta = ?";
+		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+			ps.setInt(1, idConsultor);
+			ps.setInt(2, idConsulta);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public Connection getConexion() {
 		return conexion;
 	}

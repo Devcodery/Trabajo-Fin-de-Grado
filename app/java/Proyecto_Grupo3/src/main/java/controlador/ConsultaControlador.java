@@ -165,6 +165,31 @@ public class ConsultaControlador extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+
+		String opcion = request.getParameter("opcion");
+
+		ConexionBBDD conexion = new ConexionBBDD();
+		conexion.conectarBDDotenv();
+
+		ConsultaDAO consultaDAO = new ConsultaDAO(conexion);
+
+		if(opcion.equalsIgnoreCase("actualizarEstado")) {
+			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			String nuevoEstado = request.getParameter("estado");
+
+			consultaDAO.updateEstado(idConsulta, nuevoEstado);
+
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+		}else if(opcion.equalsIgnoreCase("elegirConsultor")){
+			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			int idConsultor = Integer.valueOf(request.getParameter("idConsultor"));
+
+			consultaDAO.updateConsultor(idConsulta, idConsultor);
+
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+		}
+
+		conexion.cerrarConexion();
 	}
 
 }

@@ -4,8 +4,7 @@ from urllib.parse import urlparse
 import os
 import psycopg2
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, make_response
 import requests
 
 load_dotenv()
@@ -229,7 +228,7 @@ def login():
             session["user"] = user
             session["roles"] = ["admin"]
 
-            return redirect("/Proyecto_Grupo3/AdministradorControlador?opcion=logueado&rol=admin")
+            return redirect("/Proyecto_Grupo3/AdministradorControlador?opcion=logueado")
 
         # Usuarios normales registrados en PostgreSQL.
         login_correcto, userComplety  = login_usuario(user, passwd)
@@ -243,12 +242,13 @@ def login():
                 error = "No se extrajo los datos del usuario."
                 return render_template("login.html", error=error, next_url=next_url)
             
-            session["roles"] = userComplety[5] 
+            session["user_id"] = userComplety[0]
+            session["roles"] = userComplety[5]
             
             if session["roles"] == 'cliente':
-                return redirect(f"/Proyecto_Grupo3/ClienteControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador")
             elif session["roles"] == 'consultor':
-                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?idUsuario={userComplety[0]}&rol={userComplety[5]}&opcion=logueado")
+                return redirect(f"/Proyecto_Grupo3/ConsultorControlador?opcion=logueado")
 
         error = "Usuario o contraseña incorrectos"
 
@@ -274,24 +274,27 @@ def auth_verify():
     print("========== AUTH VERIFY LLAMADO ==========", flush=True)
 
     if not session.get("login"):
-        print("AUTH: no login", flush=True)
         return "", 401
 
     roles_usuario = session.get("roles", [])
 
     if isinstance(roles_usuario, str):
         roles_usuario = [roles_usuario]
-
+    
+    def respuesta_permitida():
+        response = make_response("", 204)
+        response.headers["X-Username"] = session.get("user", "")
+        response.headers["X-Role"] = ",".join(roles_usuario)
+        
+        if roles_requeridos[0] is not "admin":
+            response.headers["X-User-Id"] = session.get("user_id", "")
+        
+        return response
+    
     roles_requeridos = request.headers.get("X-Required-Roles", "").strip()
 
-    print("AUTH usuario:", session.get("user"), flush=True)
-    print("AUTH roles_usuario:", roles_usuario, flush=True)
-    print("AUTH roles_requeridos:", roles_requeridos, flush=True)
-    print("AUTH uri:", request.headers.get("X-Original-URI"), flush=True)
-
     if not roles_requeridos:
-        print("AUTH permitido: no se exige rol concreto", flush=True)
-        return "", 204
+        return respuesta_permitida()
 
     lista_roles_requeridos = [
         rol.strip()
@@ -301,10 +304,8 @@ def auth_verify():
 
     for rol in lista_roles_requeridos:
         if rol in roles_usuario:
-            print("AUTH permitido por rol:", rol, flush=True)
-            return "", 204
+            return respuesta_permitida()
 
-    print("AUTH denegado", flush=True)
     return "", 403
 
 
