@@ -2,7 +2,10 @@
 include 'db.php';
 include 'cookies.php';
 
-$idUsuario = $_POST['id'] ?? '';
+$idUsuario = $_SESSION['X-User-Id  '] ?? null;
+if(!$idUsuario){
+    echo "Error: Usuario no autenticado.";
+}
 $titulo = $_POST['titulo'] ?? '';
 $tipoDeServicio = $_POST['tipoDeServicio'] ?? '';
 $descripcion = $_POST['descripcion'] ?? '';
@@ -28,24 +31,12 @@ if(pg_query($conn, $query)) {
     exit();
 }
 
-$jsonDataUsuario = 'http://consultoriatech.java.es/usuario/' . $idUsuario;
-$ch = curl_init($jsonDataUsuario);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json')); 
-$respuesta = curl_exec($ch);
-echo "Respuesta del servicio de usuario: " . $respuesta;
-$nombreUsuario = '';
-$correo = '';
-if(curl_errno($ch)){
-    echo 'Error en cURL: ' . curl_error($ch);
-} else {
-    $datos = json_decode($respuesta, true);
-    if(isset($datos['correo'])) {
-        $correo = $datos['correo'];
-        $nombreUsuario = $datos['nombre'];
-    } else {
-        echo "Error: No se encontró el correo en la respuesta.";
-    }
+$url = '/usuario/' . $idUsuario;
+$_GET = file_get_contents($url);
+$data = json_decode($_GET, true);
+$sedes = [];
+foreach ($data['data'] as $sede) {
+    $sedes[] = ['nombre' => $sede['nombre']];
 }
 
 $jsonDataConsulta = json_encode([

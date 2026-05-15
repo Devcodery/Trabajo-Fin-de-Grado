@@ -1,5 +1,5 @@
 <?php
-include '/scripts/db.php';
+include '../scripts/db.php';
 
 $idServicio = "";
 

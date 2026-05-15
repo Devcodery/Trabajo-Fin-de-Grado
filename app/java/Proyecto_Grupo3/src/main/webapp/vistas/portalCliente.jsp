@@ -18,7 +18,7 @@
     
     <div class="layout">
 		<button class="btn-consulta">
-			<a class="btn-consulta" href="http://consultoriatech.php.es/formularios/formularioConsulta.php?idUsuario=<c:out value="${idUsuario}"></c:out>"> Nueva Consulta</a>
+			<a class="btn-consulta" href="/formularios/formularioConsulta.php"> Nueva Consulta</a>
 		</button>
 		
 	</div>

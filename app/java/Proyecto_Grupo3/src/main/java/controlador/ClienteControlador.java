@@ -54,6 +54,8 @@ public class ClienteControlador extends HttpServlet {
 		}else if(opcion.equalsIgnoreCase("logout")) {
 			response.sendRedirect("/logout");
 			session.invalidate();
+		} else if(opcion.equalsIgnoreCase("crearConsulta")) {
+			response.sendRedirect("/formularios/formularioConsulta.php");
 		}
 
 	}

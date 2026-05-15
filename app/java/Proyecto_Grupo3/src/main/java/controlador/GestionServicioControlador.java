@@ -63,7 +63,7 @@ public class GestionServicioControlador extends HttpServlet {
 			// Redirige a la pagina de creacion de servicio en PHP
 			// Crear Servicio
 
-			response.sendRedirect("http://consultoriatech.php.es/formularios/formularioServicio.php");			
+			response.sendRedirect("/formularios/formularioServicio.php");			
 		
 		} else if(opcion.equalsIgnoreCase("listarServicios")) {
 			// Sirve para redirigir a la paginas que necesitan lista servicios para mostrar, como:
@@ -81,7 +81,7 @@ public class GestionServicioControlador extends HttpServlet {
 				// Esta seccion aqui nos redigire en caso de que queramos modificar un
 				// servicio en especifico
 				int idServicio = Integer.valueOf(request.getParameter("idServicio"));
-				response.sendRedirect("http://consultoriatech.php.es/formularios/modificarServicio.php?idServicio="+idServicio);
+				response.sendRedirect("/formularios/modificarServicio.php?idServicio="+idServicio);
 			}
 			
 			
