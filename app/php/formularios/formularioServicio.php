@@ -14,7 +14,7 @@ foreach ($data['data'] as $sede) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Nuevo Servicio</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
@@ -26,7 +26,7 @@ foreach ($data['data'] as $sede) {
             <p class="subtitle">Completa los detalles técnicos del servicio para el catálogo.</p>
         </header>
 
-        <form id="formInsertarServicio" action="../scripts/guardarServicio.php" method="post" class="form-grid">
+        <form id="formInsertarServicio" action="/scripts/guardarServicio.php" method="post" class="form-grid">
             
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
@@ -90,6 +90,6 @@ foreach ($data['data'] as $sede) {
         </form>
     </div>
 
-    <script src="../js/alertServicio.js"></script>
+    <script src="/js/alertServicio.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include '../scripts/db.php';
+include '/scripts/db.php';
 
 $idUsuario = "";
 
@@ -24,7 +24,7 @@ pg_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Añadir Nueva Solicitud</title>
 </head>
 <body>
@@ -34,7 +34,7 @@ pg_close($conn);
             <p class="subtitle">Completa los detalles técnicos de la solicitud.</p>
         </header>
         <div id="mensajeAlerta"></div> 
-        <form id="formConsulta" action="../scripts/guardarConsulta.php" method="post">
+        <form id="formConsulta" action="/scripts/guardarConsulta.php" method="post">
             <div class="form-group">
                 <label for="titulo">Título:</label>
                 <input type="text" id="titulo" name="titulo">
@@ -64,6 +64,6 @@ pg_close($conn);
      
         </form>
     </div>
-    <script src="../js/alertConsulta.js"></script>
+    <script src="/js/alertConsulta.js"></script>
 </body>
 </html>

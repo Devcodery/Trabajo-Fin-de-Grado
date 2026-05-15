@@ -1,5 +1,5 @@
 <?php
-include '../scripts/db.php';
+include '/scripts/db.php';
 
 $idServicio = "";
 
@@ -37,7 +37,7 @@ foreach ($data['data'] as $sede) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Servicio</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="form-container">
@@ -45,7 +45,7 @@ foreach ($data['data'] as $sede) {
             <h1>Formulario de Servicio</h1>
         </header>  
         <div id="mensajeAlerta"></div>  
-        <form id="formModificarServicio" action="../scripts/actualizarServicio.php" method="post">
+        <form id="formModificarServicio" action="/scripts/actualizarServicio.php" method="post">
             <input type="hidden" name="id" value="<?php echo isset($servicios[0]['id_servicio']) ? $servicios[0]['id_servicio'] : ''; ?>">
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
@@ -112,7 +112,7 @@ foreach ($data['data'] as $sede) {
                 <input type="submit" value="Enviar">
                 <a href="" class="btn-exit">Volver</a>
             </div>
-            <script src="../js/alertServicio.js"></script>
+            <script src="/js/alertServicio.js"></script>
         </form>
     </div>
 </body>
