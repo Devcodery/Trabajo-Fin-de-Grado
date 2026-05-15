@@ -246,7 +246,7 @@ def login():
             session["roles"] = userComplety[5]
             
             if session["roles"] == 'cliente':
-                return redirect(f"/Proyecto_Grupo3/ClienteControlador")
+                return redirect(f"/Proyecto_Grupo3/ClienteControlador?opcion=logueado")
             elif session["roles"] == 'consultor':
                 return redirect(f"/Proyecto_Grupo3/ConsultorControlador?opcion=logueado")
 
