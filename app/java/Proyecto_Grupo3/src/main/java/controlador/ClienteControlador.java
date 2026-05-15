@@ -33,11 +33,19 @@ public class ClienteControlador extends HttpServlet {
 		String opcion = request.getParameter("opcion");
 
 		HttpSession session = request.getSession();
-		
-		if(request.getParameter("idUsuario") != null || request.getParameter("rol") != null) {
-			session.setAttribute("idUsuario", Integer.valueOf(request.getParameter("idUsuario")));
-			session.setAttribute("rol", request.getParameter("rol"));
+
+		String userIdHeader = request.getHeader("X-User-Id");
+		String userNameHeader = request.getHeader("X-Username");
+		String roleHeader = request.getHeader("X-Role");
+
+		if (userIdHeader == null || userIdHeader.isBlank()) {
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuario no autenticado");
+			return;
 		}
+
+		session.setAttribute("idUsuario", userIdHeader);
+		session.setAttribute("nombreUsuario", userNameHeader);
+		session.setAttribute("rol", roleHeader);
 
 		if(opcion.equalsIgnoreCase("logueado")) {
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
