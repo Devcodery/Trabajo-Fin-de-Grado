@@ -286,7 +286,9 @@ def auth_verify():
         response.headers["X-Username"] = session.get("user", "")
         response.headers["X-Role"] = ",".join(roles_usuario)
         
-        if roles_requeridos[0] is not "admin":
+        if ["admin"] in roles_usuario:
+            response.headers["X-User-Id"] = session.get("user_id", "admin")
+        elif ["cliente", "consultor"] in roles_usuario:
             response.headers["X-User-Id"] = session.get("user_id", "")
         
         return response
