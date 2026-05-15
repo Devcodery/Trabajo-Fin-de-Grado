@@ -1,5 +1,5 @@
 <?php
-include '/scripts/db.php';
+include '../scripts/db.php';
 
 $idUsuario = "";
 
@@ -58,7 +58,7 @@ pg_close($conn);
             <input type="hidden" id="id" name="id" value="<?= $idUsuario ?>">
 
             <div class="form-actions">
-                <a href="http://consultoriatech.java.es/Proyecto_Grupo3/vistas/portalCliente.jsp" class="btn-exit">Volver al inicio</a>
+                <a href="/Proyecto_Grupo3/vistas/portalCliente.jsp" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Solicitud">
             </div>
      
