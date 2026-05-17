@@ -31,7 +31,7 @@ services:
       JPDA_ADDRESS: "*:8000"
       JPDA_TRANSPORT: "dt_socket"
     volumes:
-      - ./java/Proyecto_Grupo3/target/Proyecto_Grupo3-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/Proyecto_Grupo3.war
+      - ./java/Proyecto_Grupo3/target/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
     command: ["catalina.sh", "jpda", "run"]
 
   n8n:
