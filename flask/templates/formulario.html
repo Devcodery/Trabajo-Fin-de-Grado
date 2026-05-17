@@ -9,7 +9,9 @@
 <body>
     <h1 class="titulo">Formulario de registro</h1>
 
-    {{ error }}
+    {% if error %}
+        <p class="error-msg">{{ error }}</p>
+    {% endif %}
 
     <form action="/registro/{{ rol }}" method="post">
         <label class="label">Nombre:</label>
