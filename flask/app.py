@@ -288,11 +288,7 @@ def auth_verify():
         
         if ["admin"] in roles_usuario:
             response.headers["X-User-Id"] = session.get("user_id", "admin")
-<<<<<<< HEAD
-        elif ["cliente"] in roles_usuario or ["consultor"] in roles_usuario:
-=======
         elif ["cliente", "consultor"] in roles_usuario:
->>>>>>> dam78
             response.headers["X-User-Id"] = session.get("user_id", "")
         
         return response
