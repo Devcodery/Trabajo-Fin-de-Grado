@@ -41,7 +41,9 @@ public class MensajeControlador extends HttpServlet {
 		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("listarMensajes")) {
-			ArrayList <Mensaje>	mensajes = mensajeDAO.readMensajesUsuario((int)session.getAttribute("idUsuario"), (int)session.getAttribute("idConsulta"));
+			String idUsuarioStr = (String)session.getAttribute("idUsuario");
+			String idConsultorStr = (String)session.getAttribute("idConsulta");
+			ArrayList <Mensaje>	mensajes = mensajeDAO.readMensajesUsuario(Integer.valueOf(idUsuarioStr), Integer.valueOf(idConsultorStr));
 			request.setAttribute("mensajes", mensajes);
 			request.getRequestDispatcher("/vistas/gestorMensajes.jsp").forward(request, response);
 		}
