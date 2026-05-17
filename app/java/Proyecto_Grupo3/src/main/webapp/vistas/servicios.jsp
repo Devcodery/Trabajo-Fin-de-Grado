@@ -38,7 +38,7 @@
                 <div class="fila-filtro">
                     <input type="checkbox" id="chkSede" onchange="toggleFiltro('sede', this.checked)">
                     <label for="chkSede">Sede</label>
-                    <select name="sede" id="sede">
+                    <select name="sede" id="sede" disabled>
                         <c:forEach var="sede" items="${sedes}">
                             <option value="${sede.idSede}">
                                 ${sede.nombre}

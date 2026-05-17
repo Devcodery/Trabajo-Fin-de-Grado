@@ -142,7 +142,7 @@ public class ConsultaDAO {
 			sql += " AND id_consultor = ?";
 		} 
 		if (estado != null && !estado.isEmpty()){
-			sql += " AND estadoActual = ?";
+			sql += " AND estado = ?";
 		} 
 		if (idServicio != null){
 			sql += " AND id_servicio = ?";
@@ -178,7 +178,7 @@ public class ConsultaDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				consultas.add(new Consulta(rs.getInt("id_consulta"), 
-											rs.getString("estadoActual"), 
+											rs.getString("estado"), 
 											rs.getString("titulo"), 
 											rs.getString("descripcion"), 
 											rs.getDate("fecha_creacion"), 
@@ -195,7 +195,7 @@ public class ConsultaDAO {
 	}
 
 	public boolean updateEstado(int idConsulta, String nuevoEstado) {
-		String sql = "update consulta set estadoActual = ? where id_consulta = ?";
+		String sql = "update consulta set estado = ? where id_consulta = ?";
 		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
 			ps.setString(1, nuevoEstado);
 			ps.setInt(2, idConsulta);

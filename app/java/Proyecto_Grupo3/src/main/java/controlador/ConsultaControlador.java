@@ -50,7 +50,6 @@ public class ConsultaControlador extends HttpServlet {
 		String opcion = request.getParameter("opcion");
 
 		HttpSession session = request.getSession();
-
 		String rol = (String) session.getAttribute("rol");
 
 		ConexionBBDD conexion = new ConexionBBDD();
@@ -59,7 +58,8 @@ public class ConsultaControlador extends HttpServlet {
 		ServicioDAO servicioDAO = new ServicioDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("gestionConsultasCliente")) {
-			int idUsuario = (int) session.getAttribute("idUsuario");
+			String idUsuarioStr = (String) session.getAttribute("idUsuario");
+			int idUsuario = Integer.parseInt(idUsuarioStr);
 			ArrayList<Consulta> consultas = consultaDAO.readConsultaCliente(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);
@@ -101,7 +101,7 @@ public class ConsultaControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+									.uri(URI.create("http://http://consultoriatech.java.es/usuarios"))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();

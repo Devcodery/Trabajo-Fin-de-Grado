@@ -66,7 +66,7 @@
     </section>
 
 
-    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verMensajes">Ver Mensajes</a>
+    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=listarMensajes">Ver Mensajes</a>
 
     <c:choose>
         <c:when test="${ rol == 'cliente'}">
