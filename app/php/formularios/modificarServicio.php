@@ -110,7 +110,7 @@ foreach ($data['data'] as $sede) {
             
             <div class="form-actions">
                 <input type="submit" value="Enviar">
-                <a href="" class="btn-exit">Volver</a>
+                <a href="/Proyecto_Grupo3/GestionServicioControlador?opcion=listarServicios&funcion=modificar" class="btn-exit">Volver</a>
             </div>
             <script src="/js/alertServicio.js"></script>
         </form>

@@ -28,15 +28,23 @@ if(pg_query($conn, $query)) {
     exit();
 }
 
-// $_GET = file_get_contents($url);
-// $opciones = [
-//     'http' => [
-//         'method' => 'GET',
-//         'header' => "Cookie: " . ($_SERVER['HTTP_COOKIE'])
-//     ]
-// ];
-// $respuestaUsuario = file_get_contents($url, false, stream_context_create($opciones));
-// $data = json_decode($respuestaUsuario, true);
+$url = 'http://consultoriatech.java.es/usuario/' . $idUsuario;
+
+
+$cookieSesion = isset($_COOKIE['session']) ? 'session=' . $_COOKIE['session'] : '';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+if ($cookieSesion) {
+    curl_setopt($ch, CURLOPT_COOKIE, $cookieSesion); 
+}
+$respuestaJson = curl_exec($ch);
+curl_close($ch);
+
+$data = json_decode($respuestaJson, true);
+$correoUsuario = $data['correo'] ?? 'Correo no encontrado';
 
 $jsonDataConsulta = json_encode([
     'titulo' => $titulo,
@@ -44,10 +52,10 @@ $jsonDataConsulta = json_encode([
     'nombre' => $usuarioNombre,
     'descripcion' => $descripcion,
     'estado' => 'pendiente',
-    'correo' => $data['correo']
+    'correo' => $correoUsuario
 ]);
 
-$webhook = 'http://n8n-app:5678/webhook-test/correo';
+$webhook = 'http://n8n-app:5678/webhook/correo';
 
 $ch = curl_init($webhook);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataConsulta);
@@ -56,8 +64,6 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $respuesta = curl_exec($ch);
 if(curl_errno($ch)){
     echo 'Error en cURL: ' . curl_error($ch);
-} else {
-    echo "Consulta enviada al webhook correctamente.";
 }
 header("Location: /formularios/formularioConsulta.php?mensaje=exito&idUsuario=$idUsuario");
 exit();

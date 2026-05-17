@@ -1,16 +1,6 @@
 <?php
 include '../scripts/db.php';
-
-$idUsuario = "";
-$usuarioNombre = "";
-
-if($_SERVER['HTTP_X_USER_ID'] && $_SERVER['HTTP_X_USERNAME'] !== "") {
-    $idUsuario = intval($_SERVER['HTTP_X_USER_ID']);
-    $usuarioNombre = $_SERVER['HTTP_X_USERNAME'];
-} else {
-    echo "Error: Usuario no autenticado.";
-    exit();
-}
+include '../scripts/session.php';
 
 $queryServicios = "SELECT nombre FROM servicio where estado = true";
 $resultServicios = pg_query($conn, $queryServicios);
