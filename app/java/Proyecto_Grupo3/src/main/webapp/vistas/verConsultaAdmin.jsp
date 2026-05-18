@@ -33,6 +33,9 @@
         <div class="field-group">
             <label for="idConsultor">Asignar Consultor:</label>
             <select name="idConsultor" id="idConsultor" onchange="this.form.submit()">
+                <option value="" disabled ${empty consulta.idConsultor || consulta.idConsultor == 0 ? 'selected' : ''}>
+                    -- Selecciona un consultor --
+                </option>
                 <c:forEach var="consultor" items="${consultores}">
                     <option value="${consultor.idUsuario}" 
                         ${consultor.idUsuario == consulta.idConsultor ? 'selected' : ''}>
@@ -55,7 +58,7 @@
                     <label for="estado">Estado:</label>
                     <select name="estado" id="estado" onchange="this.form.submit()">
                         <option value="pendiente" ${consulta.estadoActual == 'pendiente' ? 'selected' : ''}>Pendiente</option>
-                        <option value="en_progreso" ${consulta.estadoActual == 'en_progreso' ? 'selected' : ''}>En proceso</option>
+                        <option value="en_progreso" ${consulta.estadoActual == 'en progreso' ? 'selected' : ''}>En proceso</option>
                         <option value="resuelta" ${consulta.estadoActual == 'resuelta' ? 'selected' : ''}>Resuelta</option>
                     </select>
                 </div>
