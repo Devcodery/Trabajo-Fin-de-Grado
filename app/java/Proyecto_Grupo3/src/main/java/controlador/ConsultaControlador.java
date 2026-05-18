@@ -100,7 +100,7 @@ public class ConsultaControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+									.uri(URI.create("http://flask-flaskapp-1:8888/usuarios"))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
@@ -166,7 +166,7 @@ public class ConsultaControlador extends HttpServlet {
 									.build();
 			}else if(consulta.getIdConsultor() != 0 && ((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")){
 				peticion = HttpRequest.newBuilder()
-							.uri(URI.create("http://flask-flaskapp-1:888/usuario/" + consulta.getIdConsultor()))
+							.uri(URI.create("http://flask-flaskapp-1:8888/usuario/" + consulta.getIdConsultor()))
 							.header("Cookie", cookies != null ? cookies : "")
 							.GET()
 							.build();
@@ -222,13 +222,13 @@ public class ConsultaControlador extends HttpServlet {
 			ArrayList<Consultor> consultores = new ArrayList<>();
 
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdCliente()))
+									.uri(URI.create("http://flask-flaskapp-1:8888/usuario/" + consulta.getIdCliente()))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
 
 			HttpRequest peticion2 = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+									.uri(URI.create("http://flask-flaskapp-1:8888/usuarios"))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();

@@ -61,7 +61,7 @@ public class UsuarioControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 
 			HttpRequest peticion = HttpRequest.newBuilder()
-					.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+					.uri(URI.create("http://flask-flaskapp-1:8888/usuarios"))
 					.header("Cookie", cookies != null ? cookies : "")
 					.GET()
 					.build();
@@ -100,43 +100,6 @@ public class UsuarioControlador extends HttpServlet {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}
-
-			String idUsuarioDetalle = request.getParameter("idUsuario");
-
-			if (idUsuarioDetalle != null && !idUsuarioDetalle.isEmpty()) {
-				HttpRequest peticionDetalle = HttpRequest.newBuilder()
-						.uri(URI.create("http://10.0.0.103:8383/usuario/" + idUsuarioDetalle))
-						.header("Cookie", cookies != null ? cookies : "")
-						.GET()
-						.build();
-				try {
-					HttpResponse<String> respuestaDetalle = cliente.send(peticionDetalle,
-							HttpResponse.BodyHandlers.ofString());
-					JsonObject jsonDetalle = JsonParser.parseString(respuestaDetalle.body()).getAsJsonObject();
-
-
-					if (rolPagina.equalsIgnoreCase("cliente")) {
-						Cliente c = new Cliente(jsonDetalle.get("id_usuario").getAsInt(),
-								jsonDetalle.get("nombre").getAsString(),
-								jsonDetalle.get("apellidos").getAsString(),
-								jsonDetalle.get("direccion").getAsString(),
-								jsonDetalle.get("correo").getAsString());
-						request.setAttribute("cliente", c);
-
-					} else if (rolPagina.equalsIgnoreCase("consultor")) {
-						Consultor c = new Consultor(jsonDetalle.get("id_usuario").getAsInt(),
-								jsonDetalle.get("nombre").getAsString(),
-								jsonDetalle.get("apellidos").getAsString(),
-								jsonDetalle.get("direccion").getAsString(),
-								jsonDetalle.get("correo").getAsString(),
-								jsonDetalle.get("id_sede").getAsInt(),
-								jsonDetalle.get("id_dpto").getAsInt());
-						request.setAttribute("consultor", c);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 
 			request.setAttribute("usuarios", usuarios);
