@@ -12,7 +12,8 @@
         <div class="contenido-datos">
             <c:choose>
                 <c:when test="${rol == 'cliente'}">
-                    <div class="columna">
+                    <c:if test="${not empty consultor}">
+                         <div class="columna">
                         <p>Nombre: <c:out value="${consultor.nombre}" /></p>
                         <p>Apellidos: <c:out value="${consultor.apellidos}" /></p>
                         <p>Correo: <c:out value="${consultor.correo}" /></p>
@@ -21,6 +22,10 @@
                         <p>Departamento: <c:out value="${consultor.departamento}" /></p>
                         <p>Sede: <c:out value="${consultor.sede}" /></p>
                     </div>
+                    </c:if>
+                   <c:if test="${empty consultor}">
+                        <p>Esta consulta no tiene un consultor asignado</p>
+                    </c:if>
                 </c:when>
 
                 <c:when test="${rol == 'consultor'}">

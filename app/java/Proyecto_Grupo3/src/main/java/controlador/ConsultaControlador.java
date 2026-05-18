@@ -50,7 +50,6 @@ public class ConsultaControlador extends HttpServlet {
 		String opcion = request.getParameter("opcion");
 
 		HttpSession session = request.getSession();
-		String rol = (String) session.getAttribute("rol");
 
 		ConexionBBDD conexion = new ConexionBBDD();
 		conexion.conectarBDDotenv();
