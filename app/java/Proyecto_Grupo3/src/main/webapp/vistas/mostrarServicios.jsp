@@ -30,8 +30,8 @@
                     <input type="checkbox" id="chkEstado" onchange="toggleFiltro('estado', this.checked)">
                     <label for="chkEstado">Estado</label>
                     <select name="estado" id="estado" disabled>
-                        <option value="true">Activo</option>
-                        <option value="false">Inactivo</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
                     </select>
                 </div>
 

@@ -99,8 +99,12 @@ public class GestionServicioControlador extends HttpServlet {
    		 		fechaFin = Date.valueOf(request.getParameter("fechaFin"));
    		 	} 
    		 	
-   		 	if(Boolean.valueOf(request.getParameter("estado"))) {
-   		 		estado = Boolean.valueOf(request.getParameter("estado"));
+   		 	if(request.getParameter("estado") != null) {
+				if(request.getParameter("estado").equals("activo")){
+					estado = true;
+				}else if(request.getParameter("estado").equals("inactivo")){
+					estado = false;
+				}
    		 	}
 			
 			ArrayList<Servicio> servicios = servicioDAO.filtrar(categoria, estado, sede, fechaInicio, fechaFin);
