@@ -304,7 +304,7 @@ public class ConsultaControlador extends HttpServlet {
 			if(rol.equalsIgnoreCase("consultor")) {
 				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasConsultor");
 			}else if(rol.equalsIgnoreCase("admin")) {
-				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=" + idConsulta);
 			}
 		}else if(opcion.equalsIgnoreCase("elegirConsultor")){
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
@@ -312,7 +312,7 @@ public class ConsultaControlador extends HttpServlet {
 
 			consultaDAO.updateConsultor(idConsulta, idConsultor);
 
-			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasAdmin");
+			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=" + idConsulta);
 		}
 
 		conexion.cerrarConexion();
