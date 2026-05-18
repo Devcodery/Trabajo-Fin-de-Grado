@@ -26,12 +26,19 @@
         
         
         <div class="lista-servicios" id="listaServicios">
-            <c:forEach var="user" items="${usuarios}">
+            <c:forEach var="usuario" items="${usuarios}">
                 <div class="servicio-item" 
-                     data-id="${user.idUsuario}" 
-                     onclick="seleccionarItem(this)">
-                    <p class="nombre">${user.nombre}</p>
-                    <p class="idUsuario">${user.idUsuario}</p>
+                     data-id="${usuario.idUsuario}" 
+                     data-nombre="${usuario.nombre}"
+                     data-apellidos="${usuario.apellidos}"
+                     data-correo="${usuario.correo}"
+                     data-departamento="${usuario.departamento}"
+                     data-sede="${usuario.sede}"
+                     data-direccion="${usuario.direccion}"
+                     onclick="abrirModalUsuario(this)">
+                     
+                    <p class="nombre">${usuario.nombre}</p>
+                    <p class="idUsuario">${usuario.idUsuario}</p>
                 </div>
             </c:forEach>
             
@@ -39,10 +46,6 @@
                 <p>No se encontraron usuarios en la base de datos.</p>
             </c:if>
         </div>
-
-        <div class="acciones">
-			<button class="btn-principal" onclick="ejecutarAccion('ver_detalle', '${rolPagina}')">VER DETALLES</button>
-		</div>
     </div>
 
     <jsp:include page="tarjetaUsuario.jsp"></jsp:include>

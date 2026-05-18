@@ -10,66 +10,24 @@
         </c:choose>
         
         <div class="contenido-datos">
-            <c:choose>
-                <c:when test="${rol == 'cliente'}">
-                    <c:if test="${not empty usuario}">
-                         <div class="columna">
-                        <p>Nombre: <c:out value="${user.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${user.apellidos}" /></p>
-                        <p>Correo: <c:out value="${user.correo}" /></p>
-                    </div>
-                    <div class="columna">
-                        <p>Departamento: <c:out value="${user.departamento}" /></p>
-                        <p>Sede: <c:out value="${user.sede}" /></p>
-                    </div>
-                    </c:if>
-                   <c:if test="${empty usuario}">
-                        <p>Esta consulta no tiene un consultor asignado</p>
-                    </c:if>
-                </c:when>
-
-                <c:when test="${rol == 'consultor'}">
-                    <div class="columna">
-                        <p>Nombre: <c:out value="${user.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${user.apellidos}" /></p>
-                    </div>
-                    <div class="columna">
-                        <p>Correo: <c:out value="${user.correo}" /></p>
-                        <p>Direccion: <c:out value="${user.direccion}" /></p>
-                    </div>
-                </c:when>
-                <c:when test="${rol == 'admin'}">
-                    <c:choose>
-                        <c:when test="${not empty consultor}">
-                            <div class="columna">
-                                <p>Nombre: <c:out value="${consultor.nombre}" /></p>
-                                <p>Apellidos: <c:out value="${consultor.apellidos}" /></p>
-                                <p>Correo: <c:out value="${consultor.correo}" /></p>
-                            </div>
-                            <div class="columna">
-                                <p>Departamento: <c:out value="${consultor.departamento}" /></p>
-                                <p>Sede: <c:out value="${consultor.sede}" /></p>
-                            </div>
-                        </c:when>
-                        <c:when test="${not empty cliente}">
-                            <div class="columna">
-                                <p>Nombre: <c:out value="${cliente.nombre}" /></p>
-                                <p>Apellidos: <c:out value="${cliente.apellidos}" /></p>
-                            </div>
-                            <div class="columna">
-                                <p>Correo: <c:out value="${cliente.correo}" /></p>
-                                <p>Direccion: <c:out value="${cliente.direccion}" /></p>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <p>Información no disponible</p>
-                        </c:otherwise>
-                    </c:choose>
-                </c:when>
-                <c:otherwise>
-                    <p>Información no disponible</p>
-                </c:otherwise>
-            </c:choose>
+            <div class="columna">
+                <p id="p-nombre">Nombre: <span id="modal-nombre"><c:out value="${usuario.nombre}" /></span></p>
+                <p id="p-apellidos">Apellidos: <span id="modal-apellidos"><c:out value="${usuario.apellidos}" /></span></p>
+                <p id="p-correo">Correo: <span id="modal-correo"><c:out value="${usuario.correo}" /></span></p>
+            </div>
+            <div class="columna">
+                <p id="p-departamento" <c:if test="${empty usuario.departamento}">style="display:none;"</c:if>>
+                    Departamento: <span id="modal-departamento"><c:out value="${usuario.departamento}" /></span>
+                </p>
+                
+                <p id="p-sede" <c:if test="${empty usuario.sede}">style="display:none;"</c:if>>
+                    Sede: <span id="modal-sede"><c:out value="${usuario.sede}" /></span>
+                </p>
+                
+                <p id="p-direccion" <c:if test="${empty usuario.direccion}">style="display:none;"</c:if>>
+                    Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
+                </p>
+            </div>
         </div>
         <button id="btn-cerrar">Cerrar</button>
     </div>
