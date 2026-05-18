@@ -145,16 +145,16 @@ public class GestionServicioControlador extends HttpServlet {
 
 			if(funcion.equalsIgnoreCase("servicio")) {
 				request.setAttribute("funcion", "servicio");
-				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
+				request.getRequestDispatcher("/vistas/mostrarServicios.jsp").forward(request, response);
 			}else if (funcion.equalsIgnoreCase("modificar")) {
 				request.setAttribute("funcion", "modificar");
-				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
+				request.getRequestDispatcher("/vistas/mostrarServicios.jsp").forward(request, response);
 			}else if(funcion.equalsIgnoreCase("eliminar")){
 				request.setAttribute("funcion", "eliminar");
-				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
+				request.getRequestDispatcher("/vistas/mostrarServicios.jsp").forward(request, response);
 			}else if(funcion.equalsIgnoreCase("desactivar")){
 				request.setAttribute("funcion", "desactivar");
-				request.getRequestDispatcher("/vistas/servicios.jsp").forward(request, response);
+				request.getRequestDispatcher("/vistas/mostrarServicios.jsp").forward(request, response);
 			}
 
 			
