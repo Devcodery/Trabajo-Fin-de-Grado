@@ -348,7 +348,7 @@ h1.titulo {
 .acciones {
     display: flex;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
 }
@@ -1075,4 +1075,46 @@ p:empty { display: none; }
 
     .layout .btn,
     .btn-consulta { min-width: 220px; }
+}
+
+
+.form-grid input[type="text"],
+.form-grid input[type="email"],
+.form-grid input[type="password"],
+.form-grid select,
+.form-grid textarea {
+    width: 100%;
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--clr-ink);
+    background: var(--clr-bg);
+    transition: background var(--transition);
+}
+
+.error-message {
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 600px;
+}
+
+/* Centra el div contenedor en la pantalla */
+.center {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Alinea verticalmente */
+    width: 100%;             /* Ocupa todo el ancho disponible */
+    margin: 20px 0;          /* Da un poco de espacio arriba y abajo */
+    gap: 16px;
+}
+
+/* Si también quieres que el texto "Asignar Consultor:" y el desplegable queden pegados y centrados */
+.center .field-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;               /* Espacio entre el label y el select */
 }
