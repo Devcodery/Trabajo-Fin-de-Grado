@@ -156,11 +156,22 @@ public class ConsultaControlador extends HttpServlet {
 
 			HttpClient clientePeticion = HttpClient.newHttpClient();
 			String cookies = request.getHeader("Cookie");
-			HttpRequest peticion = HttpRequest.newBuilder()
+			HttpRequest peticion = null;
+			Usuario usuario = null;
+
+			if(((String)session.getAttribute("rol")).equalsIgnoreCase("consultor")){
+				peticion = HttpRequest.newBuilder()
 									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdCliente()))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
+			}else if(((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")) {
+					peticion = HttpRequest.newBuilder()
+									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdConsultor()))
+									.header("Cookie", cookies != null ? cookies : "")
+									.GET()
+									.build();
+				}
 
 
 			try{
@@ -171,15 +182,14 @@ public class ConsultaControlador extends HttpServlet {
 				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
 
 				if(((String)session.getAttribute("rol")).equalsIgnoreCase("consultor")) {
-					Cliente cliente = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
+					usuario = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
 											jsonCompleto.get("nombre").getAsString(), 
 											jsonCompleto.get("apellidos").getAsString(), 
 											jsonCompleto.get("direccion").getAsString(), 
 											jsonCompleto.get("correo").getAsString());
 					
-					request.setAttribute("cliente", cliente);
-				}else if(((String)session.getAttribute("rol")).equalsIgnoreCase("admin")) {
-					Consultor consultor = new Consultor(jsonCompleto.get("id_usuario").getAsInt(), 
+				}else if(((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")) {
+					usuario = new Consultor(jsonCompleto.get("id_usuario").getAsInt(), 
 											jsonCompleto.get("nombre").getAsString(), 
 											jsonCompleto.get("apellidos").getAsString(), 
 											jsonCompleto.get("direccion").getAsString(), 
@@ -187,7 +197,6 @@ public class ConsultaControlador extends HttpServlet {
 											jsonCompleto.get("id_sede").getAsInt(),
 											jsonCompleto.get("id_dpto").getAsInt());
 					
-					request.setAttribute("consultor", consultor);
 				}
 
 			}catch (IOException e) {
@@ -196,7 +205,74 @@ public class ConsultaControlador extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			request.setAttribute("usuario", usuario);
+
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
+		}else if(opcion.equals("verConsultaAdmin")){
+			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
+			session.setAttribute("idConsulta", idConsulta);
+
+			Consulta consulta = consultaDAO.read(idConsulta);
+			request.setAttribute("consulta", consulta);
+
+			HttpClient clientePeticion = HttpClient.newHttpClient();
+			String cookies = request.getHeader("Cookie");
+			Cliente cliente = null;
+			ArrayList<Consultor> consultores = new ArrayList<>();
+
+			HttpRequest peticion = HttpRequest.newBuilder()
+									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdCliente()))
+									.header("Cookie", cookies != null ? cookies : "")
+									.GET()
+									.build();
+
+			HttpRequest peticion2 = HttpRequest.newBuilder()
+									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
+									.header("Cookie", cookies != null ? cookies : "")
+									.GET()
+									.build();
+
+			try{
+				HttpResponse<String> respuesta = clientePeticion.send(peticion, HttpResponse.BodyHandlers.ofString());
+				HttpResponse<String> respuesta2 = clientePeticion.send(peticion2, HttpResponse.BodyHandlers.ofString());
+
+				String clienteJson = respuesta.body();
+				String usuariosJson = respuesta2.body();
+
+				JsonObject jsonCompleto = JsonParser.parseString(clienteJson).getAsJsonObject();
+	
+				cliente = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
+										jsonCompleto.get("nombre").getAsString(), 
+										jsonCompleto.get("apellidos").getAsString(), 
+										jsonCompleto.get("direccion").getAsString(), 
+										jsonCompleto.get("correo").getAsString());
+
+				JsonArray jsonArray = JsonParser.parseString(usuariosJson).getAsJsonArray();
+				for(JsonElement jsonE : jsonArray){
+					JsonObject jsonObject = jsonE.getAsJsonObject();
+
+					if (jsonObject.get("rol").getAsString().equalsIgnoreCase("consultor")) {
+						consultores.add(new Consultor(jsonObject.get("id_usuario").getAsInt(), 
+												jsonObject.get("nombre").getAsString(), 
+												jsonObject.get("apellidos").getAsString(), 
+												jsonObject.get("direccion").getAsString(), 
+												jsonObject.get("correo").getAsString(),
+												jsonObject.get("id_dpto").getAsInt(),
+												jsonObject.get("id_sede").getAsInt()));
+					}
+
+				}
+
+			}catch (IOException e) {
+				e.printStackTrace();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("cliente", cliente);
+			request.setAttribute("consultores", consultores);
+
+			request.getRequestDispatcher("/vistas/verConsultaAdmin.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("verMensajes")){
 			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=verMensajes");
 		}
