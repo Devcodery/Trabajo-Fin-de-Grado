@@ -39,7 +39,9 @@ $$
 begin
     if new.estado not in ('pendiente','en progreso', 'finalizada') then
         raise exception 'El estado no es válido. Debe ser pendiente, en progreso o finalizada.';
-    end if;        
+    end if;
+
+    return new;   
 end;
 $$ language plpgsql;
 
