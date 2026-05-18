@@ -76,10 +76,43 @@
         
         <c:choose>
             <c:when test="${ rol == 'cliente'}">
-                <button id="btn-abrir-detalle" class="btn-secondary">Ver Consultor</button>
+                
+                <c:set var="sedeNombre" value="" />
+                <c:forEach var="s" items="${sedes}">
+                    <c:if test="${s.idSede == usuario.sede}">
+                        <c:set var="sedeNombre" value="${s.nombre}" />
+                    </c:if>
+                </c:forEach>
+
+                <c:set var="dptoNombre" value="" />
+                <c:forEach var="d" items="${departamentos}">
+                    <c:if test="${d.idDepartamento == usuario.departamento}">
+                        <c:set var="dptoNombre" value="${d.nombre}" />
+                    </c:if>
+                </c:forEach>
+
+                <button id="btn-abrir-detalle" class="btn-secondary"
+                        data-nombre="${usuario.nombre}"
+                        data-apellidos="${usuario.apellidos}"
+                        data-correo="${usuario.correo}"
+                        data-direccion="${usuario.direccion}"
+                        data-departamento="${dptoNombre}"
+                        data-sede="${sedeNombre}"
+                        onclick="abrirModalUsuario(this)">
+                    Ver Consultor
+                </button>
             </c:when>
+            
             <c:when test="${ rol == 'consultor'}">
-                <button id="btn-abrir-detalle" class="btn-secondary">Ver Cliente</button>
+
+                <button id="btn-abrir-detalle" class="btn-secondary"
+                        data-nombre="${usuario.nombre}"
+                        data-apellidos="${usuario.apellidos}"
+                        data-correo="${usuario.correo}"
+                        data-direccion="${usuario.direccion}"
+                        onclick="abrirModalUsuario(this)">
+                    Ver Cliente
+                </button>
             </c:when>
         </c:choose>
     </div>

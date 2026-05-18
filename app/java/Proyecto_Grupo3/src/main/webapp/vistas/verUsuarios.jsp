@@ -30,14 +30,14 @@
 
                 <c:set var="sedeNombre" value="" />
                 <c:forEach var="s" items="${sedes}">
-                    <c:if test="${s.id == usuario.sede}">
+                    <c:if test="${s.idSede == usuario.sede}">
                         <c:set var="sedeNombre" value="${s.nombre}" />
                     </c:if>
                 </c:forEach>
 
                 <c:set var="dptoNombre" value="" />
                 <c:forEach var="d" items="${departamentos}">
-                    <c:if test="${d.id == usuario.departamento}">
+                    <c:if test="${d.idSede == usuario.departamento}">
                         <c:set var="dptoNombre" value="${d.nombre}" />
                     </c:if>
                 </c:forEach>
