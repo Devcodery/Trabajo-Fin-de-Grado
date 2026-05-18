@@ -66,7 +66,9 @@ public class MensajeControlador extends HttpServlet {
 			String descripcion = String.valueOf(request.getAttribute("cuerpoMensaje"));
 			String asunto = String.valueOf(request.getAttribute("asunto"));
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
-			mensajeDAO.create(idConsulta, (int)session.getAttribute("idUsuario"), descripcion, asunto);			
+			String idUsuarioStr = (String)session.getAttribute("idUsuario");
+			int idUsuario = Integer.valueOf(idUsuarioStr);
+			mensajeDAO.create(idConsulta, idUsuario, descripcion, asunto);			
 		}
 		conexion.cerrarConexion();
 	}
