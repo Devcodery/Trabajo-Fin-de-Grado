@@ -49,7 +49,7 @@
             <td><c:out value="${servicio.categoria}"></c:out></td>
             <td><c:out value="${servicio.sede}"></c:out></td>
             <td><c:out value="${servicio.fechaCreacion}"></c:out></td>
-            <td><c:out value="${servicio.estado} ? "Activo" : "Inactivo""></c:out></td>
+            <td><c:out value="${servicio.estado ? 'Activo' : 'Inactivo'}"></c:out></td>
         </tr>
         </tbody>
     </table>
