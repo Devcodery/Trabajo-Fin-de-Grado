@@ -5,8 +5,8 @@ public class Consultor extends Usuario {
     private int departamento;
 
     public Consultor(int idUsuario, String nombre, String apellidos, String direccion, 
-                    String email, int sede, int departamento) {
-        super(idUsuario, nombre, apellidos, direccion, email);
+                    String correo, int sede, int departamento) {
+        super(idUsuario, nombre, apellidos, direccion, correo);
         this.sede = sede;
         this.departamento = departamento;
     }

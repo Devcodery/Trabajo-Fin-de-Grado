@@ -5,22 +5,22 @@ public abstract class Usuario {
     protected String nombre;
     protected String apellidos;
     protected String direccion;
-    protected String email;
+    protected String correo;
     protected String passwd;
 
-    public Usuario(int idUsuario, String nombre, String apellidos, String direccion, String email) {
+    public Usuario(int idUsuario, String nombre, String apellidos, String direccion, String correo) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
-        this.email = email;
+        this.correo = correo;
     }
 
-    public Usuario(String nombre, String apellidos, String direccion, String email) {
+    public Usuario(String nombre, String apellidos, String direccion, String correo) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
-        this.email = email;
+        this.correo = correo;
     }
 
     public int getIdUsuario() {
@@ -39,12 +39,12 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getPasswd() {
