@@ -39,6 +39,12 @@
                         <li>
                             <c:out value="${servicio.nombre}"></c:out><br> 
                         </li>
+                        <div class="servicio-item" 
+                            data-id="${servicio.idServicio}" 
+                            onclick="window.location.href=
+                            '/ServicioControlador?opcion=verServicio&idServicio=${servicio.idServicio}'">
+                            <p class="nombre">${servicio.nombre}</p>
+                        </div>
                     </c:forEach>
                     
                     <c:if test="${empty servicios}">
