@@ -28,20 +28,22 @@
         <div class="lista-servicios" id="listaServicios">
             <c:forEach var="usuario" items="${usuarios}">
 
-                <c:set var="sedeNombre" value="" />
-                <c:forEach var="s" items="${sedes}">
-                    <c:if test="${s.idSede == usuario.sede}">
-                        <c:set var="sedeNombre" value="${s.nombre}" />
-                    </c:if>
-                </c:forEach>
+                <c:if test="${rolPagina != 'cliente'}">
+                    <c:set var="sedeNombre" value="" />
+                    <c:forEach var="s" items="${sedes}">
+                        <c:if test="${s.idSede == usuario.sede}">
+                            <c:set var="sedeNombre" value="${s.nombre}" />
+                        </c:if>
+                    </c:forEach>
 
-                <c:set var="dptoNombre" value="" />
-                <c:forEach var="d" items="${departamentos}">
-                    <c:if test="${d.idSede == usuario.departamento}">
-                        <c:set var="dptoNombre" value="${d.nombre}" />
-                    </c:if>
-                </c:forEach>
-
+                    <c:set var="dptoNombre" value="" />
+                    <c:forEach var="d" items="${departamentos}">
+                        <c:if test="${d.idDepartamento == usuario.departamento}">
+                            <c:set var="dptoNombre" value="${d.nombre}" />
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+                
                 <div class="servicio-item" 
                      data-id="${usuario.idUsuario}" 
                      data-nombre="${usuario.nombre}"
@@ -50,7 +52,7 @@
                      <c:if test="${rolPagina != 'cliente'}">
                         data-departamento="${dptoNombre}"
                         data-sede="${sedeNombre}"
-                    </c:if>
+                     </c:if>
                      data-direccion="${usuario.direccion}"
                      onclick="abrirModalUsuario(this)">
                      
