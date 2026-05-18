@@ -165,13 +165,15 @@ public class ConsultaControlador extends HttpServlet {
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
-			}else if(((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")) {
-					peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdConsultor()))
-									.header("Cookie", cookies != null ? cookies : "")
-									.GET()
-									.build();
-				}
+			}else if(consulta.getIdConsultor() != 0 && ((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")){
+				peticion = HttpRequest.newBuilder()
+							.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdConsultor()))
+							.header("Cookie", cookies != null ? cookies : "")
+							.GET()
+							.build();
+			}else{
+				request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);
+			}
 
 
 			try{
