@@ -160,13 +160,13 @@ public class ConsultaControlador extends HttpServlet {
 
 			if(((String)session.getAttribute("rol")).equalsIgnoreCase("consultor")){
 				peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdCliente()))
+									.uri(URI.create("http://flask-flaskapp-1:8888/usuario/" + consulta.getIdCliente()))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
 			}else if(consulta.getIdConsultor() != 0 && ((String)session.getAttribute("rol")).equalsIgnoreCase("cliente")){
 				peticion = HttpRequest.newBuilder()
-							.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdConsultor()))
+							.uri(URI.create("http://flask-flaskapp-1:888/usuario/" + consulta.getIdConsultor()))
 							.header("Cookie", cookies != null ? cookies : "")
 							.GET()
 							.build();
