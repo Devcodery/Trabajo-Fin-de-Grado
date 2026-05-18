@@ -101,7 +101,7 @@ public class ConsultaControlador extends HttpServlet {
 			HttpClient cliente = HttpClient.newHttpClient();
 			
 			HttpRequest peticion = HttpRequest.newBuilder()
-									.uri(URI.create("http://http://consultoriatech.java.es/usuarios"))
+									.uri(URI.create("http://10.0.0.103:8383/usuarios"))
 									.header("Cookie", cookies != null ? cookies : "")
 									.GET()
 									.build();
@@ -153,6 +153,48 @@ public class ConsultaControlador extends HttpServlet {
 
 			Consulta consulta = consultaDAO.read(idConsulta);
 			request.setAttribute("consulta", consulta);
+
+			HttpClient clientePeticion = HttpClient.newHttpClient();
+			String cookies = request.getHeader("Cookie");
+			HttpRequest peticion = HttpRequest.newBuilder()
+									.uri(URI.create("http://10.0.0.103:8383/usuario/" + consulta.getIdCliente()))
+									.header("Cookie", cookies != null ? cookies : "")
+									.GET()
+									.build();
+
+
+			try{
+				HttpResponse<String> respuesta = clientePeticion.send(peticion, HttpResponse.BodyHandlers.ofString());
+
+				String usuarioJson = respuesta.body();
+
+				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
+
+				if(((String)session.getAttribute("rol")).equalsIgnoreCase("consultor")) {
+					Cliente cliente = new Cliente(jsonCompleto.get("id_usuario").getAsInt(), 
+											jsonCompleto.get("nombre").getAsString(), 
+											jsonCompleto.get("apellidos").getAsString(), 
+											jsonCompleto.get("direccion").getAsString(), 
+											jsonCompleto.get("correo").getAsString());
+					
+					request.setAttribute("cliente", cliente);
+				}else if(((String)session.getAttribute("rol")).equalsIgnoreCase("admin")) {
+					Consultor consultor = new Consultor(jsonCompleto.get("id_usuario").getAsInt(), 
+											jsonCompleto.get("nombre").getAsString(), 
+											jsonCompleto.get("apellidos").getAsString(), 
+											jsonCompleto.get("direccion").getAsString(), 
+											jsonCompleto.get("correo").getAsString(),
+											jsonCompleto.get("id_sede").getAsInt(),
+											jsonCompleto.get("id_dpto").getAsInt());
+					
+					request.setAttribute("consultor", consultor);
+				}
+
+			}catch (IOException e) {
+				e.printStackTrace();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
 
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
 		}else if(opcion.equalsIgnoreCase("verMensajes")){
