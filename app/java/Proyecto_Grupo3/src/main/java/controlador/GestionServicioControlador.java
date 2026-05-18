@@ -21,7 +21,9 @@ import com.google.gson.JsonParser;
 
 import conexionBBDD.ConexionBBDD;
 import dao.ConsultaDAO;
+import dao.MensajeDAO;
 import dao.ServicioDAO;
+import modelo.Consulta;
 import modelo.Sede;
 import modelo.Servicio;
 
@@ -52,6 +54,7 @@ public class GestionServicioControlador extends HttpServlet {
 		
 		ServicioDAO servicioDAO = new ServicioDAO(conexion);
 		ConsultaDAO consultaDAO = new ConsultaDAO(conexion);
+		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("gestionServicios")) {
 			// Redirige a la pagina de gestion de servicios donde se pueden ejecutar varias opciones
@@ -166,8 +169,14 @@ public class GestionServicioControlador extends HttpServlet {
 			// Sirve para eliminar el servicio y volver a llamar el doGet para redirigir a la misma ubicacion
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 			
-			servicioDAO.borrarServicio(idServicio);
+			ArrayList<Consulta> consultas = consultaDAO.readConsultaServicio(idServicio);
+
+			for(Consulta c : consultas) {
+				mensajeDAO.borrarMensajesConsulta(c.getIdConsulta());
+			}
+			
 			consultaDAO.borrarServicioConsulta(idServicio);
+			servicioDAO.borrarServicio(idServicio);
 
 			response.sendRedirect(request.getContextPath() + "/GestionServicioControlador?opcion=listarServicios&funcion=eliminar");
 		} else if(opcion.equalsIgnoreCase("desactivarServicio")) {

@@ -55,6 +55,33 @@ public class ConsultaDAO {
 		}
 		return consultas;
 	}
+
+	public ArrayList<Consulta> readConsultaServicio(int idServicio){
+		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
+		query = "select * "
+				+ "from consulta "
+				+ "where id_servicio = ?";
+		
+		try(PreparedStatement sentencia = conexion.prepareStatement(query)){
+			sentencia.setInt(1, idServicio);
+			ResultSet rs = sentencia.executeQuery();
+			while(rs.next()) {
+				consultas.add(new Consulta(rs.getInt("id_consulta"), 
+											rs.getString("estado"), 
+											rs.getString("titulo"), 
+											rs.getString("descripcion"), 
+											rs.getDate("fecha_creacion"), 
+											rs.getDate("fecha_fin"), 
+											rs.getInt("id_servicio"), 
+											rs.getInt("id_cliente"), 
+											rs.getInt("id_consultor")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return consultas;
+	}
 	
 	public ArrayList<Consulta> readConsultaConsultor(int id){
 		ArrayList<Consulta> consultas = new ArrayList<Consulta>();

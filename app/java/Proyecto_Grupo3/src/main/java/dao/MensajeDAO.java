@@ -70,4 +70,17 @@ public class MensajeDAO {
 		return mensaje;
 	}
 
+	public boolean borrarMensajesConsulta(int idConsulta) {
+		query = "delete from mensajes where id_consulta = ?;";
+		
+		try(PreparedStatement sentencia = conn.prepareStatement(query)){
+			sentencia.setInt(1, idConsulta);
+			sentencia.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }
