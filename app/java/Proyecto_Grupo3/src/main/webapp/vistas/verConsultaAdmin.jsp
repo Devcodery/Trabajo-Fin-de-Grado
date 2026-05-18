@@ -35,7 +35,7 @@
             <select name="idConsultor" id="idConsultor" onchange="this.form.submit()">
                 <c:forEach var="consultor" items="${consultores}">
                     <option value="${consultor.idUsuario}" 
-                        ${consultor.idUsuario == consulta.consultor.idUsuario ? 'selected' : ''}>
+                        ${consultor.idUsuario == consulta.idConsultor ? 'selected' : ''}>
                         ${consultor.nombre}
                     </option>
                 </c:forEach>
