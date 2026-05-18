@@ -66,7 +66,7 @@ public class ServicioDAO {
 	}
 
 	public boolean borrarServicio(int idServicio) {
-		String query = "delete from Servicio where id_servicio = ?";
+		query = "delete from Servicio where id_servicio = ?";
 		try (PreparedStatement sentencia = conexion.prepareStatement(query)) {
 			sentencia.setInt(1, idServicio);
 			sentencia.executeUpdate();
@@ -78,7 +78,7 @@ public class ServicioDAO {
 	}
 
 	public boolean cambiarEstadoServicio(int idServicio, boolean estado) {
-		String query = "update servicio "
+		query = "update servicio "
 				+ "set estado = ? "
 				+ "where id_servicio = ?";
 		try (PreparedStatement sentencia = conexion.prepareStatement(query)) {

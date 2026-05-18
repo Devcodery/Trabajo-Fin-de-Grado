@@ -28,7 +28,6 @@ public class MensajeDAO {
 			sentencia.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -48,7 +47,6 @@ public class MensajeDAO {
 				mensajes.add(new Mensaje(rs.getInt("id_usuario"), rs.getInt("id_consulta"), rs.getString("asunto"), rs.getString("descripcion")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return mensajes;
@@ -67,7 +65,6 @@ public class MensajeDAO {
 				mensaje = new Mensaje(rs.getInt("id_usuario"), rs.getInt("id_consulta"), rs.getString("asunto"), rs.getString("descripcion"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return mensaje;

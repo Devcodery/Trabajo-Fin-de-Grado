@@ -19,7 +19,7 @@ public class ConsultaDAO {
 	}
 
 	public boolean borrarServicioConsulta(int idServicio) {
-		String query = "delete from consulta where id_servicio = ?";
+		query = "delete from consulta where id_servicio = ?";
 		try (PreparedStatement sentencia = conexion.prepareStatement(query)) {
 			sentencia.setInt(1, idServicio);
 			sentencia.executeUpdate();
@@ -32,7 +32,7 @@ public class ConsultaDAO {
 	
 	public ArrayList<Consulta> readConsultaCliente(int id){
 		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
-		String query = "select * "
+		query = "select * "
 				+ "from consulta "
 				+ "where id_cliente = ?";
 		
@@ -58,7 +58,7 @@ public class ConsultaDAO {
 	
 	public ArrayList<Consulta> readConsultaConsultor(int id){
 		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
-		String query = "select * "
+		query = "select * "
 				+ "from consulta "
 				+ "where id_consultor = ?";
 		
@@ -84,7 +84,7 @@ public class ConsultaDAO {
 	
 	public ArrayList<Consulta> readAll(){
 		ArrayList<Consulta> consultas = new ArrayList<Consulta>();
-		String query = "select * "
+		query = "select * "
 				+ "from consulta;";
 		
 		try(Statement sentencia = conexion.createStatement()){
@@ -133,28 +133,28 @@ public class ConsultaDAO {
 
 	public ArrayList<Consulta> filtrar(Integer idCliente, Integer idConsultor, String estado, Integer idServicio, java.sql.Date fechaInicio, java.sql.Date fechaFin) {
 		ArrayList<Consulta> consultas = new ArrayList<>();
-		String sql = "SELECT * FROM consulta WHERE 1=1";
+		query = "SELECT * FROM consulta WHERE 1=1";
 
 		if (idCliente != null){
-			sql += " AND id_cliente = ?";
+			query += " AND id_cliente = ?";
 		}
 		if (idConsultor != null){
-			sql += " AND id_consultor = ?";
+			query += " AND id_consultor = ?";
 		} 
 		if (estado != null && !estado.isEmpty()){
-			sql += " AND estado = ?";
+			query += " AND estado = ?";
 		} 
 		if (idServicio != null){
-			sql += " AND id_servicio = ?";
+			query += " AND id_servicio = ?";
 		}
 		if (fechaInicio != null){
-			sql += " AND fecha_creacion >= ?";
+			query += " AND fecha_creacion >= ?";
 		} 
 		if (fechaFin != null){
-			sql += " AND fecha_creacion <= ?";
+			query += " AND fecha_creacion <= ?";
 		}
 
-		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+		try (PreparedStatement ps = conexion.prepareStatement(query)) {
 			int index = 1;
 			if (idCliente != null){
 				ps.setInt(index++, idCliente);
@@ -195,8 +195,8 @@ public class ConsultaDAO {
 	}
 
 	public boolean updateEstado(int idConsulta, String nuevoEstado) {
-		String sql = "update consulta set estado = ? where id_consulta = ?";
-		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+		query = "update consulta set estado = ? where id_consulta = ?";
+		try (PreparedStatement ps = conexion.prepareStatement(query)) {
 			ps.setString(1, nuevoEstado);
 			ps.setInt(2, idConsulta);
 			ps.executeUpdate();
@@ -208,8 +208,8 @@ public class ConsultaDAO {
 	}
 
 	public boolean updateConsultor(int idConsulta, int idConsultor) {
-		String sql = "update consulta set id_consultor = ? where id_consulta = ?";
-		try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+		query = "update consulta set id_consultor = ? where id_consulta = ?";
+		try (PreparedStatement ps = conexion.prepareStatement(query)) {
 			ps.setInt(1, idConsultor);
 			ps.setInt(2, idConsulta);
 			ps.executeUpdate();
