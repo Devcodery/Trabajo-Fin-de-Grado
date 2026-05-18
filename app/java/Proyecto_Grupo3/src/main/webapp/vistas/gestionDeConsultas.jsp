@@ -20,6 +20,7 @@
 	href="${pageContext.request.contextPath}/style/style.css">
 </head>
 <body>
+	<c:set var="rol" value="${sessionScope.rol}" />
 	<div class="nav">
 		<c:choose>
 			<c:when test="${rol == 'cliente' }">
