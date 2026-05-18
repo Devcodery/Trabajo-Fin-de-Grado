@@ -303,7 +303,7 @@ public class ConsultaControlador extends HttpServlet {
 			consultaDAO.updateEstado(idConsulta, nuevoEstado);
 
 			if(rol.equalsIgnoreCase("consultor")) {
-				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasConsultor");
+				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=verConsulta&idConsulta=" + idConsulta);
 			}else if(rol.equalsIgnoreCase("admin")) {
 				response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=" + idConsulta);
 			}

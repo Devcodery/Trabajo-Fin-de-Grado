@@ -24,17 +24,17 @@
 		<c:choose>
 			<c:when test="${rol == 'cliente' }">
 				<button class="btn">
-					<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=logueado">Salir</a>
+					<a href="${pageContext.request.contextPath}/ClienteControlador?opcion=logueado">Volver</a>
 				</button>
 			</c:when>
 			<c:when test="${rol == 'consultor' }">
 				<button class="btn">
-					<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=logueado">Salir</a>
+					<a href="${pageContext.request.contextPath}/ConsultorControlador?opcion=logueado">Volver</a>
 				</button>
 			</c:when>
 			<c:when test="${rol == 'admin'}">
 				<button class="btn">
-					<a href="${pageContext.request.contextPath}/AdministradorControlador?opcion=logueado">Salir</a>
+					<a href="${pageContext.request.contextPath}/AdministradorControlador?opcion=logueado">Volver</a>
 				</button>
 			</c:when>
 		</c:choose>

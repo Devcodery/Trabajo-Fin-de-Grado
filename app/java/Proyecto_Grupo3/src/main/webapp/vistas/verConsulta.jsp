@@ -69,14 +69,16 @@
 
     <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=listarMensajes">Ver Mensajes</a>
 
-    <c:choose>
-        <c:when test="${ rol == 'cliente'}">
-            <button id="btn-abrir-detalle">Ver Consultor</button>
-        </c:when>
-        <c:when test="${ rol == 'consultor'}">
-            <button id="btn-abrir-detalle">Ver Cliente</button>
-        </c:when>
-    </c:choose>
+    <div class="actions-rows">
+        <c:choose>
+            <c:when test="${ rol == 'cliente'}">
+                <button id="btn-abrir-detalle" class="btn-secondary">Ver Consultor</button>
+            </c:when>
+            <c:when test="${ rol == 'consultor'}">
+                <button id="btn-abrir-detalle" class="btn-secondary">Ver Cliente</button>
+            </c:when>
+        </c:choose>
+    </div>
     
     <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/JavaScript/verUsuario.js"></script>
