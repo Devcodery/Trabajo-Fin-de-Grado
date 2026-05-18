@@ -44,9 +44,11 @@ public class ConsultorControlador extends HttpServlet {
 			return;
 		}
 
-		session.setAttribute("idUsuario", userIdHeader);
-		session.setAttribute("nombreUsuario", userNameHeader);
-		session.setAttribute("rol", roleHeader);
+		if (session.getAttribute("idUsuario") == null || session.getAttribute("idUsuario").equals("")) {
+			session.setAttribute("idUsuario", userIdHeader);
+			session.setAttribute("nombreUsuario", userNameHeader);
+			session.setAttribute("rol", roleHeader);
+		}
 
 		if(opcion.equalsIgnoreCase("logueado")) {
 			request.getRequestDispatcher("/vistas/portalConsultor.jsp").forward(request, response);

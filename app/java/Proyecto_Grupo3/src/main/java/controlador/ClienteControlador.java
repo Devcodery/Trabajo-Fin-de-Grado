@@ -42,10 +42,13 @@ public class ClienteControlador extends HttpServlet {
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuario no autenticado");
 			return;
 		}
-
-		session.setAttribute("idUsuario", userIdHeader);
-		session.setAttribute("nombreUsuario", userNameHeader);
-		session.setAttribute("rol", roleHeader);
+		
+		if (session.getAttribute("idUsuario") == null || session.getAttribute("idUsuario").equals("")) {
+			session.setAttribute("idUsuario", userIdHeader);
+			session.setAttribute("nombreUsuario", userNameHeader);
+			session.setAttribute("rol", roleHeader);
+		}
+		
 
 		if(opcion.equalsIgnoreCase("logueado")) {
 			request.getRequestDispatcher("/vistas/portalCliente.jsp").forward(request, response);
