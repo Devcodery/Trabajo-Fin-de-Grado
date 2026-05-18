@@ -17,12 +17,12 @@ function consultarConsulta() {
         return;
     }
 
-    url = "";
+    let url = "";
 
     if (rol === 'admin') {
-        let url = `/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=${consultaSeleccionadoId}`;
+        url = `/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=${consultaSeleccionadoId}`;
     } else {
-        let url = `/ConsultaControlador?opcion=verConsulta&idConsulta=${consultaSeleccionadoId}`;
+        url = `/ConsultaControlador?opcion=verConsulta&idConsulta=${consultaSeleccionadoId}`;
     }	
 	window.location.href = window.location.origin + url;
     }
