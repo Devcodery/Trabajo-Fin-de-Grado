@@ -1108,6 +1108,7 @@ p:empty { display: none; }
     align-items: center;     /* Alinea verticalmente */
     width: 100%;             /* Ocupa todo el ancho disponible */
     margin: 20px 0;          /* Da un poco de espacio arriba y abajo */
+    gap: 16px;
 }
 
 /* Si también quieres que el texto "Asignar Consultor:" y el desplegable queden pegados y centrados */
@@ -1116,4 +1117,106 @@ p:empty { display: none; }
     justify-content: center;
     align-items: center;
     gap: 12px;               /* Espacio entre el label y el select */
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DETALLE DE SERVICIO (verServicio.jsp)
+   ═══════════════════════════════════════════════════════════ */
+.servicio-card {
+    margin: 40px auto;
+    max-width: 850px;
+    padding: 0 !important; /* Quitamos el padding por defecto para que la cabecera llegue al borde */
+    overflow: hidden;
+    background: var(--clr-surface);
+}
+
+.servicio-header {
+    background-color: #9ee5e5; /* Color celeste del boceto */
+    padding: 24px;
+    text-align: center;
+    border-bottom: 2px solid var(--clr-border);
+}
+
+.servicio-header-titulo {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--clr-ink);
+}
+
+.servicio-body {
+    padding: 30px 40px;
+}
+
+.servicio-titulo {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    color: var(--clr-ink);
+}
+
+.servicio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+}
+
+.servicio-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.servicio-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.servicio-label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--clr-ink);
+}
+
+.servicio-valor {
+    color: var(--clr-ink-soft);
+}
+
+.servicio-caja {
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    color: var(--clr-ink-soft);
+    background: var(--clr-bg);
+}
+
+.servicio-caja-md {
+    min-height: 100px;
+}
+
+.servicio-caja-lg {
+    min-height: 120px;
+}
+
+.servicio-meta {
+    font-size: 13px;
+    color: var(--clr-ink-soft);
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.servicio-pie {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.servicio-btn-cerrar {
+    padding: 10px 40px;
+    min-width: 140px;
+    text-align: center;
 }
