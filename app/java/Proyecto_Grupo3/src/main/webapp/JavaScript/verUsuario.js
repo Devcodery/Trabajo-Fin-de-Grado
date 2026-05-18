@@ -42,20 +42,3 @@ function ejecutarAccion(funcion, rolPagina) {
         window.location.href = `/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}&idUsuario=${usuarioSeleccionadoId}`;
     }
 }
-
-// 3. Control del Modal
-// document.addEventListener("DOMContentLoaded", function() {
-//     const btnCerrar = document.getElementById('btn-cerrar');
-//     const fondoModal = document.getElementById('fondo-modal-detalle');
-
-//     if (btnCerrar && fondoModal) {
-//         btnCerrar.addEventListener('click', function() {
-//             fondoModal.style.display = 'none';
-//         });
-//     }
-
-//     // NUEVO: Si Java nos manda la señal de que hay datos, auto-abrimos el modal
-//     if (typeof abrirModalAuto !== 'undefined' && abrirModalAuto && fondoModal) {
-//         fondoModal.style.display = 'flex';
-//     }
-// });
