@@ -45,6 +45,6 @@
 		</div>
     </div>
 
-    <script src="${pageContext.request.contextPath}/js/"></script>
+    <script src="${pageContext.request.contextPath}/JavaScript/verUsuario.js"></script>
 </body>
 </html>

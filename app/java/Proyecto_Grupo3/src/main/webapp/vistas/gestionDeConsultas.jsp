@@ -124,6 +124,6 @@
 			<button class="btn-principal" onclick="consultarConsulta()">VER DETALLES</button>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/consultas.js"></script>
+	<script src="${pageContext.request.contextPath}/JavaScript/consultas.js"></script>
 </body>
 </html>

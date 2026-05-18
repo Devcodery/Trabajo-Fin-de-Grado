@@ -43,6 +43,6 @@
 	<jsp:include page="enviarMensajes.jsp"></jsp:include>
     <jsp:include page="verMensajes.jsp"></jsp:include>
 
-	<script src="${pageContext.request.contextPath}/js/mensajeModal.js"></script>
+	<script src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
 </body>
 </html>

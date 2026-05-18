@@ -99,6 +99,6 @@
 		</div>
     </div>
 
-    <script src="${pageContext.request.contextPath}/js/servicios.js"></script>
+    <script src="${pageContext.request.contextPath}/JavaScript/servicios.js"></script>
 </body>
 </html>

@@ -78,6 +78,6 @@
     </c:choose>
     
     <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
-    <script src="${pageContext.request.contextPath}/js/verUsuario.js"></script>
+    <script src="${pageContext.request.contextPath}/JavaScript/verUsuario.js"></script>
 </body>
 </html>
