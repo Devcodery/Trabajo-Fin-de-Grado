@@ -26,6 +26,8 @@ import dao.ServicioDAO;
 import modelo.Cliente;
 import modelo.Consulta;
 import modelo.Consultor;
+import modelo.Departamento;
+import modelo.Sede;
 import modelo.Usuario;
 
 /**
@@ -160,6 +162,9 @@ public class ConsultaControlador extends HttpServlet {
 			HttpRequest peticion = null;
 			Usuario usuario = null;
 
+			ArrayList<Sede> sedes = new ArrayList<>();
+			ArrayList<Departamento> departamentos = new ArrayList<>();
+
 			if(((String)session.getAttribute("rol")).equalsIgnoreCase("consultor")){
 				peticion = HttpRequest.newBuilder()
 									.uri(URI.create("http://flask-flaskapp-1:8888/usuario/" + consulta.getIdCliente()))
@@ -176,11 +181,25 @@ public class ConsultaControlador extends HttpServlet {
 				request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);
 			}
 
+			HttpRequest peticion2 = HttpRequest.newBuilder()
+					.uri(URI.create("http://info.empresa.dam.es:8055/items/sedes"))
+					.GET()
+					.build();
+
+			HttpRequest peticion3 = HttpRequest.newBuilder()
+					.uri(URI.create("http://info.empresa.dam.es:8055/items/departamentos"))
+					.GET()
+					.build();
+
 
 			try{
 				HttpResponse<String> respuesta = clientePeticion.send(peticion, HttpResponse.BodyHandlers.ofString());
+				HttpResponse<String> respuesta2 = clientePeticion.send(peticion2, HttpResponse.BodyHandlers.ofString());
+				HttpResponse<String> respuesta3 = clientePeticion.send(peticion3, HttpResponse.BodyHandlers.ofString());
 
 				String usuarioJson = respuesta.body();
+				String sedesJson = respuesta2.body();
+				String departamentosJson = respuesta3.body();
 
 				JsonObject jsonCompleto = JsonParser.parseString(usuarioJson).getAsJsonObject();
 
@@ -202,12 +221,38 @@ public class ConsultaControlador extends HttpServlet {
 					
 				}
 
+				JsonObject jsonObject = JsonParser.parseString(sedesJson).getAsJsonObject();
+
+				JsonArray jsonArraySedes = jsonObject.getAsJsonArray("data");
+
+				for (JsonElement jsonE : jsonArraySedes) {
+					JsonObject jsonSede = jsonE.getAsJsonObject();
+					sedes.add(new Sede(jsonSede.get("id").getAsInt(),
+										jsonSede.get("nombre").getAsString(),
+										jsonSede.get("direccion").getAsString(),
+										jsonSede.get("ciudad").getAsString()
+										));
+				}
+
+				JsonObject jsonObject2 = JsonParser.parseString(departamentosJson).getAsJsonObject();
+				JsonArray jsonArrayDepartamentos = jsonObject2.getAsJsonArray("data");
+
+				for (JsonElement jsonE : jsonArrayDepartamentos) {
+					JsonObject jsonDpto = jsonE.getAsJsonObject();
+					departamentos.add(new Departamento(jsonDpto.get("id").getAsInt(),
+														jsonDpto.get("nombre").getAsString(),
+														jsonDpto.get("descripcion").getAsString()
+														));
+				}
+
 			}catch (IOException e) {
 				e.printStackTrace();
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
 
+			request.setAttribute("sedes", sedes);
+			request.setAttribute("departamentos", departamentos);
 			request.setAttribute("usuario", usuario);
 
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			

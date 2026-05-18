@@ -20,6 +20,8 @@ import com.google.gson.JsonParser;
 
 import modelo.Cliente;
 import modelo.Consultor;
+import modelo.Departamento;
+import modelo.Sede;
 import modelo.Usuario;
 
 /**
@@ -56,6 +58,8 @@ public class UsuarioControlador extends HttpServlet {
 			request.setAttribute("rolPagina", rolPagina);
 
 			ArrayList<Usuario> usuarios = new ArrayList<>();
+			ArrayList<Sede> sedes = new ArrayList<>();
+			ArrayList<Departamento> departamentos = new ArrayList<>();
 
 			String cookies = request.getHeader("Cookie");
 			HttpClient cliente = HttpClient.newHttpClient();
@@ -66,10 +70,24 @@ public class UsuarioControlador extends HttpServlet {
 					.GET()
 					.build();
 
+			HttpRequest peticion2 = HttpRequest.newBuilder()
+					.uri(URI.create("http://info.empresa.dam.es:8055/items/sedes"))
+					.GET()
+					.build();
+
+			HttpRequest peticion3 = HttpRequest.newBuilder()
+					.uri(URI.create("http://info.empresa.dam.es:8055/items/departamentos"))
+					.GET()
+					.build();
+
 			try {
 				HttpResponse<String> respuesta = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
+				HttpResponse<String> respuesta2 = cliente.send(peticion2, HttpResponse.BodyHandlers.ofString());
+				HttpResponse<String> respuesta3 = cliente.send(peticion3, HttpResponse.BodyHandlers.ofString());
 
 				String usuariosJson = respuesta.body();
+				String sedesJson = respuesta2.body();
+				String departamentosJson = respuesta3.body();
 
 				JsonArray jsonCompleto = JsonParser.parseString(usuariosJson).getAsJsonArray();
 
@@ -96,12 +114,38 @@ public class UsuarioControlador extends HttpServlet {
 					}
 				}
 
+				JsonObject jsonObject = JsonParser.parseString(sedesJson).getAsJsonObject();
+
+				JsonArray jsonArraySedes = jsonObject.getAsJsonArray("data");
+
+				for (JsonElement jsonE : jsonArraySedes) {
+					JsonObject jsonSede = jsonE.getAsJsonObject();
+					sedes.add(new Sede(jsonSede.get("id").getAsInt(),
+										jsonSede.get("nombre").getAsString(),
+										jsonSede.get("direccion").getAsString(),
+										jsonSede.get("ciudad").getAsString()
+										));
+				}
+
+				JsonObject jsonObject2 = JsonParser.parseString(departamentosJson).getAsJsonObject();
+				JsonArray jsonArrayDepartamentos = jsonObject2.getAsJsonArray("data");
+
+				for (JsonElement jsonE : jsonArrayDepartamentos) {
+					JsonObject jsonDpto = jsonE.getAsJsonObject();
+					departamentos.add(new Departamento(jsonDpto.get("id").getAsInt(),
+														jsonDpto.get("nombre").getAsString(),
+														jsonDpto.get("descripcion").getAsString()
+														));
+				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
+			
+			request.setAttribute("sedes", sedes);
+			request.setAttribute("departamentos", departamentos);
 			request.setAttribute("usuarios", usuarios);
 			request.getRequestDispatcher("/vistas/verUsuarios.jsp").forward(request, response);
 		}
