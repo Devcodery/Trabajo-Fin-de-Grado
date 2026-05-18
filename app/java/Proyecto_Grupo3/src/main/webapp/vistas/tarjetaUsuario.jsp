@@ -14,13 +14,13 @@
                 <c:when test="${rol == 'cliente'}">
                     <c:if test="${not empty consultor}">
                          <div class="columna">
-                        <p>Nombre: <c:out value="${consultor.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${consultor.apellidos}" /></p>
-                        <p>Correo: <c:out value="${consultor.correo}" /></p>
+                        <p>Nombre: <c:out value="${usuario.nombre}" /></p>
+                        <p>Apellidos: <c:out value="${usuario.apellidos}" /></p>
+                        <p>Correo: <c:out value="${usuario.correo}" /></p>
                     </div>
                     <div class="columna">
-                        <p>Departamento: <c:out value="${consultor.departamento}" /></p>
-                        <p>Sede: <c:out value="${consultor.sede}" /></p>
+                        <p>Departamento: <c:out value="${usuario.departamento}" /></p>
+                        <p>Sede: <c:out value="${usuario.sede}" /></p>
                     </div>
                     </c:if>
                    <c:if test="${empty consultor}">
@@ -30,12 +30,12 @@
 
                 <c:when test="${rol == 'consultor'}">
                     <div class="columna">
-                        <p>Nombre: <c:out value="${cliente.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${cliente.apellidos}" /></p>
+                        <p>Nombre: <c:out value="${usuario.nombre}" /></p>
+                        <p>Apellidos: <c:out value="${usuario.apellidos}" /></p>
                     </div>
                     <div class="columna">
-                        <p>Correo: <c:out value="${cliente.correo}" /></p>
-                        <p>Direccion: <c:out value="${cliente.direccion}" /></p>
+                        <p>Correo: <c:out value="${usuario.correo}" /></p>
+                        <p>Direccion: <c:out value="${usuario.direccion}" /></p>
                     </div>
                 </c:when>
                 <c:when test="${rol == 'admin'}">
