@@ -31,12 +31,12 @@
                 <c:choose>
                     <c:when test="${rolPagina == 'cliente'}">
                         <button class="btn">
-                            <a href="/registro/<c:out value="${ rolPagina }"></c:out>">Crear Clientes</a>	
+                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Crear Clientes</a>	
                         </button>
                     </c:when>
                     <c:otherwise>
                          <button class="btn">
-                            <a href="/registro/<c:out value="${ rolPagina }"></c:out>">Crear Consultor</a>	
+                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Crear Consultor</a>	
                         </button>
                     </c:otherwise>
                 </c:choose>
@@ -45,12 +45,12 @@
             <c:choose>
                 <c:when test="${rolPagina == 'cliente'}">
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=<c:out value="${ rolPagina }"></c:out>">Ver Clientes</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Ver Clientes</a>	
                     </button>
                 </c:when>
                 <c:otherwise>
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=<c:out value="${ rolPagina }"></c:out>">Ver Consultor</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Ver Consultor</a>	
                     </button>
                 </c:otherwise>
             </c:choose>
