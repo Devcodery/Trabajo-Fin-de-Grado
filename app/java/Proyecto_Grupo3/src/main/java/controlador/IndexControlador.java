@@ -42,6 +42,12 @@ public class IndexControlador extends HttpServlet {
 
 		servicios = servicioDAO.readAll();
 
+		for (int i = 0; i < servicios.size(); i++) {
+			if(!servicios.get(i).isEstado()) {
+				servicios.remove(i);
+			}
+		}
+
 		request.setAttribute("servicios", servicios);
 
 		request.getRequestDispatcher("/vistas/index.jsp").forward(request, response);
