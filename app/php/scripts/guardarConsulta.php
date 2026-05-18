@@ -6,6 +6,7 @@ $idUsuario = $_POST['idUsuario'] ?? 0;
 $titulo = $_POST['titulo'] ?? '';
 $tipoDeServicio = $_POST['tipoDeServicio'] ?? '';
 $descripcion = $_POST['descripcion'] ?? '';
+$idiomaCorreo = $_POST['idioma'] ?? 'es';
 
 $queryidServicio = "SELECT id_servicio FROM servicio WHERE nombre = '$tipoDeServicio'";
 $resultadoQuery = pg_query($conn, $queryidServicio);
@@ -28,7 +29,7 @@ if(pg_query($conn, $query)) {
     exit();
 }
 
-$url = 'http://consultoriatech.java.es/usuario/' . $idUsuario;
+$url = 'http://flask-flaskapp-1:8888/usuario/' . $idUsuario;
 
 
 $cookieSesion = isset($_COOKIE['session']) ? 'session=' . $_COOKIE['session'] : '';
@@ -42,7 +43,6 @@ if ($cookieSesion) {
 }
 $respuestaJson = curl_exec($ch);
 curl_close($ch);
-
 $data = json_decode($respuestaJson, true);
 $correoUsuario = $data['correo'] ?? 'Correo no encontrado';
 
@@ -52,10 +52,11 @@ $jsonDataConsulta = json_encode([
     'nombre' => $usuarioNombre,
     'descripcion' => $descripcion,
     'estado' => 'pendiente',
-    'correo' => $correoUsuario
+    'correo' => $correoUsuario,
+    'idioma' => $idiomaCorreo
 ]);
 
-$webhook = 'http://n8n-app:5678/webhook/correo';
+$webhook = 'http://n8n-app:5678/webhook-test/correo';
 
 $ch = curl_init($webhook);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataConsulta);
@@ -65,6 +66,6 @@ $respuesta = curl_exec($ch);
 if(curl_errno($ch)){
     echo 'Error en cURL: ' . curl_error($ch);
 }
-header("Location: /formularios/formularioConsulta.php?mensaje=exito&idUsuario=$idUsuario");
+header("Location: /formularios/formularioConsulta.php?mensaje=exito");
 exit();
 ?>

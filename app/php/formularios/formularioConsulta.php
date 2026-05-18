@@ -52,6 +52,19 @@ pg_close($conn);
                 <textarea id="descripcion" name="descripcion"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="idioma">Idioma:</label>
+                <select id="idioma" name="idioma">
+                    <option value="">Seleccione un idioma</option>
+                    <option value="spanish">Español</option>
+                    <option value="english">Inglés</option>
+                    <option value="french">Francés</option>
+                    <option value="portuguese">Portugués</option>
+                    <option value="italian">Italiano</option>
+                    <option value="chinese">Chino</option>
+                </select>
+            </div>
+
             <div class="form-actions">
                 <a href="/ClienteControlador?opcion=logueado" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Solicitud">
