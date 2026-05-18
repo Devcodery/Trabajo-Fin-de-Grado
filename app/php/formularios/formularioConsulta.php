@@ -53,7 +53,7 @@ pg_close($conn);
             </div>
 
             <div class="form-actions">
-                <a href="/Proyecto_Grupo3/vistas/portalCliente.jsp" class="btn-exit">Volver al inicio</a>
+                <a href="/ClienteControlador?opcion=logueado" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Solicitud">
             </div>
      

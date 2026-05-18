@@ -83,7 +83,7 @@ foreach ($data['data'] as $sede) {
             </div>
             
             <div class="form-actions">
-                <a href="/vistas/portalConsultor.jsp" class="btn-exit">Volver al inicio</a>
+                <a href="/GestionServicioControlador?opcion=gestionServicios" class="btn-exit">Volver al inicio</a>
                 <input type="submit" value="Guardar Servicio">
             </div>
 
