@@ -31,12 +31,12 @@
                 <c:choose>
                     <c:when test="${rolPagina == 'cliente'}">
                         <button class="btn">
-                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Crear Clientes</a>	
+                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios">Crear Clientes</a>	
                         </button>
                     </c:when>
                     <c:otherwise>
                          <button class="btn">
-                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Crear Consultor</a>	
+                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=verusuarios">Crear Consultor</a>	
                         </button>
                     </c:otherwise>
                 </c:choose>

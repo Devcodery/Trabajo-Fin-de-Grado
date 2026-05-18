@@ -146,6 +146,7 @@ def obtener_usuario(empleado_id):
 def registro(rol):
     
     back_url = request.args.get('next') or "/"
+    back_url += "&rolPagina=" + rol
     
     if request.method == "POST":
         nombre = request.form.get("nombre")
