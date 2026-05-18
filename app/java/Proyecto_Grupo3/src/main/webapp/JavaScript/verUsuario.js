@@ -39,7 +39,6 @@ function ejecutarAccion(funcion, rolPagina) {
     }
 
     if (funcion === 'ver_detalle') {
-        // Recargamos la misma página de la lista, pero pasándole el ID que queremos ver en el modal
         window.location.href = `/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}&idUsuario=${usuarioSeleccionadoId}`;
     }
 }

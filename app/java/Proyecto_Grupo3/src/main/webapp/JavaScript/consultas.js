@@ -17,6 +17,8 @@ function consultarConsulta() {
         return;
     }
 
+    url = "";
+
     if (rol === 'admin') {
         let url = `/ConsultaControlador?opcion=verConsultaAdmin&idConsulta=${consultaSeleccionadoId}`;
     } else {
