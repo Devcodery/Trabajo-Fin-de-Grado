@@ -45,7 +45,7 @@ public class ConsultorControlador extends HttpServlet {
 		}
 
 		if (session.getAttribute("idUsuario") == null || session.getAttribute("idUsuario").equals("")) {
-			session.setAttribute("idUsuario", userIdHeader);
+			session.setAttribute("idUsuario", Integer.parseInt(userIdHeader));
 			session.setAttribute("nombreUsuario", userNameHeader);
 			session.setAttribute("rol", roleHeader);
 		}
