@@ -7,72 +7,72 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1 class="titulo">Formulario de registro</h1>
+    <div class="form-container">
+        <header>
+            <h1 class="titulo">Formulario de registro</h1>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+        </header>
 
-    {% if error %}
-        <p class="error-msg">{{ error }}</p>
-    {% endif %}
+        <form action="/registro/{{ rol }}" method="post" class="form-grid">
+            
+            <div>
+                <label>Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+            </div>
 
-    <form action="/registro/{{ rol }}" method="post">
-        <label class="label">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" required>
-        <br><br>
+            <div>
+                <label>Apellidos:</label>
+                <input type="text" name="apellidos" id="apellidos" required>
+            </div>
 
-        <label class="label">Apellidos:</label>
-        <input type="text" name="apellidos" id="apellidos" required>
-        <br><br>
+            <div class="full-width">
+                <label>Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
 
-        <label class="label">Email:</label>
-        <input type="email" name="email" id="email" required>
-        <br><br>
+            <div class="full-width">
+                <label>Dirección:</label>
+                <input type="text" name="direccion" id="direccion" required>
+            </div>
 
-        <label class="label">Direccion:</label>
-        <input type="text" name="direccion" id="direccion" required>
-        <br><br>
+            {% if rol != 'cliente' %}
+                <div>
+                    <label>Departamento:</label>
+                    <select name="id_dpto" id="id_dpto">
+                        {% for dpto in departamentos %}
+                            <option value="{{ dpto.id }}">
+                                {{ dpto.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-        {% if rol != 'cliente' %}
+                <div>
+                    <label>Sede:</label>
+                    <select name="id_sede" id="id_sede">
+                        {% for sede in sedes %}
+                            <option value="{{ sede.id }}">
+                                {{ sede.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
 
-        <label class="label">Departamento:</label>
-        <select name="id_dpto" id="id_dpto">
+            <div class="full-width">
+                <label>Contraseña:</label>
+                <input type="password" name="passwd" id="passwd" required>
+            </div>
 
-            {% for dpto in departamentos %}
+            <input type="hidden" name="rol" id="rol" value="{{ rol }}">
 
-                <option value="{{ dpto.id }}">
-                    {{ dpto.nombre }}
-                </option>
-
-            {% endfor %}
-
-        </select>
-
-        <br><br>
-
-        <label class="label">Sede:</label>
-        <select name="id_sede" id="id_sede">
-
-            {% for sede in sedes %}
-
-                <option value="{{ sede.id }}">
-                    {{ sede.nombre }}
-                </option>
-
-            {% endfor %}
-
-        </select>
-
-        <br><br>
-
-        {% endif %}
-
-        <label class="label">Contraseña:</label>
-        <input type="password" name="passwd" id="passwd" required>
-        <br><br>
-
-        <input type="hidden" name="rol" id="rol" value="{{ rol }}">
-
-        <button type="submit">Registrar</button>
-    </form>
-
-    <p><a href="{{ back_url }}">Volver</a></p>
+            <div class="form-actions">
+                <a href="{{ back_url }}" class="btn-exit">Volver</a>
+                <input type="submit" value="Registrar">
+            </div>
+        </form>
+    </div>
 </body>
 </html>

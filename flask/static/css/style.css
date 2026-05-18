@@ -1076,3 +1076,26 @@ p:empty { display: none; }
     .layout .btn,
     .btn-consulta { min-width: 220px; }
 }
+
+.form-grid input[type="text"],
+.form-grid input[type="email"],
+.form-grid input[type="password"],
+.form-grid select,
+.form-grid textarea {
+    width: 100%;
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--clr-ink);
+    background: var(--clr-bg);
+    transition: background var(--transition);
+}
+
+.error-message {
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 600px;
+}
