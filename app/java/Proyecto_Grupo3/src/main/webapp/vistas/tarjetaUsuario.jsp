@@ -12,7 +12,7 @@
         <div class="contenido-datos">
             <c:choose>
                 <c:when test="${rol == 'cliente'}">
-                    <c:if test="${not empty consultor}">
+                    <c:if test="${not empty usuario}">
                          <div class="columna">
                         <p>Nombre: <c:out value="${usuario.nombre}" /></p>
                         <p>Apellidos: <c:out value="${usuario.apellidos}" /></p>
@@ -23,7 +23,7 @@
                         <p>Sede: <c:out value="${usuario.sede}" /></p>
                     </div>
                     </c:if>
-                   <c:if test="${empty consultor}">
+                   <c:if test="${empty usuario}">
                         <p>Esta consulta no tiene un consultor asignado</p>
                     </c:if>
                 </c:when>
