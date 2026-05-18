@@ -18,9 +18,8 @@
     
     <div class="layout">
 		<button class="btn-consulta">
-			<a class="btn-consulta" href="/formularios/formularioConsulta.php"> Nueva Consulta</a>
-		</button>
-		
+			<a href="/formularios/formularioConsulta.php">Nueva Consulta</a>
+		</button>		
 	</div>
 	
 	<div class="layout">
