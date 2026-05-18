@@ -6,8 +6,8 @@
             <h1 id="titulo-enviar">ENVIAR MENSAJE</h1>
             
             <form class="mensaje-form" action="${pageContext.request.contextPath}/MensajeControlador" method="post">
-                <input type="hidden" name="opcion" value="enviarMensaje"> 
-                <input type="hidden" name="idConsulta" value="${consulta.idConsulta}">
+                <input type="hidden" name="opcion" id="opcion" value="enviarMensaje"> 
+                <input type="hidden" name="idConsulta" id="idConsulta" value="${consulta.idConsulta}">
                 
                 <div class="form-group">
                     <label for="asunto" class="Asunto">Asunto:</label>

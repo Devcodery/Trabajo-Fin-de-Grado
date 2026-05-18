@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
             <h1>MENSAJES</h1>
         </div>
         <div class="lista-Mensajes" id="listaMensajes">
-            <c:foreach var="mensaje" items="${mensajes}">
+            <c:forEach var="mensaje" items="${mensajes}">
                 <div class="servicio-item"
                     data-id="${mensaje.idMensaje}"
                     data-descripcion="${mensaje.descripcion}"
@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
                     onclick="seleccionarItem(this)">
                     <p class="nombre">${mensaje.asunto}</p>
                 </div>
-            </c:foreach>
+            </c:forEach>
 
             <c:if test="${empty mensajes}">
                 <p>No se encontraron mensajes con esos filtros.</p>
