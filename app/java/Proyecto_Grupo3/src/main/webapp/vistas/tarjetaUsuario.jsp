@@ -14,13 +14,13 @@
                 <c:when test="${rol == 'cliente'}">
                     <c:if test="${not empty usuario}">
                          <div class="columna">
-                        <p>Nombre: <c:out value="${usuario.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${usuario.apellidos}" /></p>
-                        <p>Correo: <c:out value="${usuario.correo}" /></p>
+                        <p>Nombre: <c:out value="${user.nombre}" /></p>
+                        <p>Apellidos: <c:out value="${user.apellidos}" /></p>
+                        <p>Correo: <c:out value="${user.correo}" /></p>
                     </div>
                     <div class="columna">
-                        <p>Departamento: <c:out value="${usuario.departamento}" /></p>
-                        <p>Sede: <c:out value="${usuario.sede}" /></p>
+                        <p>Departamento: <c:out value="${user.departamento}" /></p>
+                        <p>Sede: <c:out value="${user.sede}" /></p>
                     </div>
                     </c:if>
                    <c:if test="${empty usuario}">
@@ -30,12 +30,12 @@
 
                 <c:when test="${rol == 'consultor'}">
                     <div class="columna">
-                        <p>Nombre: <c:out value="${usuario.nombre}" /></p>
-                        <p>Apellidos: <c:out value="${usuario.apellidos}" /></p>
+                        <p>Nombre: <c:out value="${user.nombre}" /></p>
+                        <p>Apellidos: <c:out value="${user.apellidos}" /></p>
                     </div>
                     <div class="columna">
-                        <p>Correo: <c:out value="${usuario.correo}" /></p>
-                        <p>Direccion: <c:out value="${usuario.direccion}" /></p>
+                        <p>Correo: <c:out value="${user.correo}" /></p>
+                        <p>Direccion: <c:out value="${user.direccion}" /></p>
                     </div>
                 </c:when>
                 <c:when test="${rol == 'admin'}">

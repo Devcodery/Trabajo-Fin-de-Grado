@@ -1,10 +1,13 @@
 let usuarioSeleccionadoId = null;
-let consultaSeleccionadaId = null;
 
 document.addEventListener("DOMContentLoaded", function() {
     const btnAbrir = document.getElementById('btn-abrir-detalle');
     const btnCerrar = document.getElementById('btn-cerrar');
     const fondoModal = document.getElementById('fondo-modal-detalle');
+
+    if (fondoModal && fondoModal.getAttribute('data-mostrar') === 'true') {
+        fondoModal.style.display = 'flex'; 
+    }
 
     if (btnAbrir && fondoModal) {
         btnAbrir.addEventListener('click', function() {
@@ -17,10 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
             fondoModal.style.display = 'none';
         });
     }
-
-    if (typeof abrirModalAuto !== 'undefined' && abrirModalAuto && fondoModal) {
-        fondoModal.style.display = 'flex';
-    }
 });
 
 function seleccionarItem(elemento) {
@@ -30,7 +29,6 @@ function seleccionarItem(elemento) {
     elemento.classList.add('seleccionado');
     usuarioSeleccionadoId = elemento.getAttribute('data-id');
 }
-
 
 function ejecutarAccion(funcion, rolPagina) {
     if (!usuarioSeleccionadoId) {

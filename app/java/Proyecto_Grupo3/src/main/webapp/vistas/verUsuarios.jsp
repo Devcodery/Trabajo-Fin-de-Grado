@@ -32,7 +32,6 @@
                      onclick="seleccionarItem(this)">
                     <p class="nombre">${user.nombre}</p>
                     <p class="idUsuario">${user.idUsuario}</p>
-                    <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
                 </div>
             </c:forEach>
             
@@ -46,7 +45,7 @@
 		</div>
     </div>
 
-    
+    <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
 
     <script src="${pageContext.request.contextPath}/JavaScript/verUsuario.js"></script>
 </body>
