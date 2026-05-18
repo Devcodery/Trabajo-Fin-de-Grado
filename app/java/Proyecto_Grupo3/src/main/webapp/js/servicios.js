@@ -11,8 +11,9 @@ function seleccionarItem(elemento) {
 
     // 3. Guardar el ID del atributo data-id
     servicioSeleccionadoId = elemento.getAttribute('data-id');
-    
+    rol = elemento.getAttribute('data-rol');
     console.log("Servicio seleccionado ID:", servicioSeleccionadoId);
+    console.log("Rol:", rol);
 }
 
 function ejecutarAccion(funcion) {
@@ -25,24 +26,24 @@ function ejecutarAccion(funcion) {
 
     switch (funcion) {
         case 'servicio':
-            url = `/Proyecto_Grupo3/ServicioControlador?opcion=verServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/ServicioControlador?opcion=verServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'modificar':
-            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=listarServicios&funcion=modificarServicios&modificar=true&idServicio=${servicioSeleccionadoId}`;
+            url = `/GestionServicioControlador?opcion=listarServicios&funcion=modificarServicios&modificar=true&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'eliminar':
             if(confirm("¿Estás seguro de que deseas eliminar este servicio permanentemente?")) {
-                url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
+                url = `/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
             } else return;
             break;
         case 'desactivar':
-            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=desactivarServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/GestionServicioControlador?opcion=desactivarServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'activar':
-            url = `/Proyecto_Grupo3/GestionServicioControlador?opcion=activarServicio&idServicio=${servicioSeleccionadoId}`;
+            url = `/GestionServicioControlador?opcion=activarServicio&idServicio=${servicioSeleccionadoId}`;
             break;
         default:
-            url = "/Proyecto_Grupo3/GestionServicioControlador?opcion=listarServicios";
+            url = "/GestionServicioControlador?opcion=listarServicios";
     }
 
     window.location.href = window.location.origin + url;
