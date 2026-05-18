@@ -1120,19 +1120,21 @@ p:empty { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   DETALLE DE SERVICIO (verServicio.jsp)
+   DETALLE DE SERVICIO (verServicio.jsp) - LIMPIO Y UNIFICADO
    ═══════════════════════════════════════════════════════════ */
 .servicio-card {
-    margin: 40px auto;
     max-width: 850px;
-    padding: 0 !important; /* Quitamos el padding por defecto para que la cabecera llegue al borde */
-    overflow: hidden;
+    margin: 28px auto;
     background: var(--clr-surface);
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 
 .servicio-header {
-    background-color: #9ee5e5; /* Color celeste del boceto */
-    padding: 24px;
+    background: var(--clr-surface); /* Sin colores raros, fondo limpio */
+    padding: 28px 32px 20px;
     text-align: center;
     border-bottom: 2px solid var(--clr-border);
 }
@@ -1145,7 +1147,7 @@ p:empty { display: none; }
 }
 
 .servicio-body {
-    padding: 30px 40px;
+    padding: 28px 32px;
 }
 
 .servicio-titulo {
@@ -1160,7 +1162,7 @@ p:empty { display: none; }
 .servicio-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 40px;
+    gap: 32px;
 }
 
 .servicio-col {
@@ -1184,18 +1186,20 @@ p:empty { display: none; }
 
 .servicio-valor {
     color: var(--clr-ink-soft);
+    font-size: 15px;
 }
 
 .servicio-caja {
     border: 2px solid var(--clr-border);
     border-radius: var(--radius-sm);
-    padding: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
     color: var(--clr-ink-soft);
     background: var(--clr-bg);
 }
 
 .servicio-caja-md {
-    min-height: 100px;
+    min-height: 90px;
 }
 
 .servicio-caja-lg {
@@ -1207,18 +1211,17 @@ p:empty { display: none; }
     color: var(--clr-ink-soft);
     margin-top: auto;
     padding-top: 10px;
+    line-height: 1.6;
 }
 
 .servicio-pie {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 36px;
 }
 
 .servicio-btn-cerrar {
-    padding: 10px 40px;
     min-width: 140px;
-    text-align: center;
 }
 
 /* ═══════════════════════════════════════════════════════════
