@@ -1099,3 +1099,20 @@ p:empty { display: none; }
     margin-top: 6px;
     font-weight: 600px;
 }
+
+/* Centra el div contenedor en la pantalla */
+.center {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Alinea verticalmente */
+    width: 100%;             /* Ocupa todo el ancho disponible */
+    margin: 20px 0;          /* Da un poco de espacio arriba y abajo */
+}
+
+/* Si también quieres que el texto "Asignar Consultor:" y el desplegable queden pegados y centrados */
+.center .field-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;               /* Espacio entre el label y el select */
+}
