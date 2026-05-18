@@ -57,7 +57,8 @@ public class ConsultaControlador extends HttpServlet {
 		ServicioDAO servicioDAO = new ServicioDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("gestionConsultasCliente")) {
-			int idUsuario = Integer.valueOf((String) session.getAttribute("idUsuario"));
+			String idUsuarioStr = (String) session.getAttribute("idUsuario");
+			int idUsuario = Integer.valueOf(idUsuarioStr);
 			ArrayList<Consulta> consultas = consultaDAO.readConsultaCliente(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);
@@ -65,7 +66,9 @@ public class ConsultaControlador extends HttpServlet {
 			request.getRequestDispatcher("/vistas/gestionDeConsultas.jsp").forward(request, response);
 
 		} else if(opcion.equalsIgnoreCase("gestionConsultasConsultor")) {
-			int idUsuario =	Integer.valueOf((String) session.getAttribute("idUsuario"));
+			String idUsuarioStr = (String) session.getAttribute("idUsuario");
+			int idUsuario = Integer.valueOf(idUsuarioStr);
+			
 			ArrayList<Consulta> consultas = consultaDAO.readConsultaConsultor(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);

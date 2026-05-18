@@ -44,7 +44,7 @@ public class ClienteControlador extends HttpServlet {
 		}
 		
 		if (session.getAttribute("idUsuario") == null || session.getAttribute("idUsuario").equals("")) {
-			session.setAttribute("idUsuario", Integer.parseInt(userIdHeader));
+			session.setAttribute("idUsuario", userIdHeader);
 			session.setAttribute("nombreUsuario", userNameHeader);
 			session.setAttribute("rol", roleHeader);
 		}
