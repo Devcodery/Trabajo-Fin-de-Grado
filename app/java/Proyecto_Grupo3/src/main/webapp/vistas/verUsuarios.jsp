@@ -41,9 +41,11 @@
         </div>
 
         <div class="acciones">
-			<button class="btn-principal" onmouseover="ejecutarAccion('servicio')">VER DETALLES</button>
+			<button class="btn-principal" onclick="ejecutarAccion('ver_detalle', '${rolPagina}')">VER DETALLES</button>
 		</div>
     </div>
+
+    <jsp:include page="tarjetaUsuario.jsp"></jsp:include>
 
     <script src="${pageContext.request.contextPath}/JavaScript/verUsuario.js"></script>
 </body>

@@ -6,6 +6,7 @@
         <c:choose>
             <c:when test="${rol == 'cliente'}"><h2>Detalle Consultor</h2></c:when>
             <c:when test="${rol == 'consultor'}"><h2>Detalle Cliente</h2></c:when>
+            <c:when test="${rol == 'admin'}"><h2>Detalle Usuario</h2></c:when>
         </c:choose>
         
         <div class="contenido-datos">
@@ -32,6 +33,37 @@
                         <p>Direccion: <c:out value="${cliente.direccion}" /></p>
                     </div>
                 </c:when>
+                <c:when test="${rol == 'admin'}">
+                    <c:choose>
+                        <c:when test="${not empty consultor}">
+                            <div class="columna">
+                                <p>Nombre: <c:out value="${consultor.nombre}" /></p>
+                                <p>Apellidos: <c:out value="${consultor.apellidos}" /></p>
+                                <p>Correo: <c:out value="${consultor.correo}" /></p>
+                            </div>
+                            <div class="columna">
+                                <p>Departamento: <c:out value="${consultor.departamento}" /></p>
+                                <p>Sede: <c:out value="${consultor.sede}" /></p>
+                            </div>
+                        </c:when>
+                        <c:when test="${not empty cliente}">
+                            <div class="columna">
+                                <p>Nombre: <c:out value="${cliente.nombre}" /></p>
+                                <p>Apellidos: <c:out value="${cliente.apellidos}" /></p>
+                            </div>
+                            <div class="columna">
+                                <p>Correo: <c:out value="${cliente.correo}" /></p>
+                                <p>Direccion: <c:out value="${cliente.direccion}" /></p>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Información no disponible</p>
+                        </c:otherwise>
+                    </c:choose>
+                </c:when>
+                <c:otherwise>
+                    <p>Información no disponible</p>
+                </c:otherwise>
             </c:choose>
         </div>
         <button id="btn-cerrar">Cerrar</button>
