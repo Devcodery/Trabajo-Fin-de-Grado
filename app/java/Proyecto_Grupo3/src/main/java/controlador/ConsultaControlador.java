@@ -150,7 +150,7 @@ public class ConsultaControlador extends HttpServlet {
 
 		} else if(opcion.equalsIgnoreCase("verConsulta")) {
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
-			session.setAttribute("idConsulta", idConsulta);
+			session.setAttribute("idConsulta", String.valueOf(idConsulta));
 
 			Consulta consulta = consultaDAO.read(idConsulta);
 			request.setAttribute("consulta", consulta);
@@ -213,7 +213,7 @@ public class ConsultaControlador extends HttpServlet {
 			request.getRequestDispatcher("/vistas/verConsulta.jsp").forward(request, response);			
 		}else if(opcion.equals("verConsultaAdmin")){
 			int idConsulta = Integer.valueOf(request.getParameter("idConsulta"));
-			session.setAttribute("idConsulta", idConsulta);
+			session.setAttribute("idConsulta", String.valueOf(idConsulta));
 
 			Consulta consulta = consultaDAO.read(idConsulta);
 			request.setAttribute("consulta", consulta);
@@ -276,8 +276,8 @@ public class ConsultaControlador extends HttpServlet {
 			request.setAttribute("consultores", consultores);
 
 			request.getRequestDispatcher("/vistas/verConsultaAdmin.jsp").forward(request, response);
-		}else if(opcion.equalsIgnoreCase("verMensajes")){
-			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=verMensajes");
+		}else if(opcion.equalsIgnoreCase("listarMensajes")){
+			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=listarMensajes");
 		}
 	}
 
