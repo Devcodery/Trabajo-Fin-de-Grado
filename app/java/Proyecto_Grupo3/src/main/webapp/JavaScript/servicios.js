@@ -2,18 +2,13 @@ let servicioSeleccionadoId = null;
 
 
 function seleccionarItem(elemento) {
-    // 1. Limpiar selecciones previas (clase CSS que pone el fondo gris/verde)
     const items = document.querySelectorAll('.servicio-item');
     items.forEach(item => item.classList.remove('seleccionado'));
 
-    // 2. Marcar el elemento actual
     elemento.classList.add('seleccionado');
 
-    // 3. Guardar el ID del atributo data-id
     servicioSeleccionadoId = elemento.getAttribute('data-id');
     rol = elemento.getAttribute('data-rol');
-    console.log("Servicio seleccionado ID:", servicioSeleccionadoId);
-    console.log("Rol:", rol);
 }
 
 function ejecutarAccion(funcion) {

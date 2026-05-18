@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function() {
             fondoModal.style.display = 'none';
         });
     }
+
+    if (typeof abrirModalAuto !== 'undefined' && abrirModalAuto && fondoModal) {
+        fondoModal.style.display = 'flex';
+    }
 });
 
 function seleccionarItem(elemento) {
