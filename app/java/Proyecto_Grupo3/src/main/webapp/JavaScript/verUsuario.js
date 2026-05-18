@@ -18,9 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-let usuarioSeleccionadoId = null;
 
-// 1. Guarda el ID al hacer clic en un usuario de la lista
 function seleccionarItem(elemento) {
     const items = document.querySelectorAll('.servicio-item');
     items.forEach(item => item.classList.remove('seleccionado'));
@@ -29,7 +27,7 @@ function seleccionarItem(elemento) {
     usuarioSeleccionadoId = elemento.getAttribute('data-id');
 }
 
-// 2. Redirige al controlador pidiendo los detalles de ese usuario
+
 function ejecutarAccion(funcion, rolPagina) {
     if (!usuarioSeleccionadoId) {
         alert("Por favor, selecciona un usuario de la lista primero.");
