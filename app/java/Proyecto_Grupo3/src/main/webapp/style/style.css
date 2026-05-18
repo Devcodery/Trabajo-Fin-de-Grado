@@ -1220,3 +1220,29 @@ p:empty { display: none; }
     min-width: 140px;
     text-align: center;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MODALES PEQUEÑOS DE ALERTA Y CONFIRMACIÓN
+   ═══════════════════════════════════════════════════════════ */
+.tarjeta-alerta {
+    max-width: 450px;
+    text-align: center;
+    padding: 32px 24px;
+}
+
+.tarjeta-alerta h2 {
+    color: #c0392b; /* Rojo para alertas */
+    margin-bottom: 12px;
+}
+
+.tarjeta-alerta p {
+    color: var(--clr-ink-soft);
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+/* Forzamos que los botones de esta tarjeta se centren */
+.tarjeta-alerta .form-acciones {
+    justify-content: center;
+    gap: 16px;
+}

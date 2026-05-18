@@ -1,5 +1,5 @@
 let servicioSeleccionadoId = null;
-
+let servicioSeleccionadoEstado = null;
 
 function seleccionarItem(elemento) {
     const items = document.querySelectorAll('.servicio-item');
@@ -9,6 +9,7 @@ function seleccionarItem(elemento) {
 
     servicioSeleccionadoId = elemento.getAttribute('data-id');
     rol = elemento.getAttribute('data-rol');
+    servicioSeleccionadoEstado = elemento.getAttribute('data-estado');
 }
 
 function ejecutarAccion(funcion) {
@@ -27,10 +28,12 @@ function ejecutarAccion(funcion) {
             url = `/GestionServicioControlador?opcion=listarServicios&funcion=modificarServicios&modificar=true&idServicio=${servicioSeleccionadoId}`;
             break;
         case 'eliminar':
-            if(confirm("¿Estás seguro de que deseas eliminar este servicio permanentemente?")) {
-                url = `/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
-            } else return;
-            break;
+            if (!puedeEliminarServicio(servicioSeleccionadoEstado)) {
+                return; 
+            }
+
+            abrirModalConfirmacion();
+            return;
         case 'desactivar':
             url = `/GestionServicioControlador?opcion=desactivarServicio&idServicio=${servicioSeleccionadoId}`;
             break;
@@ -44,6 +47,10 @@ function ejecutarAccion(funcion) {
     window.location.href = window.location.origin + url;
 }
 
+function confirmarEliminarServicio() {
+    const url = `/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
+    window.location.href = window.location.origin + url;
+}
 
 document.getElementById('btn-abrir-filtros').addEventListener('click', function() {
     const modal = document.getElementById('modal-filtros');

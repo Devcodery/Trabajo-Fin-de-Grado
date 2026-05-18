@@ -63,7 +63,8 @@
         <div class="lista-servicios" id="listaServicios">
             <c:forEach var="s" items="${servicios}">
                 <div class="servicio-item" 
-                     data-id="${s.idServicio}" 
+                     data-id="${s.idServicio}"
+                     data-estado="${s.estado ? 'activo' : 'inactivo'}"
                      onclick="seleccionarItem(this)">
                     <p class="nombre">${s.nombre}</p>
                     <span class="estado ${s.estado ? 'activo' : 'inactivo'}">
@@ -99,6 +100,8 @@
 		</div>
     </div>
 
+    <jsp:include page="modelosEliminar.jsp"></jsp:include>
+    <script src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
     <script src="${pageContext.request.contextPath}/JavaScript/servicios.js"></script>
 </body>
 </html>
