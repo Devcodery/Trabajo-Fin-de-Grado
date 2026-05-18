@@ -57,8 +57,7 @@ public class ConsultaControlador extends HttpServlet {
 		ServicioDAO servicioDAO = new ServicioDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("gestionConsultasCliente")) {
-			String idUsuarioStr = (String) session.getAttribute("idUsuario");
-			int idUsuario = Integer.parseInt(idUsuarioStr);
+			int idUsuario = (int) session.getAttribute("idUsuario");
 			ArrayList<Consulta> consultas = consultaDAO.readConsultaCliente(idUsuario);
 
 			request.setAttribute("listaConsultas", consultas);
