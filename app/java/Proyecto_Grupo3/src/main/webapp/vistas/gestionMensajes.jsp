@@ -35,10 +35,12 @@
                 <p>No se encontraron mensajes con esos filtros.</p>
             </c:if>
         </div>
-        <div class="acciones">
+        <div class="center">
+            <div class="acciones">
             <button id="btn-abrir-detalle">Enviar Mensaje</button>
             <button id="btn-abrir-mensaje">Ver Detalles</button>
         </div>
+        </div>        
 	
 	<jsp:include page="enviarMensajes.jsp"></jsp:include>
     <jsp:include page="verMensajes.jsp"></jsp:include>

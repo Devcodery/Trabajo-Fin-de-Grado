@@ -67,9 +67,10 @@
     </section>
 
 
-    <a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=listarMensajes">Ver Mensajes</a>
+    
 
-    <div class="actions-rows">
+    <div class="center">
+        <a class="btn-secondary" href="${pageContext.request.contextPath}/ConsultaControlador?opcion=listarMensajes">Ver Mensajes</a>
         <c:choose>
             <c:when test="${ rol == 'cliente'}">
                 <button id="btn-abrir-detalle" class="btn-secondary">Ver Consultor</button>
