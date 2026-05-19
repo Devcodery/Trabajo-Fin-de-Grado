@@ -15,7 +15,7 @@
             <p>No hay información de usuario disponible para mostrar.</p>
         </div>
 
-        <div id="contenido-datos-usuario" class="contenido-datos <c:if test="${empty usuario}">oculto</c:if>">
+        <div id="contenido-datos-usuario" class="contenido-datos <c:if test="${empty usuario && rol != 'admin'}">oculto</c:if>">
             <div class="columna">
                 <p id="p-nombre"><strong>Nombre:</strong> <span id="modal-nombre"><c:out value="${usuario.nombre}" /></span></p>
                 <p id="p-apellidos"><strong>Apellidos:</strong> <span id="modal-apellidos"><c:out value="${usuario.apellidos}" /></span></p>
