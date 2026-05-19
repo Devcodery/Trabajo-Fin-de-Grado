@@ -111,7 +111,9 @@
 	</c:if>
 	<div class="container-carrusel">
 		<div class="lista-consultas" id="listaConsultas">
-
+			<c:if test="${empty listaConsultas}">
+				<p>No hay consultas para mostrar.</p>
+			</c:if>
 			<c:forEach var="consulta" items="${listaConsultas}">
 				<div class="consulta-item" data-id="${consulta.idConsulta}"
 					data-rol="${rol}" onclick="seleccionarItem(this)">
