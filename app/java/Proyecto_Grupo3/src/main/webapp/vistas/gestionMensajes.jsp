@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
             
             <div class="columna-mensajes">
                 <div class="badge-mensajes">
-                    <h1>MIS MENSAJES</h1>
+                    <h1 class="title centrado">MIS MENSAJES</h1>
                 </div>
                 
                 <div class="lista-Mensajes" id="listaMensajesEnviados">
@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
 
             <div class="columna-mensajes">
                 <div class="badge-mensajes">
-                    <h1>MENSAJES RECIBIDOS</h1>
+                    <h1 class="title centrado">MENSAJES RECIBIDOS</h1>
                 </div>
                 
                 <div class="lista-Mensajes" id="listaMensajesRecibidos">

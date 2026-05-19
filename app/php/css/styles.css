@@ -1289,3 +1289,7 @@ p:empty { display: none; }
     display: flex;
     flex-direction: column;
 }
+
+.title.centrado h1 {
+    text-align: center; /* Centra el título respecto a su propia columna */
+}
