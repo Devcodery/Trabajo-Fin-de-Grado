@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Obtener los valores que escribió el usuario
         const nombre = document.getElementById('nombre').value.trim();
         const categoria = document.getElementById('categoria').value.trim();
-        const sede = document.getElementById('sede').value;
+        const sede = document.getElementById('id_sede').value;
         const estado = document.getElementById('estado').value;
         const descripcion = document.getElementById('descripcion').value.trim();
         const beneficios = document.getElementById('beneficios').value.trim();
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (categoria === '') {
             mostrarAlerta('Error: la categoria es obligatoria', 'error');
             return false;
-        } else if (sede === '') {
+        } else if (sede === '' || isNaN(sede)) {
             mostrarAlerta('Error: Debes seleccionar una sede', 'error');
             return false;
         } else if (estado === '') {
