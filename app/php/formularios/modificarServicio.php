@@ -27,7 +27,9 @@ $_GET = file_get_contents($url);
 $data = json_decode($_GET, true);
 $sedes = [];
 foreach ($data['data'] as $sede) {
-    $sedes[] = ['nombre' => $sede['nombre']];
+    $sedes[] = ['nombre' => $sede['nombre'],
+                'id' => $sede['id']
+                ];
 }
 ?>
 
