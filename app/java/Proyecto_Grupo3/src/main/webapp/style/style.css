@@ -1290,6 +1290,6 @@ p:empty { display: none; }
     flex-direction: column;
 }
 
-.title.centrado h1 {
+.title-centrado-mensajes {
     text-align: center; /* Centra el título respecto a su propia columna */
 }
