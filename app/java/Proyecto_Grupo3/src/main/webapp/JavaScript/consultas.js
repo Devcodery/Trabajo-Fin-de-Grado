@@ -27,4 +27,27 @@ function consultarConsulta() {
 	window.location.href = window.location.origin + url;
     }
 
-   
+const btnAbrirFiltros = document.getElementById('btn-abrir-filtros');
+if (btnAbrirFiltros) {
+    btnAbrirFiltros.addEventListener('click', function() {
+        const modal = document.getElementById('modal-filtros');
+        if (modal) {
+            modal.classList.toggle('oculto');
+        }
+    });
+}
+
+function toggleFiltro(idElemento, isChecked) {
+    const elemento = document.getElementById(idElemento);
+    if (elemento) {
+        elemento.disabled = !isChecked;
+    }
+}
+
+function toggleFechas(isChecked) {
+    const fechaInicio = document.getElementById('fechaInicio');
+    const fechaFin = document.getElementById('fechaFin');
+    
+    if (fechaInicio) fechaInicio.disabled = !isChecked;
+    if (fechaFin) fechaFin.disabled = !isChecked;
+}
