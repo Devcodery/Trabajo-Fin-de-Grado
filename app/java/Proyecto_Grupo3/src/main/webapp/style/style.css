@@ -1261,12 +1261,6 @@ p:empty { display: none; }
 /* ═══════════════════════════════════════════════════════════
    DISEÑO A DOS COLUMNAS (MENSAJERÍA) Y ETIQUETAS
    ═══════════════════════════════════════════════════════════ */
-.cabecera-seccion {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
 
 .badge-mensajes {
     background-color: var(--clr-ink, #333); /* Fondo oscuro */
@@ -1278,6 +1272,7 @@ p:empty { display: none; }
     letter-spacing: 1px;
     text-transform: uppercase;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 20px;
 }
 
 .contenedor-mensajes {
@@ -1293,11 +1288,4 @@ p:empty { display: none; }
     flex: 1; /* Ocupan exactamente el 50% cada una */
     display: flex;
     flex-direction: column;
-}
-
-.title.centrado h1 {
-    text-align: center; /* Centra el título respecto a su propia columna */
-    margin-bottom: 20px;
-    margin-top: 0;
-    font-size: 24px;
 }
