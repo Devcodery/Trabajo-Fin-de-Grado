@@ -1259,23 +1259,45 @@ p:empty { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   DISEÑO A DOS COLUMNAS (MENSAJERÍA)
+   DISEÑO A DOS COLUMNAS (MENSAJERÍA) Y ETIQUETAS
    ═══════════════════════════════════════════════════════════ */
+.cabecera-seccion {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.badge-mensajes {
+    background-color: var(--clr-ink, #333); /* Fondo oscuro */
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 .contenedor-mensajes {
     display: flex;
-    gap: 40px; /* Crea un hueco de separación entre la columna izquierda y derecha */
+    gap: 40px; /* Separación entre columnas */
     width: 100%;
-    max-width: 1200px; /* Evita que se estire infinitamente en monitores gigantes */
+    max-width: 1200px; 
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .columna-mensajes {
-    flex: 1; /* Esto hace que ambas columnas ocupen exactamente el 50% de la pantalla */
+    flex: 1; /* Ocupan exactamente el 50% cada una */
     display: flex;
     flex-direction: column;
 }
 
-.columna-mensajes .title {
-    margin-top: 0; /* Quitamos el margen superior que pusimos antes para que queden alineados */
+.title.centrado h1 {
+    text-align: center; /* Centra el título respecto a su propia columna */
+    margin-bottom: 20px;
+    margin-top: 0;
+    font-size: 24px;
 }

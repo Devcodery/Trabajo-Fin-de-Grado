@@ -18,18 +18,22 @@ pageEncoding="UTF-8"%>
             href="${pageContext.request.contextPath}/style/style.css">
     </head>
     <body>
-        <div class="nav">
-            <button class="btn">
-                <a
-                    href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>
-            </button>
+    <div class="nav">
+        <button class="btn">
+        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
+        </button>
+    </div>
+        <div class="cabecera-seccion">
+            <span class="badge-mensajes">Área de Mensajería</span>
         </div>
-        <div class="contenedor-mensajes">
 
+        <div class="contenedor-mensajes">
+            
             <div class="columna-mensajes">
-                <div class="title">
+                <div class="title centrado">
                     <h1>MIS MENSAJES</h1>
                 </div>
+                
                 <div class="lista-Mensajes" id="listaMensajesEnviados">
                     <c:forEach var="mensaje" items="${mensajesEnviados}">
                         <div class="servicio-item"
@@ -51,9 +55,10 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="columna-mensajes">
-                <div class="title">
+                <div class="title centrado">
                     <h1>MENSAJES RECIBIDOS</h1>
                 </div>
+                
                 <div class="lista-Mensajes" id="listaMensajesRecibidos">
                     <c:forEach var="mensaje" items="${mensajesRecibidos}">
                         <div class="servicio-item"
@@ -73,20 +78,20 @@ pageEncoding="UTF-8"%>
                     </c:if>
                 </div>
             </div>
+            
+        </div>
 
-            <div class="acciones">
-                <button id="btn-abrir-detalle">Enviar Mensaje</button>
-                <button id="btn-abrir-mensaje">Ver Detalles</button>
-                <button id="btn-borrar-mensaje">Borrar</button>
-            </div>
+        <div class="acciones">
+            <button id="btn-abrir-detalle">Enviar Mensaje</button>
+            <button id="btn-abrir-mensaje">Ver Detalles</button>
+            <button id="btn-borrar-mensaje">Borrar</button>
+        </div>
 
-            <jsp:include page="enviarMensajes.jsp"></jsp:include>
-            <jsp:include page="verMensajes.jsp"></jsp:include>
-            <jsp:include page="modelosEliminar.jsp"></jsp:include>
+        <jsp:include page="enviarMensajes.jsp"></jsp:include>
+        <jsp:include page="verMensajes.jsp"></jsp:include>
+        <jsp:include page="modelosEliminar.jsp"></jsp:include>
 
-            <script
-                src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
-            <script
-                src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
-        </body>
-    </html>
+        <script src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
+        <script src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
+    </body>
+</html>
