@@ -33,7 +33,11 @@ pageEncoding="UTF-8"%>
             </c:forEach>
 
             <c:if test="${empty mensajes}">
-                <p>No se encontraron mensajes con esos filtros.</p>
+                <div class="estado-vacio">
+                    <div class="icono-vacio"></div>
+                    <h3>No hay mensajes</h3>
+                    <p>Aún no has recibido ningún mensaje.</p>
+                </div>
             </c:if>
         </div>
 
