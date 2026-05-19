@@ -317,7 +317,7 @@ public class ConsultaControlador extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			request.setAttribute("cliente", cliente);
+			request.setAttribute("usuario", cliente);
 			request.setAttribute("consultores", consultores);
 
 			request.getRequestDispatcher("/vistas/verConsultaAdmin.jsp").forward(request, response);
