@@ -24,22 +24,17 @@
                         <p id="p-correo">Correo: <span id="modal-correo"><c:out value="${usuario.correo}" /></span></p>
                     </div>
                     <div class="columna">
-                        <c:choose>
-                            <c:when test="${empty dptoNombre || empty sedeNombre}">
-                                <p id="p-direccion">
-                                    Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
-                                </p>
-                            </c:when>
-                            <c:otherwise>
-                                <p id="p-departamento">
+                        <p id="p-direccion"> Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span></p>
+                        
+                        <c:if test="${not empty dptoNombre && not empty sedeNombre}">
+                            <p id="p-departamento">
                                     Departamento: <span id="modal-departamento"><c:out value="${dptoNombre}" /></span>
                                 </p>
                                 
                                 <p id="p-sede">
                                     Sede: <span id="modal-sede"><c:out value="${sedeNombre}" /></span>
                                 </p>
-                            </c:otherwise>
-                        </c:choose>
+                        </c:if>                       
                     </div>
                 </div>
             </c:otherwise>
