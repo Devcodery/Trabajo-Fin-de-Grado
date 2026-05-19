@@ -299,13 +299,13 @@ def login():
 
         error = "Usuario o contraseña incorrectos"
 
-    return render_template("login.html", error=error)
+    return render_template("login.html", error=error, next_url=request.args.get("next", "/"))
 
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("login", next=request.args.get("next")))
 
 
 @app.route("/auth/verify")

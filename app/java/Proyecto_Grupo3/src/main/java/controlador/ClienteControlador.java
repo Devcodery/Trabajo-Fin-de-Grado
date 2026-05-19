@@ -39,7 +39,7 @@ public class ClienteControlador extends HttpServlet {
 		}else if(opcion.equalsIgnoreCase("verConsultas")) {
 			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasCliente");
 		}else if(opcion.equalsIgnoreCase("logout")) {
-			response.sendRedirect("/logout");
+			response.sendRedirect("/logout?next=/AutenticadorControlador");
 			session.invalidate();
 		} else if(opcion.equalsIgnoreCase("crearConsulta")) {
 			response.sendRedirect("/formularios/formularioConsulta.php");

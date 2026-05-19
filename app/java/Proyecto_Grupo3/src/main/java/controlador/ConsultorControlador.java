@@ -41,7 +41,7 @@ public class ConsultorControlador extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/ConsultaControlador?opcion=gestionConsultasConsultor");
 		}else if(opcion.equalsIgnoreCase("logout")) {
 			session.invalidate();
-			response.sendRedirect("/logout");
+			response.sendRedirect("/logout?next=/AutenticadorControlador");
 		}
 		
 		

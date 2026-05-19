@@ -36,7 +36,7 @@ public class AdministradorControlador extends HttpServlet {
 			request.getRequestDispatcher("/vistas/portalAdministrador.jsp").forward(request, response);
 		}else if(opcion.equalsIgnoreCase("logout")) {
 			session.invalidate();
-			response.sendRedirect("/logout");
+			response.sendRedirect("/logout?next=/AutenticadorControlador");
 		}
 	}
 
