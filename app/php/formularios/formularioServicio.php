@@ -45,9 +45,9 @@ foreach ($data['data'] as $sede) {
                     <option value="" disabled selected>Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
                         <option value="<?php echo htmlspecialchars($sede['nombre']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
-                        <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
-                    <?php endforeach; ?>
                 </select>
+                <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
+                <?php endforeach; ?>
             </div>
 
             <div class="form-group">
