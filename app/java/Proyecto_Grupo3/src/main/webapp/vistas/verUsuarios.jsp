@@ -28,7 +28,7 @@
         <div class="lista-servicios" id="listaServicios">
             <c:forEach var="usuario" items="${usuarios}">
 
-                <c:if test="${rolPagina == 'cliente'}">
+                <c:if test="${rolPagina != 'cliente'}">
                     <c:set var="sedeNombre" value="" />
                     <c:forEach var="s" items="${sedes}">
                         <c:if test="${s.idSede == usuario.sede}">
@@ -49,7 +49,7 @@
                      data-nombre="${usuario.nombre}"
                      data-apellidos="${usuario.apellidos}"
                      data-correo="${usuario.correo}"
-                     <c:if test="${rolPagina == 'cliente'}">
+                     <c:if test="${rolPagina != 'cliente'}">
                         data-departamento="${dptoNombre}"
                         data-sede="${sedeNombre}"
                      </c:if>
