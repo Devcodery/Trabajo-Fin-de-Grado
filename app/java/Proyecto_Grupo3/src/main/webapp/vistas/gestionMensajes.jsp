@@ -18,71 +18,77 @@ pageEncoding="UTF-8"%>
             href="${pageContext.request.contextPath}/style/style.css">
     </head>
     <body>
-    <div class="nav">
-        <button class="btn">
-        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
-        </button>
-    </div>
-        <div class="title">
-            <h1>MIS MENSAJES</h1>
+        <div class="nav">
+            <button class="btn">
+                <a
+                    href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>
+            </button>
         </div>
-            
-        <div class="lista-Mensajes" id="listaMensajes">
-            
-            <c:forEach var="mensaje" items="${mensajesEnviados}">
-                <div class="servicio-item"
-                    data-id="${mensaje.idMensaje}"
-                    data-descripcion="${mensaje.contenido}"
-                    data-asunto="${mensaje.asunto}"
-                    onclick="seleccionarItem(this)">
-                    <p class="nombre">${mensaje.asunto}</p>
+        <div class="contenedor-mensajes">
+
+            <div class="columna-mensajes">
+                <div class="title">
+                    <h1>MIS MENSAJES</h1>
                 </div>
-            </c:forEach>
+                <div class="lista-Mensajes" id="listaMensajesEnviados">
+                    <c:foreach var="mensaje" items="${mensajesEnviados}">
+                        <div class="servicio-item"
+                            data-id="${mensaje.idMensaje}"
+                            data-descripcion="${mensaje.contenido}"
+                            data-asunto="${mensaje.asunto}"
+                            onclick="seleccionarItem(this)">
+                            <p class="nombre">${mensaje.asunto}</p>
+                        </div>
+                    </c:foreach>
 
-            <c:if test="${empty mensajesEnviados}">
-                <div class="estado-vacio">
-                    <div class="icono-vacio"></div>
-                    <h3>No hay mensajes enviados</h3>
-                    <p>Aún no has enviado ningún mensaje.</p>
+                    <c:if test="${empty mensajesEnviados}">
+                        <div class="estado-vacio">
+                            <div class="icono-vacio">📤</div>
+                            <h3>No hay mensajes enviados</h3>
+                            <p>Aún no has enviado ningún mensaje.</p>
+                        </div>
+                    </c:if>
                 </div>
-            </c:if>
-        </div>
+            </div>
 
-        <div class="title">
-            <h1>MENSAJES RECIBIDOS</h1>
-        </div>
-        <div class="lista-Mensajes" id="listaMensajes">
-            
-            <c:forEach var="mensaje" items="${mensajesRecibidos}">
-                <div class="servicio-item"
-                    data-id="${mensaje.idMensaje}"
-                    data-descripcion="${mensaje.contenido}"
-                    data-asunto="${mensaje.asunto}"
-                    onclick="seleccionarItem(this)">
-                    <p class="nombre">${mensaje.asunto}</p>
+            <div class="columna-mensajes">
+                <div class="title">
+                    <h1>MENSAJES RECIBIDOS</h1>
                 </div>
-            </c:forEach>
+                <div class="lista-Mensajes" id="listaMensajesRecibidos">
+                    <c:foreach var="mensaje" items="${mensajesRecibidos}">
+                        <div class="servicio-item"
+                            data-id="${mensaje.idMensaje}"
+                            data-descripcion="${mensaje.contenido}"
+                            data-asunto="${mensaje.asunto}"
+                            onclick="seleccionarItem(this)">
+                            <p class="nombre">${mensaje.asunto}</p>
+                        </div>
+                    </c:foreach>
 
-            <c:if test="${empty mensajesRecibidos}">
-                <div class="estado-vacio">
-                    <div class="icono-vacio"></div>
-                    <h3>No hay mensajes recibidos</h3>
-                    <p>Aún no has recibido ningún mensaje.</p>
+                    <c:if test="${empty mensajesRecibidos}">
+                        <div class="estado-vacio">
+                            <div class="icono-vacio">📥</div>
+                            <h3>No hay mensajes recibidos</h3>
+                            <p>Aún no has recibido ningún mensaje.</p>
+                        </div>
+                    </c:if>
                 </div>
-            </c:if>
-        </div>
+            </div>
 
-        <div class="acciones">
-            <button id="btn-abrir-detalle">Enviar Mensaje</button>
-            <button id="btn-abrir-mensaje">Ver Detalles</button>
-            <button id="btn-borrar-mensaje">Borrar</button>
-        </div>
+            <div class="acciones">
+                <button id="btn-abrir-detalle">Enviar Mensaje</button>
+                <button id="btn-abrir-mensaje">Ver Detalles</button>
+                <button id="btn-borrar-mensaje">Borrar</button>
+            </div>
 
-        <jsp:include page="enviarMensajes.jsp"></jsp:include>
-        <jsp:include page="verMensajes.jsp"></jsp:include>
-        <jsp:include page="modelosEliminar.jsp"></jsp:include>
+            <jsp:include page="enviarMensajes.jsp"></jsp:include>
+            <jsp:include page="verMensajes.jsp"></jsp:include>
+            <jsp:include page="modelosEliminar.jsp"></jsp:include>
 
-        <script src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
-        <script src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
-    </body>
-</html>
+            <script
+                src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
+            <script
+                src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
+        </body>
+    </html>
