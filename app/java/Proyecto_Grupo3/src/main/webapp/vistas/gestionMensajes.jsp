@@ -31,7 +31,7 @@ pageEncoding="UTF-8"%>
                     <h1>MIS MENSAJES</h1>
                 </div>
                 <div class="lista-Mensajes" id="listaMensajesEnviados">
-                    <c:foreach var="mensaje" items="${mensajesEnviados}">
+                    <c:forEach var="mensaje" items="${mensajesEnviados}">
                         <div class="servicio-item"
                             data-id="${mensaje.idMensaje}"
                             data-descripcion="${mensaje.contenido}"
@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
                             onclick="seleccionarItem(this)">
                             <p class="nombre">${mensaje.asunto}</p>
                         </div>
-                    </c:foreach>
+                    </c:forEach>
 
                     <c:if test="${empty mensajesEnviados}">
                         <div class="estado-vacio">
@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
                     <h1>MENSAJES RECIBIDOS</h1>
                 </div>
                 <div class="lista-Mensajes" id="listaMensajesRecibidos">
-                    <c:foreach var="mensaje" items="${mensajesRecibidos}">
+                    <c:forEach var="mensaje" items="${mensajesRecibidos}">
                         <div class="servicio-item"
                             data-id="${mensaje.idMensaje}"
                             data-descripcion="${mensaje.contenido}"
@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
                             onclick="seleccionarItem(this)">
                             <p class="nombre">${mensaje.asunto}</p>
                         </div>
-                    </c:foreach>
+                    </c:forEach>
 
                     <c:if test="${empty mensajesRecibidos}">
                         <div class="estado-vacio">
