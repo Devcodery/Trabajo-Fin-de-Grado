@@ -70,7 +70,7 @@ public class MensajeControlador extends HttpServlet {
 			String idUsuarioStr = (String)session.getAttribute("idUsuario");
 			int idUsuario = Integer.valueOf(idUsuarioStr);
 			mensajeDAO.create(idConsulta, idUsuario, descripcion, asunto);	
-			request.getRequestDispatcher("/vistas/gestionMensajes.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=listarMensajes");
 		}
 		conexion.cerrarConexion();
 	}
