@@ -33,7 +33,7 @@ public class MensajeDAO {
 		}
 	}
 
-	public ArrayList<Mensaje> readMensajesUsuario(int idUsuario, int idConsulta) {
+	public ArrayList<Mensaje> readMensajesUsuarioEnviar(int idUsuario, int idConsulta) {
 		ArrayList <Mensaje> mensajes = new ArrayList<Mensaje>();
 		query = "select * "
 				+ "from mensajes "
@@ -51,6 +51,25 @@ public class MensajeDAO {
 		}
 		return mensajes;
 	}
+	public ArrayList<Mensaje> readMensajesUsuarioRecibir(int idUsuario, int idConsulta) {
+		ArrayList <Mensaje> mensajes = new ArrayList<Mensaje>();
+		query = "select * "
+				+ "from mensajes "
+				+ "where id_consulta = ? and id_usuario <> ?";
+		
+		try(PreparedStatement sentencia = conn.prepareStatement(query)){
+			sentencia.setInt(1, idUsuario);
+			sentencia.setInt(2, idConsulta);
+			ResultSet rs = sentencia.executeQuery();
+			while(rs.next()) {
+				mensajes.add(new Mensaje(rs.getInt("id_mensajeria"), rs.getInt("id_usuario"), rs.getInt("id_consulta"), rs.getString("asunto"), rs.getString("descripcion")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return mensajes;
+	}
+	
 	
 	public Mensaje readMensaje(int idMensaje) {
 		Mensaje mensaje = null;
