@@ -42,6 +42,20 @@
                 </c:choose>
             </tr>
             <tr>
+                <c:choose>
+                    <c:when test="${rolPagina == 'cliente'}">
+                        <button class="btn">
+                            <a href="/borrar/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Borrar Clientes</a>	
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                         <button class="btn">
+                            <a href="/borrar/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Borrar Consultor</a>	
+                        </button>
+                    </c:otherwise>
+                </c:choose>
+            </tr>
+            <tr>
             <c:choose>
                 <c:when test="${rolPagina == 'cliente'}">
                     <button class="btn">

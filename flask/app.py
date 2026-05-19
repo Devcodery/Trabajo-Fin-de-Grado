@@ -141,6 +141,62 @@ def obtener_usuario(empleado_id):
         "id_dpto": fila[7],
         "id_sede": fila[8],
     })
+    
+def obtener_usuarios():
+    with get_conn() as conn:
+        with conn.cursor() as cur:
+
+            cur.execute("SELECT * FROM usuario order by id_usuario;")
+
+            filas = cur.fetchall()
+    
+    usuarios = []
+    for fila in filas:
+        usuarios.append({
+            "id_usuario": fila[0],
+            "nombre": fila[1],
+            "apellidos": fila[2],
+            "correo": fila[3],
+            "rol": fila[5],
+            "direccion": fila[6],
+            "id_dpto": fila[7],
+            "id_sede": fila[8],
+        })
+    return usuarios
+    
+@app.route("/borrar/<string:rol>", methods=["GET", "POST"])
+@login_requerido
+def borrar(rol):
+    if "admin" not in session.get("roles", []):
+        return "Sin permisos", 403
+    
+    next_url = request.args.get("next") or request.form.get("next")
+    
+    if next_url:
+        back_url = next_url
+        
+        if f"&rolPagina={rol}" not in back_url:
+            back_url += f"&rolPagina={rol}"
+    else:
+        back_url = url_for("login")
+    
+    usuariosLista = obtener_usuarios()
+    
+    if usuariosLista:
+        usuariosLista = [usuario for usuario in usuariosLista if usuario["rol"] == rol]
+    
+    if request.method == "POST":
+        id_usuario = request.form.get("id_usuario", type=int)
+
+        with get_conn() as conn:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM usuario WHERE id_usuario = %s;", (id_usuario,))
+                if cur.rowcount == 0:
+                    return jsonify({"error": "No existe el usuario"}), 404
+
+        return redirect(url_for("borrar", rol=rol, next=back_url))
+    
+    return render_template("borrar.html", rol=rol, usuarios=usuariosLista, back_url=back_url)
 
 @app.route("/registro/<string:rol>", methods=["GET", "POST"])
 def registro(rol):
@@ -192,32 +248,12 @@ def usuarios():
     if "admin" not in session.get("roles", []):
         return "Sin permisos", 403
 
-    with get_conn() as conn:
-        with conn.cursor() as cur:
-
-            cur.execute("SELECT * FROM usuario order by id_usuario;")
-
-            filas = cur.fetchall()
-    
-    usuarios = []
-    for fila in filas:
-        usuarios.append({
-            "id_usuario": fila[0],
-            "nombre": fila[1],
-            "apellidos": fila[2],
-            "correo": fila[3],
-            "rol": fila[5],
-            "direccion": fila[6],
-            "id_dpto": fila[7],
-            "id_sede": fila[8],
-        })
-    return jsonify(usuarios)
+    lista_usuarios = obtener_usuarios()
+    return jsonify(lista_usuarios)
 
 @app.route("/usuario/<int:id_usuario>", methods=["GET"])
 @login_requerido
 def usuario(id_usuario):
-    # if "admin" not in session.get("roles", []):
-    #     return "Sin permisos", 403
     return obtener_usuario(id_usuario)
     
 @app.route("/login", methods=["GET", "POST"])

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrar Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <button class="btn">
+            <a href="{{ back_url }}">Volver</a> </button>
+    </div>
+
+    <div class="container-carrusel">
+        <h2>Borrar {% if rol == 'cliente' %}Clientes{% else %}Consultores{% endif %}</h2>
+        
+        <div class="lista-servicios" id="listaUsuarios">
+            
+            {% for usuario in usuarios %}
+                <div class="servicio-item" 
+                     data-id="{{ usuario.id_usuario }}" 
+                     onclick="seleccionarUsuario(this)">
+                     
+                    <p class="nombre">{{ usuario.nombre }} {{ usuario.apellidos }}</p>
+                    <p class="idUsuario">ID: {{ usuario.id_usuario }}</p>
+                </div>
+            {% else %}
+                <p>No se encontraron usuarios para este rol.</p>
+            {% endfor %}
+            
+        </div>
+
+        <div class="acciones">
+            <button class="btn-eliminar" onclick="intentarBorrar()">BORRAR USUARIO</button>
+        </div>
+    </div>
+
+    <div id="modal-confirmacion" class="fondo-modal">
+        <div class="tarjeta tarjeta-alerta">
+            <h2>¿Eliminar usuario?</h2>
+            <p>
+                ¿Estás seguro de que deseas eliminar este usuario permanentemente? Esta acción no se puede deshacer.
+            </p>
+            
+            <form action="/borrar/{{ rol }}" method="POST">
+                <input type="hidden" name="id_usuario" id="input-id-usuario" value="">
+                
+                <div class="form-acciones">
+                    <button type="button" class="btn-secondary" onclick="cerrarModalConfirmacion()">Cancelar</button>
+                    <button type="submit" class="btn-eliminar">Sí, eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='JScript/borrar.js') }}"></script>
+</body>
+</html>

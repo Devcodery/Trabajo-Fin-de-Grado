@@ -348,7 +348,7 @@ h1.titulo {
 .acciones {
     display: flex;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
 }
@@ -1077,6 +1077,7 @@ p:empty { display: none; }
     .btn-consulta { min-width: 220px; }
 }
 
+
 .form-grid input[type="text"],
 .form-grid input[type="email"],
 .form-grid input[type="password"],
@@ -1119,103 +1120,106 @@ p:empty { display: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   DETALLE DE SERVICIO (verServicio.jsp)
+   VER SERVICIO (Adaptado al sistema general)
    ═══════════════════════════════════════════════════════════ */
-.servicio-card {
-    margin: 40px auto;
-    max-width: 850px;
-    padding: 0 !important; /* Quitamos el padding por defecto para que la cabecera llegue al borde */
-    overflow: hidden;
+.info-servicio {
+    max-width: 860px;
+    margin: 28px auto;
+    padding: 32px 40px;
     background: var(--clr-surface);
-}
-
-.servicio-header {
-    background-color: #9ee5e5; /* Color celeste del boceto */
-    padding: 24px;
-    text-align: center;
-    border-bottom: 2px solid var(--clr-border);
-}
-
-.servicio-header-titulo {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 32px;
-    color: var(--clr-ink);
-}
-
-.servicio-body {
-    padding: 30px 40px;
-}
-
-.servicio-titulo {
-    text-align: center;
-    font-family: var(--font-body);
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 36px;
-    color: var(--clr-ink);
+    border: 2px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
 .servicio-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 40px;
+    gap: 32px;
 }
 
-.servicio-col {
+.servicio-columna {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.servicio-grupo {
+.servicio-campo {
     display: flex;
     flex-direction: column;
+    gap: 6px;
+}
+
+/* Sustituye al margin-top: auto inline anterior */
+.servicio-campo-final {
+    margin-top: auto;
 }
 
 .servicio-label {
-    display: block;
     font-weight: 600;
     font-size: 14px;
-    margin-bottom: 6px;
     color: var(--clr-ink);
 }
 
-.servicio-valor {
+.servicio-texto {
+    font-size: 15px;
     color: var(--clr-ink-soft);
+    line-height: 1.5;
 }
 
 .servicio-caja {
     border: 2px solid var(--clr-border);
     border-radius: var(--radius-sm);
-    padding: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
     color: var(--clr-ink-soft);
     background: var(--clr-bg);
+    min-height: 90px;
+    line-height: 1.6;
 }
 
-.servicio-caja-md {
-    min-height: 100px;
+.servicio-caja-grande {
+    min-height: 130px;
 }
 
-.servicio-caja-lg {
-    min-height: 120px;
+/* Manejo del color del texto del estado sin CSS inline */
+.status-text.activo {
+    color: var(--clr-activo);
 }
 
-.servicio-meta {
-    font-size: 13px;
-    color: var(--clr-ink-soft);
-    margin-top: auto;
-    padding-top: 10px;
+.status-text.inactivo {
+    color: var(--clr-inactivo);
 }
 
-.servicio-pie {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+/* Para que no se rompa en móviles */
+@media (max-width: 640px) {
+    .servicio-grid { grid-template-columns: 1fr; }
+    .info-servicio { padding: 20px; margin: 16px; }
+    .servicio-campo-final { margin-top: 0; }
 }
 
-.servicio-btn-cerrar {
-    padding: 10px 40px;
-    min-width: 140px;
+/* ═══════════════════════════════════════════════════════════
+   MODALES PEQUEÑOS DE ALERTA Y CONFIRMACIÓN
+   ═══════════════════════════════════════════════════════════ */
+.tarjeta-alerta {
+    max-width: 450px;
     text-align: center;
+    padding: 32px 24px;
+}
+
+.tarjeta-alerta h2 {
+    color: #c0392b; /* Rojo para alertas */
+    margin-bottom: 12px;
+}
+
+.tarjeta-alerta p {
+    color: var(--clr-ink-soft);
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+/* Forzamos que los botones de esta tarjeta se centren */
+.tarjeta-alerta .form-acciones {
+    justify-content: center;
+    gap: 16px;
 }
