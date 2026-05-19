@@ -263,7 +263,7 @@ def login():
     if request.method == "POST":
         user = request.form.get("user")
         passwd = request.form.get("passwd")
-        next_url = request.form.get("next") or "/"
+        next_url = request.args.get("next") or "/"
 
         # Usuario administrador definido en .env.
         if user == USUARIO and passwd == PASSWD:
