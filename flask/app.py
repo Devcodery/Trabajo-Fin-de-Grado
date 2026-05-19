@@ -145,8 +145,13 @@ def obtener_usuario(empleado_id):
 @app.route("/registro/<string:rol>", methods=["GET", "POST"])
 def registro(rol):
     
-    back_url = request.args.get('next') or "/"
-    back_url += "&rolPagina=" + rol
+    next_url = request.args.get("next") or request.form.get("next")
+    
+    if next_url and next_url.strip():
+        back_url = next_url
+        back_url += f"&rolPagina={rol}"
+    else:
+        back_url = url_for("login")
     
     if request.method == "POST":
         nombre = request.form.get("nombre")
