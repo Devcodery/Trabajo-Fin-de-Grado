@@ -3,7 +3,7 @@ create table servicio (
     nombre varchar(50) not null,
     descripcion text not null,
     categoria varchar(50) not null,
-    sede varchar(50) not null,
+    id_sede int not null,
     beneficios text not null,
     tecnologias_implicadas text not null,
     alcance text not null,
@@ -50,8 +50,8 @@ before update of estado on consulta
 for each row
 execute function fn_consulta_estado();
 
-insert into servicio (nombre, descripcion, categoria, sede, beneficios, tecnologias_implicadas, alcance, objetivos, estado) values
-('Automatización de Procesos', 'Servicio de automatización de procesos empresariales para mejorar la eficiencia y reducir costes.', 'Automatización', 'Delegación Madrid', 'Mejora de la eficiencia operativa, reducción de costes, aumento de la productividad.', 'Inteligencia Artificial', 'Empresas de todos los tamaños que buscan automatizar sus procesos y mejorar su eficiencia.', 'Automatización de procesos empresariales', true),
-('Análisis de Datos', 'Servicio de análisis de datos para ayudar a las empresas a tomar decisiones informadas basadas en datos.', 'Análisis de Datos', 'Delegación Barcelona', 'Toma de decisiones informada, identificación de oportunidades de negocio, mejora del rendimiento.', 'Big Data, Machine Learning', 'Empresas que buscan aprovechar sus datos para mejorar su rendimiento y tomar decisiones informadas.', 'Análisis de datos empresariales', true),
-('Ciberseguridad', 'Servicio de ciberseguridad para proteger los sistemas y datos de las empresas contra amenazas cibernéticas.', 'Ciberseguridad', 'Delegación Valencia', 'Protección contra amenazas cibernéticas, cumplimiento de normativas de seguridad, tranquilidad para los clientes.', 'Seguridad Informática, Firewalls, Antivirus', 'Empresas que buscan proteger sus sistemas y datos contra amenazas cibernéticas.', 'Protección contra amenazas cibernéticas', true),
-('Desarrollo de Software a Medida', 'Servicio de desarrollo de software personalizado para satisfacer las necesidades específicas de cada cliente.', 'Desarrollo de Software', 'Delegación Sevilla', 'Soluciones personalizadas, mejora de la eficiencia operativa, ventaja competitiva.', 'Programación, Desarrollo Web, Desarrollo Móvil', 'Empresas que buscan soluciones de software personalizadas para mejorar su eficiencia operativa y obtener una ventaja competitiva.', 'Desarrollo de software personalizado', false);
+insert into servicio (nombre, descripcion, categoria, id_sede, beneficios, tecnologias_implicadas, alcance, objetivos, estado) values
+('Automatización de Procesos', 'Servicio de automatización de procesos empresariales para mejorar la eficiencia y reducir costes.', 'Automatización', 1, 'Mejora de la eficiencia operativa, reducción de costes, aumento de la productividad.', 'Inteligencia Artificial', 'Empresas de todos los tamaños que buscan automatizar sus procesos y mejorar su eficiencia.', 'Automatización de procesos empresariales', true),
+('Análisis de Datos', 'Servicio de análisis de datos para ayudar a las empresas a tomar decisiones informadas basadas en datos.', 'Análisis de Datos', 2, 'Toma de decisiones informada, identificación de oportunidades de negocio, mejora del rendimiento.', 'Big Data, Machine Learning', 'Empresas que buscan aprovechar sus datos para mejorar su rendimiento y tomar decisiones informadas.', 'Análisis de datos empresariales', true),
+('Ciberseguridad', 'Servicio de ciberseguridad para proteger los sistemas y datos de las empresas contra amenazas cibernéticas.', 'Ciberseguridad', 3, 'Protección contra amenazas cibernéticas, cumplimiento de normativas de seguridad, tranquilidad para los clientes.', 'Seguridad Informática, Firewalls, Antivirus', 'Empresas que buscan proteger sus sistemas y datos contra amenazas cibernéticas.', 'Protección contra amenazas cibernéticas', true),
+('Desarrollo de Software a Medida', 'Servicio de desarrollo de software personalizado para satisfacer las necesidades específicas de cada cliente.', 'Desarrollo de Software', 4, 'Soluciones personalizadas, mejora de la eficiencia operativa, ventaja competitiva.', 'Programación, Desarrollo Web, Desarrollo Móvil', 'Empresas que buscan soluciones de software personalizadas para mejorar su eficiencia operativa y obtener una ventaja competitiva.', 'Desarrollo de software personalizado', false);
