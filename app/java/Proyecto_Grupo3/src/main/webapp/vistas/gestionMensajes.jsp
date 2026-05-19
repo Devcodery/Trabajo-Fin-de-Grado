@@ -23,11 +23,12 @@ pageEncoding="UTF-8"%>
         	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
         </button>
     </div>
-        
+        <div class="title">
+            <h1>MIS MENSAJES</h1>
+        </div>
+            
         <div class="lista-Mensajes" id="listaMensajes">
-            <div class="title">
-                <h1>MIS MENSAJES</h1>
-            </div>
+            
             <c:forEach var="mensaje" items="${mensajesEnviados}">
                 <div class="servicio-item"
                     data-id="${mensaje.idMensaje}"
@@ -47,10 +48,11 @@ pageEncoding="UTF-8"%>
             </c:if>
         </div>
 
+        <div class="title">
+            <h1>MENSAJES RECIBIDOS</h1>
+        </div>
         <div class="lista-Mensajes" id="listaMensajes">
-            <div class="title">
-                <h1>MENSAJES RECIBIDOS</h1>
-            </div>
+            
             <c:forEach var="mensaje" items="${mensajesRecibidos}">
                 <div class="servicio-item"
                     data-id="${mensaje.idMensaje}"
