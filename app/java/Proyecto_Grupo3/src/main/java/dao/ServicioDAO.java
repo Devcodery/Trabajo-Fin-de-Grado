@@ -104,7 +104,7 @@ public class ServicioDAO {
 			query += " AND estado = ?";
 		}	
 		if (sede != null && !sede.isEmpty()){
-			query += " AND id_sede = ?";
+			query += " AND sede = ?";
 		}
 		if (fechaInicio != null){
 			query += " AND fecha_creacion >= ?";
