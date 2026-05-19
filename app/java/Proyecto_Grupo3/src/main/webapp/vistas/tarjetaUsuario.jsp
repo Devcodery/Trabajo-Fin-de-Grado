@@ -11,8 +11,7 @@
         
         <c:choose>
             <c:when test="${empty usuario}">
-                <div id="mensaje-sin-usuario" class="estado-vacio oculto">
-                    <div class="icono-vacio">👤</div>
+                <div class="estado-vacio">
                     <h3>Aún no asignado</h3>
                     <p>No hay información de usuario disponible para mostrar en esta consulta.</p>
                 </div>
