@@ -112,7 +112,7 @@ public class ServicioDAOTest {
         when(mockResultSet.next()).thenReturn(true, false);
         when(mockResultSet.getInt("id_servicio")).thenReturn(15);
 
-        ArrayList<Servicio> resultado = servicioDAO.filtrar(true, "Delegación Madrid", null, null);
+        ArrayList<Servicio> resultado = servicioDAO.filtrar(true, "2", null, null);
 
         assertNotNull(resultado);
         assertEquals(1, resultado.size());

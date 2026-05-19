@@ -40,7 +40,7 @@
                     <label for="chkSede">Sede</label>
                     <select name="sede" id="sede" disabled>
                         <c:forEach var="sede" items="${sedes}">
-                            <option value="${sede.nombre}">
+                            <option value="${sede.idSede}">
                                 ${sede.nombre}
                             </option>
                         </c:forEach>

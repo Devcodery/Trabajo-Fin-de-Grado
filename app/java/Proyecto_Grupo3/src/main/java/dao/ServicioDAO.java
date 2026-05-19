@@ -101,7 +101,7 @@ public class ServicioDAO {
 			query += " AND estado = ?";
 		}	
 		if (sede != null && !sede.isEmpty()){
-			query += " AND sede = ?";
+			query += " AND id_sede = ?";
 		}
 		if (fechaInicio != null){
 			query += " AND fecha_creacion >= ?";
@@ -119,7 +119,7 @@ public class ServicioDAO {
 				sentenciaPreparada.setBoolean(aux++, est);
 			}	
 			if (sede != null && !sede.isEmpty()){
-				sentenciaPreparada.setString(aux++, sede);
+				sentenciaPreparada.setInt(aux++, Integer.valueOf(sede));
 			}
 			if(fechaInicio != null){
 				sentenciaPreparada.setDate(aux++, fechaInicio);
