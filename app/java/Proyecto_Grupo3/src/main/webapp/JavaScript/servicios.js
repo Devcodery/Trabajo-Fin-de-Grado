@@ -47,7 +47,7 @@ function ejecutarAccion(funcion) {
     window.location.href = window.location.origin + url;
 }
 
-function confirmarEliminarServicio() {
+function confirmarEliminar() {
     const url = `/GestionServicioControlador?opcion=eliminarServicio&idServicio=${servicioSeleccionadoId}`;
     window.location.href = window.location.origin + url;
 }

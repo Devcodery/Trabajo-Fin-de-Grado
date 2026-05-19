@@ -20,7 +20,7 @@
         </p>
         <div class="form-acciones">
             <button type="button" class="btn-secondary" onclick="cerrarModalConfirmacion()">Cancelar</button>
-            <button type="button" class="btn-eliminar" onclick="confirmarEliminarServicio()">Sí, eliminar</button>
+            <button type="button" class="btn-eliminar" onclick="confirmarEliminar()">Sí, eliminar</button>
         </div>
     </div>
 </div>

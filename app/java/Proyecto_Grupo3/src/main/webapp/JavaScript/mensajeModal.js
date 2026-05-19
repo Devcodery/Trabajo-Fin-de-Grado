@@ -70,11 +70,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Por favor, selecciona un mensaje de la lista primero.");
                 return;
             }
-            const idMensaje = itemSeleccionado.getAttribute('data-id');
-            if (confirm("¿Estás seguro de que deseas borrar este mensaje?")) {
-                const url = `/MensajeControlador?opcion=borrarMensaje&idMensaje=${idMensaje}`
-                window.location.href = window.location.origin + url;
-            }
+            abrirModalConfirmacion();
         });
     }
 });
+
+function confirmarEliminar() {
+    const idMensaje = itemSeleccionado.getAttribute('data-id');
+    const url = `/MensajeControlador?opcion=borrarMensaje&idMensaje=${idMensaje}`;
+    window.location.href = window.location.origin + url;
+}
