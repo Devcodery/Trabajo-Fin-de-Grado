@@ -36,9 +36,6 @@
             <div class="scroll-box height-servicios">
                 <ul>
                     <c:forEach var="servicio" items="${servicios}">
-                        <li>
-                            <c:out value="${servicio.nombre}"></c:out><br> 
-                        </li>
                         <div class="servicio-item" 
                             data-id="${servicio.idServicio}" 
                             onclick="window.location.href=
