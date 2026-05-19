@@ -63,14 +63,14 @@ public class MensajeControlador extends HttpServlet {
 		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("enviarMensaje")) {
-			String descripcion = String.valueOf(request.getAttribute("cuerpoMensaje"));
-			String asunto = String.valueOf(request.getAttribute("asunto"));
+			String descripcion = String.valueOf(request.getParameter("cuerpoMensaje"));
+			String asunto = String.valueOf(request.getParameter("asunto"));
 			String idConsultaStr = (String)session.getAttribute("idConsulta");
 			int idConsulta = Integer.valueOf(idConsultaStr);
 			String idUsuarioStr = (String)session.getAttribute("idUsuario");
 			int idUsuario = Integer.valueOf(idUsuarioStr);
 			mensajeDAO.create(idConsulta, idUsuario, descripcion, asunto);	
-			request.getRequestDispatcher("/vistas/verMensajes.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=listarMensajes");
 		}
 		conexion.cerrarConexion();
 	}

@@ -25,7 +25,7 @@ if(pg_query($conn, $query)) {
      pg_close($conn);
 } else {
     echo "Error al guardar el servicio: " . pg_last_error($conn);
-    header("Location: ../formularios/formularioConsulta.php?mensaje=error&idUsuario=$idUsuario");
+    header("Location: ../formularios/formularioConsulta.php?mensaje=error");
     exit();
 }
 
@@ -56,7 +56,7 @@ $jsonDataConsulta = json_encode([
     'idioma' => $idiomaCorreo
 ]);
 
-$webhook = 'http://n8n-app:5678/webhook-test/correo';
+$webhook = 'http://n8n-app:5678/webhook/correo';
 
 $ch = curl_init($webhook);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataConsulta);

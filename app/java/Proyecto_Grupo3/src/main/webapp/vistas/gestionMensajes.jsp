@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
             <c:forEach var="mensaje" items="${mensajes}">
                 <div class="servicio-item"
                     data-id="${mensaje.idMensaje}"
-                    data-descripcion="${mensaje.descripcion}"
+                    data-descripcion="${mensaje.contenido}"
                     data-asunto="${mensaje.asunto}"
                     onclick="seleccionarItem(this)">
                     <p class="nombre">${mensaje.asunto}</p>

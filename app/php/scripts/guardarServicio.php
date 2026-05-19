@@ -1,5 +1,5 @@
 <?php
-include '/scripts/db.php';
+include 'db.php';
 
 $nombre = $_POST['nombre'] ?? '';
 $categoria = $_POST['categoria'] ?? '';
