@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import conexionBBDD.ConexionBBDD;
 import modelo.Consulta;
@@ -37,6 +38,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Borrar consulta vinculada a un servicio")
     public void testBorrarServicioConsulta_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -48,6 +50,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Excepción: Fallo al intentar borrar consulta de un servicio")
     public void testBorrarServicioConsulta_Exception() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error simulado"));
 
@@ -57,11 +60,11 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Obtener todas las consultas de un cliente específico")
     public void testReadConsultaCliente_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
         
-        // Simular un registro devuelto
         when(mockResultSet.next()).thenReturn(true, false);
         when(mockResultSet.getInt("id_consulta")).thenReturn(10);
         when(mockResultSet.getString("estado")).thenReturn("Abierta");
@@ -75,6 +78,36 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Obtener todas las consultas de un servicio específico")
+    public void testReadConsultaServicio_Exito() throws SQLException {
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
+        
+        when(mockResultSet.next()).thenReturn(true, false);
+        when(mockResultSet.getInt("id_consulta")).thenReturn(15);
+        when(mockResultSet.getString("estado")).thenReturn("Abierta");
+        when(mockResultSet.getString("titulo")).thenReturn("Duda de servicio");
+
+        ArrayList<Consulta> resultado = consultaDAO.readConsultaServicio(3);
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals(15, resultado.get(0).getIdConsulta());
+        verify(mockPreparedStatement).setInt(1, 3);
+    }
+
+    @Test
+    @DisplayName("Excepción: Fallo al buscar consultas de un servicio")
+    public void testReadConsultaServicio_Exception() throws SQLException {
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error simulado en DB"));
+
+        ArrayList<Consulta> resultado = consultaDAO.readConsultaServicio(3);
+
+        assertNull(resultado);
+    }
+
+    @Test
+    @DisplayName("Éxito: Obtener todas las consultas asignadas a un consultor")
     public void testReadConsultaConsultor_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -88,10 +121,11 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Obtener la lista completa de todas las consultas")
     public void testReadAll_Exito() throws SQLException {
         when(mockConnection.createStatement()).thenReturn(mockStatement);
         when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
-        when(mockResultSet.next()).thenReturn(true, true, false); // Devuelve dos registros
+        when(mockResultSet.next()).thenReturn(true, true, false);
 
         ArrayList<Consulta> resultado = consultaDAO.readAll();
 
@@ -100,6 +134,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Encontrar una consulta específica por su ID")
     public void testRead_Encontrado() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -113,6 +148,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Fallo controlado: Buscar una consulta con un ID inexistente")
     public void testRead_NoEncontrado() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -124,6 +160,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Filtrar consultas pasando múltiples parámetros")
     public void testFiltrar_ConFiltros() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -137,6 +174,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Actualizar el estado de una consulta")
     public void testUpdateEstado_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -149,6 +187,7 @@ public class ConsultaDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Reasignar un nuevo consultor a una consulta")
     public void testUpdateConsultor_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);

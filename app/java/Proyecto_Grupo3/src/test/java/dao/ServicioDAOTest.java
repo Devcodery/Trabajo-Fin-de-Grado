@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import conexionBBDD.ConexionBBDD;
 import modelo.Servicio;
@@ -38,6 +39,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Leer todos los servicios disponibles")
     public void testReadAll_Exito() throws SQLException {
         when(mockConnection.createStatement()).thenReturn(mockStatement);
         when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
@@ -53,6 +55,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Excepción: Fallo al leer todos los servicios devuelve null")
     public void testReadAll_Exception() throws SQLException {
         when(mockConnection.createStatement()).thenReturn(mockStatement);
         when(mockStatement.executeQuery(anyString())).thenThrow(new SQLException("Error"));
@@ -63,6 +66,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Encontrar un servicio por su ID")
     public void testRead_Encontrado() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -76,6 +80,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Borrar un servicio existente")
     public void testBorrarServicio_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -87,6 +92,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Cambiar el estado de un servicio")
     public void testCambiarEstadoServicio_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -99,6 +105,7 @@ public class ServicioDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Filtrar servicios usando parámetros")
     public void testFiltrar_ConParametros() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);

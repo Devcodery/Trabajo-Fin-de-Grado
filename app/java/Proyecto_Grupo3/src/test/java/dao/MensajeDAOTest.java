@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import conexionBBDD.ConexionBBDD;
 import modelo.Mensaje;
@@ -35,6 +36,7 @@ public class MensajeDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Crear y guardar un nuevo mensaje en la base de datos")
     public void testCreate_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
@@ -49,6 +51,7 @@ public class MensajeDAOTest {
     }
 
     @Test
+    @DisplayName("Excepción: Fallo al intentar crear un nuevo mensaje")
     public void testCreate_Exception() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error en DB"));
 
@@ -58,6 +61,7 @@ public class MensajeDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Leer todos los mensajes de un usuario dentro de una consulta")
     public void testReadMensajesUsuario_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -76,6 +80,7 @@ public class MensajeDAOTest {
     }
 
     @Test
+    @DisplayName("Éxito: Encontrar un mensaje específico mediante su ID")
     public void testReadMensaje_Encontrado() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -94,6 +99,7 @@ public class MensajeDAOTest {
     }
 
     @Test
+    @DisplayName("Fallo controlado: Buscar un mensaje con un ID inexistente")
     public void testReadMensaje_NoEncontrado() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
@@ -102,5 +108,27 @@ public class MensajeDAOTest {
         Mensaje resultado = mensajeDAO.readMensaje(999);
 
         assertNull(resultado);
+    }
+
+    @Test
+    @DisplayName("Éxito: Borrar todos los mensajes asociados a una consulta")
+    public void testBorrarMensajesConsulta_Exito() throws SQLException {
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        boolean resultado = mensajeDAO.borrarMensajesConsulta(10);
+
+        assertTrue(resultado);
+        verify(mockPreparedStatement).setInt(1, 10); 
+    }
+
+    @Test
+    @DisplayName("Excepción: Fallo al intentar borrar los mensajes de una consulta")
+    public void testBorrarMensajesConsulta_Exception() throws SQLException {
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error al borrar en DB"));
+
+        boolean resultado = mensajeDAO.borrarMensajesConsulta(10);
+
+        assertFalse(resultado);
     }
 }
