@@ -11,7 +11,7 @@
 
     <div class="nav">
         <button class="btn">Regresar</button>
-        <a href="/login" class="btn">
+        <a href="/login?next=/AutenticadorControlador" class="btn">
 		    Login
 		</a>
     </div>
