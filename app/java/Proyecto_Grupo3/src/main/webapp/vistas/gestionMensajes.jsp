@@ -23,11 +23,12 @@ pageEncoding="UTF-8"%>
         	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
         </button>
     </div>
-        <div class="title">
-            <h1>MENSAJES</h1>
-        </div>
+        
         <div class="lista-Mensajes" id="listaMensajes">
-            <c:forEach var="mensaje" items="${mensajes}">
+            <div class="title">
+                <h1>MIS MENSAJES</h1>
+            </div>
+            <c:forEach var="mensaje" items="${mensajesEnviados}">
                 <div class="servicio-item"
                     data-id="${mensaje.idMensaje}"
                     data-descripcion="${mensaje.contenido}"
@@ -37,10 +38,33 @@ pageEncoding="UTF-8"%>
                 </div>
             </c:forEach>
 
-            <c:if test="${empty mensajes}">
+            <c:if test="${empty mensajesEnviados}">
                 <div class="estado-vacio">
                     <div class="icono-vacio"></div>
-                    <h3>No hay mensajes</h3>
+                    <h3>No hay mensajes enviados</h3>
+                    <p>Aún no has enviado ningún mensaje.</p>
+                </div>
+            </c:if>
+        </div>
+
+        <div class="lista-Mensajes" id="listaMensajes">
+            <div class="title">
+                <h1>MENSAJES RECIBIDOS</h1>
+            </div>
+            <c:forEach var="mensaje" items="${mensajesRecibidos}">
+                <div class="servicio-item"
+                    data-id="${mensaje.idMensaje}"
+                    data-descripcion="${mensaje.contenido}"
+                    data-asunto="${mensaje.asunto}"
+                    onclick="seleccionarItem(this)">
+                    <p class="nombre">${mensaje.asunto}</p>
+                </div>
+            </c:forEach>
+
+            <c:if test="${empty mensajesRecibidos}">
+                <div class="estado-vacio">
+                    <div class="icono-vacio"></div>
+                    <h3>No hay mensajes recibidos</h3>
                     <p>Aún no has recibido ningún mensaje.</p>
                 </div>
             </c:if>
