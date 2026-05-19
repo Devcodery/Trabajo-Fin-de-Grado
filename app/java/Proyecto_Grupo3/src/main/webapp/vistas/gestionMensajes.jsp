@@ -18,6 +18,11 @@ pageEncoding="UTF-8"%>
             href="${pageContext.request.contextPath}/style/style.css">
     </head>
     <body>
+    <div class="nav">
+        <button class="btn">
+        	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
+        </button>
+    </div>
         <div class="title">
             <h1>MENSAJES</h1>
         </div>
@@ -44,6 +49,7 @@ pageEncoding="UTF-8"%>
         <div class="acciones">
             <button id="btn-abrir-detalle">Enviar Mensaje</button>
             <button id="btn-abrir-mensaje">Ver Detalles</button>
+            <button id="btn-borrar-mensaje">Borrar</button>
         </div>
 
         <jsp:include page="enviarMensajes.jsp"></jsp:include>

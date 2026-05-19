@@ -46,6 +46,11 @@ public class MensajeControlador extends HttpServlet {
 			ArrayList <Mensaje>	mensajes = mensajeDAO.readMensajesUsuario(Integer.valueOf(idUsuarioStr), Integer.valueOf(idConsultaStr));
 			request.setAttribute("mensajes", mensajes);
 			request.getRequestDispatcher("/vistas/gestionMensajes.jsp").forward(request, response);
+		} else if(opcion.equalsIgnoreCase("borrarMensaje")) {
+			int idMensaje = (int)request.getAttribute("idMensaje");
+			if(mensajeDAO.borrarMensajesConsulta(idMensaje)) {
+				response.sendRedirect(request.getContextPath() + "/MensajeControlador?opcion=listarMensajes");
+			}
 		}
 		conexion.cerrarConexion();
 	}

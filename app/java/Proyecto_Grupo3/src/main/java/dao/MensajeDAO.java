@@ -70,11 +70,11 @@ public class MensajeDAO {
 		return mensaje;
 	}
 
-	public boolean borrarMensajesConsulta(int idConsulta) {
-		query = "delete from mensajes where id_consulta = ?;";
+	public boolean borrarMensajesConsulta(int idMensaje) {
+		query = "delete from mensajes where id_mensajeria = ?;";
 		
 		try(PreparedStatement sentencia = conn.prepareStatement(query)){
-			sentencia.setInt(1, idConsulta);
+			sentencia.setInt(1, idMensaje);
 			sentencia.executeUpdate();
 			return true;
 		} catch (SQLException e) {

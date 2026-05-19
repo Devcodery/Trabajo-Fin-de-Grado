@@ -61,4 +61,20 @@ document.addEventListener("DOMContentLoaded", function() {
             fondoModalVer.style.display = 'none';
         });	
     }
+    const btnBorrarMensaje = document.getElementById('btn-borrar-mensaje');
+
+    if (btnBorrarMensaje) {
+        btnBorrarMensaje.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!itemSeleccionado) {
+                alert("Por favor, selecciona un mensaje de la lista primero.");
+                return;
+            }
+            const idMensaje = itemSeleccionado.getAttribute('data-id');
+            if (confirm("¿Estás seguro de que deseas borrar este mensaje?")) {
+                const url = `/MensajeControlador?opcion=borrarMensaje&idMensaje=${idMensaje}`
+                window.location.href = window.location.origin + url;
+            }
+        });
+    }
 });
