@@ -63,8 +63,8 @@ public class MensajeControlador extends HttpServlet {
 		MensajeDAO mensajeDAO = new MensajeDAO(conexion);
 		
 		if(opcion.equalsIgnoreCase("enviarMensaje")) {
-			String descripcion = String.valueOf(request.getAttribute("cuerpoMensaje"));
-			String asunto = String.valueOf(request.getAttribute("asunto"));
+			String descripcion = String.valueOf(request.getParameter("cuerpoMensaje"));
+			String asunto = String.valueOf(request.getParameter("asunto"));
 			String idConsultaStr = (String)session.getAttribute("idConsulta");
 			int idConsulta = Integer.valueOf(idConsultaStr);
 			String idUsuarioStr = (String)session.getAttribute("idUsuario");
