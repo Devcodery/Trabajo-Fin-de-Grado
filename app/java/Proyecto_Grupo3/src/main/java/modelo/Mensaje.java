@@ -7,7 +7,8 @@ public class Mensaje {
     private String asunto;
     private String contenido;
     
-    public Mensaje(int idUsuario, int idConsulta, String asunto, String contenido) {
+    public Mensaje(int idMensaje,int idUsuario, int idConsulta, String asunto, String contenido) {
+        this.idMensaje = idMensaje;
         this.idUsuario = idUsuario;
         this.idConsulta = idConsulta;
         this.asunto = asunto;
