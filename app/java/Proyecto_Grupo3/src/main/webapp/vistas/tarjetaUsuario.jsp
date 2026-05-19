@@ -9,7 +9,7 @@
             <c:when test="${rol == 'admin'}"><h2>Detalle Usuario</h2></c:when>
         </c:choose>
         
-        <div id="mensaje-sin-usuario" class="estado-vacio <c:if test="${not empty usuario}">oculto</c:if>">
+        <div id="mensaje-sin-usuario" class="estado-vacio <c:if test="${not empty usuario || rol == 'admin'}">oculto</c:if>">
             <div class="icono-vacio">👤</div>
             <h3>Aún no asignado</h3>
             <p>No hay información de usuario disponible para mostrar.</p>
