@@ -30,7 +30,7 @@ public class ServicioDAO {
 			while (r.next()) {
 				servicios.add(new Servicio(r.getInt("id_servicio"), r.getString("nombre"), r.getString("descripcion"),
 						r.getString("tecnologias_implicadas"), r.getString("objetivos"), r.getString("alcance"),
-						r.getString("beneficios"), r.getString("categoria"), r.getString("sede"),
+						r.getString("beneficios"), r.getString("categoria"), r.getString("id_sede"),
 						r.getDate("fecha_creacion"), r.getBoolean("estado")));
 
 			}
@@ -54,7 +54,7 @@ public class ServicioDAO {
 			if (r.next()) {
 				servicio = new Servicio(r.getInt("id_servicio"), r.getString("nombre"), r.getString("descripcion"),
 						r.getString("tecnologias_implicadas"), r.getString("objetivos"), r.getString("alcance"),
-						r.getString("beneficios"), r.getString("categoria"), r.getString("sede"),
+						r.getString("beneficios"), r.getString("categoria"), r.getString("id_sede"),
 						r.getDate("fecha_creacion"), r.getBoolean("estado"));
 
 			}
@@ -138,7 +138,7 @@ public class ServicioDAO {
 											rs.getString("alcance"),
 											rs.getString("beneficios"),
 											rs.getString("categoria"),
-											rs.getString("sede"),
+											rs.getString("id_sede"),
 											rs.getDate("fecha_creacion"),
 											rs.getBoolean("estado")));
 			}
