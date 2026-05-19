@@ -149,7 +149,6 @@ def registro(rol):
     
     if next_url:
         back_url = next_url
-        back_url += f"&rolPagina={rol}"
     else:
         back_url = url_for("login")
     
@@ -171,7 +170,7 @@ def registro(rol):
             error="No se pudo registrar el empleado. Revisa si ya existe.",
             departamentos=obtener_departamentos(),
             sedes=obtener_sedes(),
-            back_url=back_url
+            back_url=back_url+f"&rolPagina={rol}"
         ), 400
 
     return render_template(
@@ -180,7 +179,7 @@ def registro(rol):
         sedes=obtener_sedes(),
         error="",
         rol=rol,
-        back_url=back_url
+        back_url=back_url+f"&rolPagina={rol}"
     )
 
 @app.route("/usuarios", methods=["GET"])
