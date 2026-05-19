@@ -58,13 +58,13 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group">
                 <label for="sede">Sede:</label>
-                <select type="text" id="sede" name="sede" value="<?= isset($servicios[0]['sede']) ? $servicios[0]['sede'] : ''?>">
+                <select type="text" id="id_sede" name="id_sede" value="<?= isset($servicios[0]['id_sede']) ? $servicios[0]['id_sede'] : ''?>">
                     <option value="">Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
-                        <?php if (isset($servicios[0]['sede']) && $servicios[0]['sede'] === $sede['nombre']): ?>
-                            <option value="<?= $sede['nombre'] ?>" selected><?= $sede['nombre'] ?></option>
+                        <?php if (isset($servicios[0]['id_sede']) && $servicios[0]['id_sede'] === $sede['id']): ?>
+                            <option value="<?= $sede['id'] ?>" selected><?= $sede['nombre'] ?></option>
                         <?php else: ?>
-                            <option value="<?= $sede['nombre'] ?>"><?= $sede['nombre'] ?></option>
+                            <option value="<?= $sede['id'] ?>"><?= $sede['nombre'] ?></option>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </select>

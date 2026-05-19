@@ -4,7 +4,9 @@ $_GET = file_get_contents($url);
 $data = json_decode($_GET, true);
 $sedes = [];
 foreach ($data['data'] as $sede) {
-    $sedes[] = ['nombre' => $sede['nombre']];
+    $sedes[] = ['nombre' => $sede['nombre'],
+                'id' => $sede['id']
+                ];
 }
 
 ?>
@@ -27,7 +29,7 @@ foreach ($data['data'] as $sede) {
         </header>
 
         <form id="formInsertarServicio" action="/scripts/guardarServicio.php" method="post" class="form-grid">
-            
+            <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ej: Automatización con IA">

@@ -4,7 +4,7 @@ include 'db.php';
 $id = $_POST['id'];
 $nombre = $_POST['nombre'];
 $categoria = $_POST['categoria'];
-$sede = $_POST['sede'];
+$id_sede = $_POST['id_sede'];
 $descripcion = $_POST['descripcion'];
 $beneficios = $_POST['beneficios'];
 $tecnologias_implicadas = $_POST['tecnologias_implicadas'];
@@ -20,7 +20,7 @@ if($estado == 'Activo') {
 }
 
 $sql = "UPDATE servicio 
-        SET nombre='$nombre', categoria='$categoria', sede='$sede', descripcion='$descripcion', beneficios='$beneficios', tecnologias_implicadas='$tecnologias_implicadas', alcance='$alcance', objetivos='$objetivos', estado='$estado' 
+        SET nombre='$nombre', categoria='$categoria', id_sede=$id_sede, descripcion='$descripcion', beneficios='$beneficios', tecnologias_implicadas='$tecnologias_implicadas', alcance='$alcance', objetivos='$objetivos', estado='$estado' 
         WHERE id_servicio=$id";
 
     if (pg_query($conn, $sql)) {
