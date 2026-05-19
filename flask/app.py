@@ -147,7 +147,7 @@ def registro(rol):
     
     next_url = request.args.get("next") or request.form.get("next")
     
-    if next_url and next_url.strip():
+    if next_url:
         back_url = next_url
         back_url += f"&rolPagina={rol}"
     else:
