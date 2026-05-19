@@ -29,7 +29,6 @@ foreach ($data['data'] as $sede) {
         </header>
 
         <form id="formInsertarServicio" action="/scripts/guardarServicio.php" method="post" class="form-grid">
-            <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
             <div class="form-group">
                 <label for="nombre">Nombre del servicio:</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ej: Automatización con IA">
@@ -46,6 +45,7 @@ foreach ($data['data'] as $sede) {
                     <option value="" disabled selected>Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
                         <option value="<?php echo htmlspecialchars($sede['nombre']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
+                        <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
                     <?php endforeach; ?>
                 </select>
             </div>
