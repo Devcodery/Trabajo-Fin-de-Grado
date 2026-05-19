@@ -87,8 +87,6 @@ public class GestionServicioControlador extends HttpServlet {
 				response.sendRedirect("/formularios/modificarServicio.php?idServicio="+idServicio);
 			}
 			
-			
-			String categoria = request.getParameter("categoria");
     		Boolean estado = null;
    		 	String sede = request.getParameter("sede");
    		 	Date fechaInicio = null;
@@ -110,7 +108,7 @@ public class GestionServicioControlador extends HttpServlet {
 				}
    		 	}
 			
-			ArrayList<Servicio> servicios = servicioDAO.filtrar(categoria, estado, sede, fechaInicio, fechaFin);
+			ArrayList<Servicio> servicios = servicioDAO.filtrar(estado, sede, fechaInicio, fechaFin);
 			request.setAttribute("servicios", servicios);
 
 			HttpClient cliente = HttpClient.newHttpClient();

@@ -92,14 +92,11 @@ public class ServicioDAO {
 		}
 	}
 
-	public ArrayList<Servicio> filtrar(String cat, Boolean est, String sede, Date fechaInicio, Date fechaFin ) {
+	public ArrayList<Servicio> filtrar(Boolean est, String sede, Date fechaInicio, Date fechaFin ) {
 		ArrayList<Servicio> servicios = new ArrayList<>();
 		query = "SELECT * FROM servicio WHERE 1=1";
 
 
-		if (cat != null && !cat.isEmpty()){
-			query += " AND id_categoria = ?";
-		}
 		if (est != null){
 			query += " AND estado = ?";
 		}	
@@ -118,9 +115,6 @@ public class ServicioDAO {
 		try (PreparedStatement sentenciaPreparada = conexion.prepareStatement(query)) {
 			int aux = 1;
 
-			if (cat != null && !cat.isEmpty()){
-				sentenciaPreparada.setString(aux++, cat);
-			}	
 			if (est != null){
 				sentenciaPreparada.setBoolean(aux++, est);
 			}	
