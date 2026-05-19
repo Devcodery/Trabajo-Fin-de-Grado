@@ -1223,3 +1223,37 @@ p:empty { display: none; }
     justify-content: center;
     gap: 16px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ESTADO VACÍO (EMPTY STATE PARA MODALES)
+   ═══════════════════════════════════════════════════════════ */
+.estado-vacio {
+    text-align: center;
+    padding: 36px 24px;
+    background: var(--clr-bg);
+    border: 2px dashed var(--clr-inactivo);
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+}
+
+.estado-vacio .icono-vacio {
+    font-size: 42px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+    filter: grayscale(100%);
+}
+
+.estado-vacio h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--clr-ink);
+    margin-bottom: 8px;
+}
+
+.estado-vacio p {
+    font-size: 15px;
+    color: var(--clr-ink-soft);
+    max-width: 320px;
+    margin: 0 auto;
+    line-height: 1.6;
+}

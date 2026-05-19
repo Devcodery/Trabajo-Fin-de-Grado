@@ -11,7 +11,11 @@
         
         <c:choose>
             <c:when test="${empty usuario}">
-                <p>No hay usuario.</p>
+                <div id="mensaje-sin-usuario" class="estado-vacio oculto">
+                    <div class="icono-vacio">👤</div>
+                    <h3>Aún no asignado</h3>
+                    <p>No hay información de usuario disponible para mostrar en esta consulta.</p>
+                </div>
             </c:when>
             <c:otherwise>
                 <div class="contenido-datos">
