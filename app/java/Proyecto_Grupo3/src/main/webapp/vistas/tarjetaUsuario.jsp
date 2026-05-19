@@ -26,12 +26,12 @@
                     <strong>Dirección:</strong> <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
                 </p>
                 
-                <p id="p-departamento" <c:if test="${empty usuario.departamento}">style="display:none;"</c:if>>
-                    <strong>Departamento:</strong> <span id="modal-departamento"><c:out value="${usuario.departamento}" /></span>
+                <p id="p-departamento" <c:if test="${empty dptoNombre}">style="display:none;"</c:if>>
+                    <strong>Departamento:</strong> <span id="modal-departamento"><c:out value="${dptoNombre}" /></span>
                 </p>
                 
-                <p id="p-sede" <c:if test="${empty usuario.sede}">style="display:none;"</c:if>>
-                    <strong>Sede:</strong> <span id="modal-sede"><c:out value="${usuario.sede}" /></span>
+                <p id="p-sede" <c:if test="${empty sedeNombre}">style="display:none;"</c:if>>
+                    <strong>Sede:</strong> <span id="modal-sede"><c:out value="${sedeNombre}" /></span>
                 </p>
             </div>
         </div>
