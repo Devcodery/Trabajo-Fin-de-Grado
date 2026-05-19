@@ -44,6 +44,7 @@
             
             <form action="/borrar/{{ rol }}" method="POST">
                 <input type="hidden" name="id_usuario" id="input-id-usuario" value="">
+                <input type="hidden" name="next" value="{{ back_url }}">
                 
                 <div class="form-acciones">
                     <button type="button" class="btn-secondary" onclick="cerrarModalConfirmacion()">Cancelar</button>
