@@ -81,8 +81,8 @@
 					<label for="chkEstado">Estado</label>
 					<select name="estado" id="estado" disabled>
 						<option value="pendiente">Pendiente</option>
-						<option value="en_progreso">En progreso</option>
-						<option value="resuelta">Resuelta</option>
+						<option value="enprogreso">En progreso</option>
+						<option value="finalizada">Finalizada</option>
 					</select>
 				</div>
 
