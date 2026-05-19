@@ -9,26 +9,33 @@
             <c:when test="${rol == 'admin'}"><h2>Detalle Usuario</h2></c:when>
         </c:choose>
         
-        <div class="contenido-datos">
-            <div class="columna">
-                <p id="p-nombre">Nombre: <span id="modal-nombre"><c:out value="${usuario.nombre}" /></span></p>
-                <p id="p-apellidos">Apellidos: <span id="modal-apellidos"><c:out value="${usuario.apellidos}" /></span></p>
-                <p id="p-correo">Correo: <span id="modal-correo"><c:out value="${usuario.correo}" /></span></p>
-            </div>
-            <div class="columna">
-                <p id="p-departamento" <c:if test="${empty usuario.departamento}">style="display:none;"</c:if>>
-                    Departamento: <span id="modal-departamento"><c:out value="${usuario.departamento}" /></span>
-                </p>
-                
-                <p id="p-sede" <c:if test="${empty usuario.sede}">style="display:none;"</c:if>>
-                    Sede: <span id="modal-sede"><c:out value="${usuario.sede}" /></span>
-                </p>
-                
-                <p id="p-direccion" <c:if test="${empty usuario.direccion}">style="display:none;"</c:if>>
-                    Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
-                </p>
-            </div>
-        </div>
+        <c:choose>
+            <c:when test="${empty usuario}">
+                <p>No hay usuario.</p>
+            </c:when>
+            <c:otherwise>
+                <div class="contenido-datos">
+                    <div class="columna">
+                        <p id="p-nombre">Nombre: <span id="modal-nombre"><c:out value="${usuario.nombre}" /></span></p>
+                        <p id="p-apellidos">Apellidos: <span id="modal-apellidos"><c:out value="${usuario.apellidos}" /></span></p>
+                        <p id="p-correo">Correo: <span id="modal-correo"><c:out value="${usuario.correo}" /></span></p>
+                    </div>
+                    <div class="columna">
+                        <p id="p-departamento" <c:if test="${empty usuario.departamento}">style="display:none;"</c:if>>
+                            Departamento: <span id="modal-departamento"><c:out value="${usuario.departamento}" /></span>
+                        </p>
+                        
+                        <p id="p-sede" <c:if test="${empty usuario.sede}">style="display:none;"</c:if>>
+                            Sede: <span id="modal-sede"><c:out value="${usuario.sede}" /></span>
+                        </p>
+                        
+                        <p id="p-direccion" <c:if test="${empty usuario.direccion}">style="display:none;"</c:if>>
+                            Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
+                        </p>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <button id="btn-cerrar">Cerrar</button>
     </div>
 </div>
