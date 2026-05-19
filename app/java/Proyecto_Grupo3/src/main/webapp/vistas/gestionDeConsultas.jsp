@@ -54,7 +54,7 @@
 
 		<div id="modal-filtros" class="modal-filtros oculto">
 			<form action="${pageContext.request.contextPath}/ConsultaControlador" method="GET">
-				<input type="hidden" name="opcion" value="filtrarConsultas">
+				<input type="hidden" name="opcion" value="gestionConsultasAdmin">
 
 				<div class="fila-filtro">
 					<input type="checkbox" id="chkCliente" onchange="toggleFiltro('idCliente', this.checked)">
