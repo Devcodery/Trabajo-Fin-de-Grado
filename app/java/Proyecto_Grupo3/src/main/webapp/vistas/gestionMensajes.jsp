@@ -23,14 +23,14 @@ pageEncoding="UTF-8"%>
         	<a href="${pageContext.request.contextPath}/ConsultaControlador?opcion=verConsulta&idConsulta=${sessionScope.idConsulta}">Volver</a>	
         </button>
     </div>
-        <div class="cabecera-seccion">
-            <span class="badge-mensajes">Área de Mensajería</span>
+        <div class="title">
+            <h1>Área de Mensajería</h1>
         </div>
 
         <div class="contenedor-mensajes">
             
             <div class="columna-mensajes">
-                <div class="title centrado">
+                <div class="badge-mensajes">
                     <h1>MIS MENSAJES</h1>
                 </div>
                 
@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="columna-mensajes">
-                <div class="title centrado">
+                <div class="badge-mensajes">
                     <h1>MENSAJES RECIBIDOS</h1>
                 </div>
                 
