@@ -305,7 +305,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return redirect(url_for("login", next_url=request.args.get("next")))
 
 
 @app.route("/auth/verify")
