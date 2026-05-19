@@ -7,7 +7,7 @@ public class Servicio {
     private String nombre;
     private String descripcion;
     private String categoria;
-    private String sede;
+    private int sede;
     private String tecnologiasImplicadas;
     private String objetivos;
     private String alcance;
@@ -16,7 +16,7 @@ public class Servicio {
     private boolean estado;
 
     public Servicio(int idServicio, String nombre, String descripcion, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String categoria, String sede, Date fechaCreacion, boolean estado) {
+                    String alcance, String beneficios, String categoria, int sede, Date fechaCreacion, boolean estado) {
         this.idServicio = idServicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -31,7 +31,7 @@ public class Servicio {
     }
 
     public Servicio(String nombre, String descripcion, String categoria, String tecnoImpli, String objetivos,
-                    String alcance, String beneficios, String sede, Date fechaCreacion, boolean estado) {
+                    String alcance, String beneficios, int sede, Date fechaCreacion, boolean estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -76,11 +76,11 @@ public class Servicio {
         this.categoria = categoria;
     }
 
-    public String getSede() {
+    public int getSede() {
         return sede;
     }
 
-    public void setSede(String sede) {
+    public void setSede(int sede) {
         this.sede = sede;
     }
 
