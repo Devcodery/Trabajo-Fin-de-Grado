@@ -1257,3 +1257,25 @@ p:empty { display: none; }
     margin: 0 auto;
     line-height: 1.6;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   DISEÑO A DOS COLUMNAS (MENSAJERÍA)
+   ═══════════════════════════════════════════════════════════ */
+.contenedor-mensajes {
+    display: flex;
+    gap: 40px; /* Crea un hueco de separación entre la columna izquierda y derecha */
+    width: 100%;
+    max-width: 1200px; /* Evita que se estire infinitamente en monitores gigantes */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.columna-mensajes {
+    flex: 1; /* Esto hace que ambas columnas ocupen exactamente el 50% de la pantalla */
+    display: flex;
+    flex-direction: column;
+}
+
+.columna-mensajes .title {
+    margin-top: 0; /* Quitamos el margen superior que pusimos antes para que queden alineados */
+}
