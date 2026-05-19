@@ -24,17 +24,22 @@
                         <p id="p-correo">Correo: <span id="modal-correo"><c:out value="${usuario.correo}" /></span></p>
                     </div>
                     <div class="columna">
-                        <p id="p-departamento" <c:if test="${empty usuario.departamento}">style="display:none;"</c:if>>
-                            Departamento: <span id="modal-departamento"><c:out value="${usuario.departamento}" /></span>
-                        </p>
-                        
-                        <p id="p-sede" <c:if test="${empty usuario.sede}">style="display:none;"</c:if>>
-                            Sede: <span id="modal-sede"><c:out value="${usuario.sede}" /></span>
-                        </p>
-                        
-                        <p id="p-direccion" <c:if test="${empty usuario.direccion}">style="display:none;"</c:if>>
-                            Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
-                        </p>
+                        <c:choose>
+                            <c:when test="${empty dptoNombre || empty sedeNombre}">
+                                <p id="p-direccion">
+                                    Direccion: <span id="modal-direccion"><c:out value="${usuario.direccion}" /></span>
+                                </p>
+                            </c:when>
+                            <c:otherwise>
+                                <p id="p-departamento">
+                                    Departamento: <span id="modal-departamento"><c:out value="${dptoNombre}" /></span>
+                                </p>
+                                
+                                <p id="p-sede">
+                                    Sede: <span id="modal-sede"><c:out value="${sedeNombre}" /></span>
+                                </p>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </c:otherwise>
