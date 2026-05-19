@@ -264,6 +264,7 @@ def login():
         user = request.form.get("user")
         passwd = request.form.get("passwd")
         next_url = request.args.get("next") or "/"
+        print(f"Intento de login: user={user}, next_url={next_url}", flush=True)
 
         # Usuario administrador definido en .env.
         if user == USUARIO and passwd == PASSWD:
@@ -299,7 +300,7 @@ def login():
 
         error = "Usuario o contraseña incorrectos"
 
-    return render_template("login.html", error=error)
+    return render_template("login.html", error=error, next_url=request.args.get("next", "/"))
 
 
 @app.route("/logout")
