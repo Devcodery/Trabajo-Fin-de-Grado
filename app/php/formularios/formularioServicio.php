@@ -41,13 +41,12 @@ foreach ($data['data'] as $sede) {
 
             <div class="form-group">
                 <label for="sede">Sede:</label>
-                <select id="sede" name="sede">
+                <select id="id_sede" name="id_sede">
                     <option value="" disabled selected>Seleccione una sede</option>
                     <?php foreach ($sedes as $sede): ?>
-                        <option value="<?php echo htmlspecialchars($sede['nombre']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
+                        <option value="<?php echo htmlspecialchars($sede['id']); ?>"><?php echo htmlspecialchars($sede['nombre']); ?></option>
+                    <?php endforeach; ?>
                 </select>
-                <input type="hidden" name="id_sede" value="<?php echo htmlspecialchars($sede['id']); ?>">
-                <?php endforeach; ?>
             </div>
 
             <div class="form-group">
