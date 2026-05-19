@@ -43,7 +43,6 @@ pageEncoding="UTF-8"%>
 
                     <c:if test="${empty mensajesEnviados}">
                         <div class="estado-vacio">
-                            <div class="icono-vacio">📤</div>
                             <h3>No hay mensajes enviados</h3>
                             <p>Aún no has enviado ningún mensaje.</p>
                         </div>
@@ -68,7 +67,6 @@ pageEncoding="UTF-8"%>
 
                     <c:if test="${empty mensajesRecibidos}">
                         <div class="estado-vacio">
-                            <div class="icono-vacio">📥</div>
                             <h3>No hay mensajes recibidos</h3>
                             <p>Aún no has recibido ningún mensaje.</p>
                         </div>
