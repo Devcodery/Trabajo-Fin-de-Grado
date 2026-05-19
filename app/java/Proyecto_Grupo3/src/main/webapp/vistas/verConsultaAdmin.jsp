@@ -46,13 +46,13 @@ pageEncoding="UTF-8"%>
                             consulta.idConsultor == 0 ? 'selected' : ''}>
                             -- Selecciona un consultor --
                         </option>
-                        <c:foreach var="consultor" items="${consultores}">
+                        <c:forEach var="consultor" items="${consultores}">
                             <option value="${consultor.idUsuario}"
                                 ${consultor.idUsuario == consulta.idConsultor ?
                                 'selected' : ''}>
                                 ${consultor.nombre}
                             </option>
-                        </c:foreach>
+                        </c:forEach>
                     </select>
                 </div>
             </form>
