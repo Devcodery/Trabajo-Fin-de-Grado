@@ -1,6 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import conexionBBDD.ConexionBBDD;
 import dao.ServicioDAO;
+import modelo.Sede;
 import modelo.Servicio;
 
 /**
@@ -44,10 +54,42 @@ public class ServicioControlador extends HttpServlet {
 			int idServicio = Integer.valueOf(request.getParameter("idServicio"));
 			
 			Servicio servicio = servicioDAO.read(idServicio);
-			System.out.println(servicio);
+
+			HttpClient cliente = HttpClient.newHttpClient();
+			Sede sede = null;
+			HttpRequest peticion = HttpRequest.newBuilder()
+									.uri(URI.create("http://info.empresa.dam.es:8055/items/sedes"))
+									.GET()
+									.build();
+			
+			try {
+				HttpResponse<String> respuesta = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
+				String respuestaString = respuesta.body();
+				
+				JsonObject jsonCompleto = JsonParser.parseString(respuestaString).getAsJsonObject();
+				
+				JsonArray jsonArray = jsonCompleto.getAsJsonArray("data");
+				
+				for(JsonElement j : jsonArray) {
+					JsonObject jsonObj = j.getAsJsonObject();
+					
+					if(jsonObj.get("id").getAsInt() == servicio.getSede()) {
+						sede = new Sede(jsonObj.get("id").getAsInt(), 
+										jsonObj.get("nombre").getAsString(), 
+										jsonObj.get("direccion").getAsString(), 
+										jsonObj.get("ciudad").getAsString());
+					}
+				}
+				
+			}catch (IOException e) {
+				e.printStackTrace();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
 
 			if(servicio != null) {
 				request.setAttribute("servicio", servicio);
+				request.setAttribute("sede", sede);
 			}
 
 			request.getRequestDispatcher("/vistas/verServicio.jsp").forward(request, response);	
