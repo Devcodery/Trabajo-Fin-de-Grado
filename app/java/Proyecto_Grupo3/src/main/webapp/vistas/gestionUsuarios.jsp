@@ -36,7 +36,7 @@
                     </c:when>
                     <c:otherwise>
                          <button class="btn">
-                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Crear Consultor</a>	
+                            <a href="/registro/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Crear Consultores</a>	
                         </button>
                     </c:otherwise>
                 </c:choose>
@@ -50,7 +50,7 @@
                     </c:when>
                     <c:otherwise>
                          <button class="btn">
-                            <a href="/borrar/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Borrar Consultor</a>	
+                            <a href="/borrar/${rolPagina}?next=/UsuarioControlador?opcion=gestion">Borrar Consultores</a>	
                         </button>
                     </c:otherwise>
                 </c:choose>
@@ -64,7 +64,7 @@
                 </c:when>
                 <c:otherwise>
                     <button class="btn">
-                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Ver Consultor</a>	
+                        <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=verusuarios&rolPagina=${rolPagina}">Ver Consultores</a>	
                     </button>
                 </c:otherwise>
             </c:choose>
