@@ -1,0 +1,231 @@
+{
+  "name": "trg_prioridad",
+  "nodes": [
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "tableName": {
+          "__rl": true,
+          "value": "mensajes",
+          "mode": "list",
+          "cachedResultName": "mensajes"
+        },
+        "additionalFields": {
+          "triggerName": "tr_prioridad"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4bd73b7d-03ac-43a7-8d30-d80c92306ea9",
+      "name": "Postgres Trigger",
+      "credentials": {
+        "postgres": {
+          "id": "JvDRIZJnJ42zfkzi",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama3.1:8b",
+          "mode": "list",
+          "cachedResultName": "llama3.1:8b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Eres un clasificador de prioridad para mensajes de soporte técnico. Analiza el asunto y la descripción del mensaje y responde ÚNICAMENTE con el nivel de prioridad, sin markdown, sin bloques de código, sin explicaciones adicionales.\n\nNiveles de prioridad:\n- critica: sistema completamente caído, pérdida de datos, fallo en producción que afecta a todos los usuarios, brecha de seguridad\n- alta: errores graves que bloquean flujos de trabajo, módulos importantes sin funcionar, afecta a varios usuarios\n- media: bugs menores, preguntas técnicas, solicitudes no urgentes, afecta a un usuario puntualmente\n- baja: sugerencias de mejora, cambios estéticos, consultas generales, feedback\n\n\nprioridad: critica|alta|media|baja\n\n\nReglas estrictas:\n- El campo prioridad solo puede contener uno de estos valores exactos: critica, alta, media, baja\n- El campo motivo debe estar en español\n- No añadas ningún texto fuera del JSON\n- Si el mensaje es ambiguo, asigna prioridad media\n\nMensaje a analizar:\nAsunto: {{ $json.payload.asunto }}\nDescripción: {{ $json.payload.descripcion }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "70f80f91-ed3a-44dc-a69d-43ee11d93c26",
+      "name": "Message a model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "sXmL4UjBs1dN6uHv",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "mensajes",
+          "mode": "list",
+          "cachedResultName": "mensajes"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_mensajeria": "={{ $('Postgres Trigger').item.json.payload.id_mensajeria }}",
+            "prioridad": "={{ $json.content }}"
+          },
+          "matchingColumns": [
+            "id_mensajeria"
+          ],
+          "schema": [
+            {
+              "id": "id_mensajeria",
+              "displayName": "id_mensajeria",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_consulta",
+              "displayName": "id_consulta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "id_usuario",
+              "displayName": "id_usuario",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "descripcion",
+              "displayName": "descripcion",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "asunto",
+              "displayName": "asunto",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "fecha_creacion",
+              "displayName": "fecha_creacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "prioridad",
+              "displayName": "prioridad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "motivo",
+              "displayName": "motivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        560,
+        0
+      ],
+      "id": "9ce63ded-a524-4e74-a19c-b5f39cb924ad",
+      "name": "Update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "JvDRIZJnJ42zfkzi",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Postgres Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "e69169ec-1468-4dc0-8d9e-b375353bf510",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ae9505d79d4404832927c9e9fae7740d5b50b0319310a0a73cdcd6cfbb34a430"
+  },
+  "id": "GoMm3BR066JhsuRZ",
+  "tags": []
+}

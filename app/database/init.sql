@@ -30,6 +30,8 @@ create table mensajes(
     id_usuario int not null,
     descripcion text not null,
     asunto varchar(100) not null,
+    prioridad varchar(20) default 'baja',
+    motivoPrioridad varchar(100),
     fecha_creacion timestamp default current_timestamp
 );
 
