@@ -62,7 +62,7 @@ public class MensajeDAO {
 			sentencia.setInt(2, idUsuario);
 			ResultSet rs = sentencia.executeQuery();
 			while(rs.next()) {
-				mensajes.add(new Mensaje(rs.getInt("id_mensajeria"), rs.getInt("id_usuario"), rs.getInt("id_consulta"), rs.getString("asunto"), rs.getString("descripcion")));
+				mensajes.add(new Mensaje(rs.getInt("id_mensajeria"), rs.getInt("id_usuario"), rs.getInt("id_consulta"), rs.getString("asunto"), rs.getString("descripcion"), rs.getString("prioridad")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
