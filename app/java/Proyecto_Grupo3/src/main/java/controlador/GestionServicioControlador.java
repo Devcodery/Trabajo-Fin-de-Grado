@@ -121,10 +121,6 @@ public class GestionServicioControlador extends HttpServlet {
 			try {
 				HttpResponse<String> respuesta = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
 				String respuestaString = respuesta.body();
-				System.out.println(respuestaString);
-				
-				
-				
 				
 				JsonObject jsonCompleto = JsonParser.parseString(respuestaString).getAsJsonObject();
 				

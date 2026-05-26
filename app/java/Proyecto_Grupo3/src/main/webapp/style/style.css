@@ -1257,3 +1257,39 @@ p:empty { display: none; }
     margin: 0 auto;
     line-height: 1.6;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   DISEÑO A DOS COLUMNAS (MENSAJERÍA) Y ETIQUETAS
+   ═══════════════════════════════════════════════════════════ */
+
+.badge-mensajes {
+    background-color: var(--clr-ink, #333); /* Fondo oscuro */
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 20px;
+}
+
+.contenedor-mensajes {
+    display: flex;
+    gap: 40px; /* Separación entre columnas */
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.columna-mensajes {
+    flex: 1; /* Ocupan exactamente el 50% cada una */
+    display: flex;
+    flex-direction: column;
+}
+
+.title-centrado-mensajes {
+    text-align: center; /* Centra el título respecto a su propia columna */
+}

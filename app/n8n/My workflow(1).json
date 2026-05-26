@@ -1,0 +1,164 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "correo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "970a396f-2e8d-434c-9001-5052ab4bd704",
+      "name": "Webhook",
+      "webhookId": "f9a7c5e7-4b9f-4c14-b109-caf0fdf5dbd1"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.correo }}",
+        "subject": "={{ $json.content }}",
+        "message": "={{ $('html').item.json.message.content }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        0
+      ],
+      "id": "afddbd51-0313-4337-8811-edf665fffeca",
+      "name": "Send a message",
+      "webhookId": "21770a7e-2863-4d56-a301-846f806cadc7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FFJgxzgNaFiHJ1vF",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama3.1:8b",
+          "mode": "list",
+          "cachedResultName": "llama3.1:8b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=[INSTRUCCIÓN]: Eres un sistema automatizado. Responde ÚNICAMENTE con el asunto del correo, sin comillas, sin explicaciones, sin prefijos como \"Asunto:\" ni ningún otro texto adicional.\n\nGenera un asunto de correo electrónico profesional, conciso y claro para una empresa de tecnología, basado en los siguientes datos de una solicitud de servicio:\n\n- Título: {{ $('Webhook').item.json.body.titulo }}\n- Tipo de Servicio: {{ $('Webhook').item.json.body.tipo_de_Servicio }}\n- Nombre del Cliente: {{ $('Webhook').item.json.body.nombre }}\n- Estado: {{ $('Webhook').item.json.body.estado }}\n\nReglas:\n1. El asunto debe estar escrito en: {{ $('Webhook').item.json.body.idioma }} y solo en ese idioma\n2. Máximo 12 palabras.\n3. Debe transmitir profesionalidad y urgencia moderada.\n4. Incluye el nombre del cliente o el tipo de servicio si encaja de forma natural.\n5. No uses emojis."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        560,
+        0
+      ],
+      "id": "2ed63793-a90e-4b88-a58f-1ca3878a1f29",
+      "name": "asunto",
+      "credentials": {
+        "ollamaApi": {
+          "id": "V2nPaVWlGsPjPnze",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "llama3.1:8b",
+          "mode": "list",
+          "cachedResultName": "llama3.1:8b"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=[REGLA DE SALIDA ABSOLUTA Y CRÍTICA]: Eres un backend automatizado que solo escupe código crudo. Está COMPLETAMENTE PROHIBIDO introducir texto introductorio, comentarios, saludos o usar bloques de código de markdown (como ```html o ```). Tu respuesta debe comenzar directamente con '<div style=' y terminar con '</div>'. Si rompes esta regla, el sistema fallará.\n\nActúa como un diseñador frontend experto en UI corporativa minimalista para empresas tecnológicas. Genera una tarjeta de ticket profesional, limpia y moderna usando los <datos_solicitud> de arriba.\n\nReglas de idioma (CRÍTICAS):\n1. Escribe TODO el contenido única y exclusivamente en el idioma: {{ $json.body.idioma }}\n2. Si los datos están en otro idioma, traduce todo de forma nativa y fluida.\n\nReglas de Contenido:\n1. Redacta un texto breve (2-3 líneas) confirmando que la solicitud fue recibida y que el equipo técnico está evaluando los requisitos. Escríbelo en: {{ $json.body.idioma }}.\n2. Si la descripción contiene texto de relleno (\"test\", \"asd\", etc.), sustitúyela por una frase elegante sobre evaluación de ingeniería.\n\nReglas de Estilo Minimalista Tech (Inline CSS Obligatorio — Paleta Azul Oscuro):\n- Fuente principal: 'Segoe UI', Arial, sans-serif\n- Colores principales: fondo general #f0f4f8, acento primario #1e3a5f, acento secundario #2563eb, texto principal #1a1a2e, texto secundario #4a5568\n- **Contenedor:** background:#f0f4f8; border:1.5px solid #1e3a5f; border-radius:10px; box-shadow:0 4px 24px rgba(30,58,95,0.13); max-width:480px; font-family:'Segoe UI',Arial,sans-serif; overflow:hidden;\n- **Cabecera:** background:#1e3a5f; color:#ffffff; padding:22px 28px 16px 28px; border-bottom:2px solid #2563eb. El título en mayúsculas, font-weight:700, font-size:1.15rem, letter-spacing:1.5px.\n- **Cuadro narrativo:** background:#ffffff; border-left:3px solid #2563eb; margin:20px 24px 0 24px; padding:14px 16px; border-radius:4px; font-size:0.93rem; color:#1a1a2e; line-height:1.6;\n- **Badge de estado:** display:inline-block; background:#2563eb; color:#ffffff; border-radius:4px; padding:4px 14px; font-size:0.8rem; font-weight:700; letter-spacing:1px; margin:16px 24px 0 24px; text-transform:uppercase;\n- **Caja de datos (footer):** background:#e8eef5; border-top:1.5px solid #c7d4e3; padding:16px 24px 20px 24px; margin-top:18px; font-size:0.88rem; color:#1e3a5f; line-height:2;\n\n[RECORDATORIO FINAL]: Solo HTML inline crudo. Sin comentarios. Sin markdown. Empieza con '<div style=' y termina con '</div>'."
+            }
+          ]
+        },
+        "simplify": false,
+        "options": {
+          "format": ""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.ollama",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e3742f34-c41e-404f-b612-295c6496147a",
+      "name": "html",
+      "credentials": {
+        "ollamaApi": {
+          "id": "V2nPaVWlGsPjPnze",
+          "name": "Ollama account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "asunto": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "html": {
+      "main": [
+        [
+          {
+            "node": "asunto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9d6803cc-8cc5-4241-ad27-0bb7ebfca06b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0a2187dffa9e8c099782e62cfe2c867e99ede39e98429b6c7a92f9034fe411b2"
+  },
+  "id": "GEUXSnuLwt9pWdMf",
+  "tags": []
+}

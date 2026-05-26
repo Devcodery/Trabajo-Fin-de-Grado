@@ -58,7 +58,7 @@
                 
                 <div class="servicio-campo">
                     <span class="servicio-label">Sede:</span>
-                    <span class="servicio-texto"><c:out value="${servicio.sede}"></c:out></span>
+                    <span class="servicio-texto"><c:out value="${sede.nombre}"></c:out></span>
                 </div>
 
                 <div class="servicio-campo">

@@ -21,28 +21,28 @@
    		<table>
 	        <tr>
 	            <button class="btn-consulta">
-	            	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=servicio">SERVICIOS</a>
+	            	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=servicio">Servicios</a>
 	            </button>
 	        </tr>
 	        <tr>
 
 			    <button class="btn-consulta">
-			    	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=crearServicio">Crear Servicio</a>
+			    	<a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=crearServicio">Crear Servicios</a>
 			    </button>
 	        </tr>
 	        <tr>
 	            <button class="btn-consulta">
-                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=modificar">Modificar Servicio</a>
+                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=modificar">Modificar Servicios</a>
                 </button>
 	        </tr>
 	        <tr>
 	            <button class="btn-consulta">
-                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=desactivar">Desactivar Servicio</a>
+                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=desactivar">Desactivar Servicios</a>
                 </button>
 	        </tr>
 	        <tr>
 	            <button class="btn-consulta">
-                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=eliminar">Eliminar Servicio</a>
+                    <a href="${pageContext.request.contextPath}/GestionServicioControlador?opcion=listarServicios&funcion=eliminar">Eliminar Servicios</a>
                 </button>
 	        </tr>
         </table>

@@ -1,6 +1,7 @@
 package dao;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 import java.sql.Connection;
@@ -60,23 +61,48 @@ public class MensajeDAOTest {
         assertFalse(resultado);
     }
 
-    @Test
-    @DisplayName("Éxito: Leer todos los mensajes de un usuario dentro de una consulta")
-    public void testReadMensajesUsuario_Exito() throws SQLException {
+   @Test
+    @DisplayName("Éxito: Leer los mensajes enviados por el usuario en una consulta")
+    public void testReadMensajesUsuarioEnviar_Exito() throws SQLException {
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
         when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
         when(mockResultSet.next()).thenReturn(true, false);
         
         when(mockResultSet.getInt("id_usuario")).thenReturn(2);
         when(mockResultSet.getInt("id_consulta")).thenReturn(1);
-        when(mockResultSet.getString("asunto")).thenReturn("Test");
-        when(mockResultSet.getString("descripcion")).thenReturn("Hola");
+        when(mockResultSet.getString("asunto")).thenReturn("Test Envio");
+        when(mockResultSet.getString("descripcion")).thenReturn("Hola, este es mi mensaje");
 
-        ArrayList<Mensaje> resultado = mensajeDAO.readMensajesUsuario(2, 1);
+        ArrayList<Mensaje> resultado = mensajeDAO.readMensajesUsuarioEnviar(2, 1);
 
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
-        assertEquals("Test", resultado.get(0).getAsunto());
+        assertEquals("Test Envio", resultado.get(0).getAsunto());
+
+        verify(mockPreparedStatement).setInt(1, 2);
+        verify(mockPreparedStatement).setInt(2, 1);
+    }
+
+    @Test
+    @DisplayName("Éxito: Leer los mensajes recibidos de otros usuarios en una consulta")
+    public void testReadMensajesUsuarioRecibir_Exito() throws SQLException {
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true, false);
+        
+        when(mockResultSet.getInt("id_usuario")).thenReturn(5);
+        when(mockResultSet.getInt("id_consulta")).thenReturn(1);
+        when(mockResultSet.getString("asunto")).thenReturn("Respuesta");
+        when(mockResultSet.getString("descripcion")).thenReturn("Hola, te respondo tu duda");
+
+        ArrayList<Mensaje> resultado = mensajeDAO.readMensajesUsuarioRecibir(2, 1);
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals("Respuesta", resultado.get(0).getAsunto());
+        
+        verify(mockPreparedStatement).setInt(1, 1);
+        verify(mockPreparedStatement).setInt(2, 2); 
     }
 
     @Test
