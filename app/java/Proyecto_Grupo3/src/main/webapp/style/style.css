@@ -735,6 +735,47 @@ body > .acciones button:hover {
     transform: translateY(-1px);
 }
 
+.badge-prioridad {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+    vertical-align: middle;
+    border: 2px solid;
+    font-family: var(--font-body);
+}
+
+
+.prioridad-critica {
+    background: var(--clr-accent-lt);
+    color: var(--clr-accent);
+    border-color: var(--clr-accent);
+}
+
+.prioridad-alta {
+    background: var(--clr-muted);
+    color: var(--clr-ink);
+    border-color: var(--clr-ink);
+}
+
+
+.prioridad-media {
+    background: #e8f1fb;
+    color: var(--clr-en-progreso);
+    border-color: var(--clr-en-progreso);
+}
+
+
+.prioridad-baja {
+    background: #eaf5ec;
+    color: var(--clr-activo);
+    border-color: var(--clr-activo);
+}
+
 /* ═══════════════════════════════════════════════════════════
    MODALES (fondo + tarjeta)
    enviarMensajes, verMensajes, tarjetaUsuario
