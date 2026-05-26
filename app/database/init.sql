@@ -30,8 +30,7 @@ create table mensajes(
     id_usuario int not null,
     descripcion text not null,
     asunto varchar(100) not null,
-    prioridad varchar(20) default 'baja',
-    motivoPrioridad varchar(100),
+    prioridad varchar(20) default 'baja' not null,
     fecha_creacion timestamp default current_timestamp
 );
 
@@ -51,6 +50,24 @@ create or replace trigger trg_consulta_estado
 before update of estado on consulta
 for each row
 execute function fn_consulta_estado();
+
+create or replace function fn_prioridad_mensaje()
+returns trigger as
+$$
+begin
+    if new.prioridad not in ('baja','media', 'alta', 'critica') then
+        raise exception 'La prioridad no es válida. Debe ser baja, media, alta o crítica.';
+    end if;
+
+    return new;   
+end;
+$$ language plpgsql;
+
+create or replace trigger trg_prioridad_mensaje
+before update of prioridad on mensajes
+for each row
+execute function fn_prioridad_mensaje();
+
 
 insert into servicio (nombre, descripcion, categoria, id_sede, beneficios, tecnologias_implicadas, alcance, objetivos, estado) values
 ('Automatización de Procesos', 'Servicio de automatización de procesos empresariales para mejorar la eficiencia y reducir costes.', 'Automatización', 1, 'Mejora de la eficiencia operativa, reducción de costes, aumento de la productividad.', 'Inteligencia Artificial', 'Empresas de todos los tamaños que buscan automatizar sus procesos y mejorar su eficiencia.', 'Automatización de procesos empresariales', true),
