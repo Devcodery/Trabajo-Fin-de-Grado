@@ -105,9 +105,9 @@ pageEncoding="UTF-8"%>
         </div>
 
         <div class="acciones">
-            <button id="btn-abrir-detalle">Enviar Mensaje</button>
-            <button id="btn-abrir-mensaje">Ver Detalles</button>
-            <button id="btn-borrar-mensaje">Borrar</button>
+            <button id="btn-abrir-detalle" class="btn-principal">Enviar Mensaje</button>
+            <button id="btn-abrir-mensaje" class="btn-secondary">Ver Detalles</button>
+            <button id="btn-borrar-mensaje" class="btn-eliminar">Borrar</button>
         </div>
 
         <jsp:include page="enviarMensajes.jsp"></jsp:include>
