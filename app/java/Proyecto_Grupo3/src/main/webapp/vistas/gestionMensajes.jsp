@@ -34,6 +34,13 @@ pageEncoding="UTF-8"%>
                     data-asunto="${mensaje.asunto}"
                     onclick="seleccionarItem(this)">
                     <p class="nombre">${mensaje.asunto}</p>
+
+                    <c:if test="${rol == 'consultor'}">
+                        <span class="badge-prioridad prioridad-${mensaje.prioridad}">
+                            ${mensaje.prioridad}
+                        </span>
+                    </c:if>
+
                 </div>
             </c:forEach>
 

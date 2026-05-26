@@ -6,13 +6,15 @@ public class Mensaje {
     private int idConsulta;
     private String asunto;
     private String contenido;
+    private String prioridad;
     
-    public Mensaje(int idMensaje,int idUsuario, int idConsulta, String asunto, String contenido) {
+    public Mensaje(int idMensaje,int idUsuario, int idConsulta, String asunto, String contenido, String prioridad) {
         this.idMensaje = idMensaje;
         this.idUsuario = idUsuario;
         this.idConsulta = idConsulta;
         this.asunto = asunto;
         this.contenido = contenido;
+        this.prioridad = prioridad;
     }
 
     public int getIdMensaje() {
@@ -55,6 +57,12 @@ public class Mensaje {
 		this.idConsulta = idConsulta;
 	}
     
-    
+    public String getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(String prioridad) {
+        this.prioridad = prioridad;
+    }
     
 }
