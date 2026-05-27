@@ -13,10 +13,9 @@
             <a href="${pageContext.request.contextPath}/UsuarioControlador?opcion=gestion&rolPagina=<c:out value="${ rolPagina }"></c:out>">Volver</a>
         </button>
     </div>
-    <c:set var="rol" value="${sessionScope.rol}" />
     <div class="container-carrusel">
         <c:choose>
-            <c:when test="${rol == 'cliente'}">
+            <c:when test="${rolPagina == 'cliente'}">
                 <h2>Ver Clientes</h2>
             </c:when>
             <c:otherwise>
