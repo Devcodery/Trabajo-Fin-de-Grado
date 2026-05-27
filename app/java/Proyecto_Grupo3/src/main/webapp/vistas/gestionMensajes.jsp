@@ -112,7 +112,9 @@ pageEncoding="UTF-8"%>
 
         <jsp:include page="enviarMensajes.jsp"></jsp:include>
         <jsp:include page="verMensajes.jsp"></jsp:include>
-        <jsp:include page="modelosEliminar.jsp"></jsp:include>
+        <jsp:include page="modelosEliminar.jsp">
+            <jsp:param name="origen" value="mensaje"/>
+        </jsp:include>
 
         <script src="${pageContext.request.contextPath}/JavaScript/mensajeModal.js"></script>
         <script src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>

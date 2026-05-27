@@ -100,7 +100,9 @@
 		</div>
     </div>
 
-    <jsp:include page="modelosEliminar.jsp"></jsp:include>
+    <jsp:include page="modelosEliminar.jsp">
+        <jsp:param name="origen" value="servicio"/>
+    </jsp:include>
     <script src="${pageContext.request.contextPath}/JavaScript/eliminar.js"></script>
     <script src="${pageContext.request.contextPath}/JavaScript/servicios.js"></script>
 </body>
